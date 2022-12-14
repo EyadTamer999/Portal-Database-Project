@@ -22,10 +22,10 @@ namespace WebApplication3.webpages
             //set connection string and open connection
             SqlConnection conn = new SqlConnection(WebConfigurationManager.ConnectionStrings["Portal"].ToString());
             conn.Open();
- 
+
             //creating and using the procedure of login
-            SqlCommand loginProc = new SqlCommand("LOGIN",conn);
-            loginProc.CommandType= CommandType.StoredProcedure;
+            SqlCommand loginProc = new SqlCommand("LOGIN", conn);
+            loginProc.CommandType = CommandType.StoredProcedure;
 
             //input from user
             SqlParameter emailNameEntered = loginProc.Parameters.Add(new SqlParameter("@email", SqlDbType.VarChar));
@@ -45,7 +45,7 @@ namespace WebApplication3.webpages
             String s = loginProc.Parameters["@success"].Value.ToString();
 
 
-            if (string.Equals(s,"1"))
+            if (string.Equals(s, "1"))
             {
                 Response.Write("Access Granted! Welcome");
                 InvalidLogin.Visible = false;
