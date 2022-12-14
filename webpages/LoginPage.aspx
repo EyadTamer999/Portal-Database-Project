@@ -16,7 +16,7 @@
     <link href="Bootstrap\js\jquery-3.3.1.slim.min.js" />
 
     <!--Bootstrap-->
-    <link href="Bootstrap\js\jquery-3.3.1.slim.min.js" />
+    <link href="Bootstrap\js\jquery-3.3.1.slim.min.js" /> 
 
     <!--popper js-->
     <link href="Bootstrap\js\jquery-3.3.1.slim.min.js" />

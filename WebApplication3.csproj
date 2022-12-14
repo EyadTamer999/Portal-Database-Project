@@ -2129,6 +2129,9 @@
     <Content Include="fontawesome\svgs\solid\z.svg" />
     <Content Include="img\giu-logo.png" />
     <Content Include="img\user-icon.png" />
+    <Content Include="SQL\Procedures.sql" />
+    <Content Include="SQL\Tables.SQL" />
+    <Content Include="SQL\Testing.sql" />
     <Content Include="Web.config" />
     <Content Include="webpages\LoginPage.aspx" />
   </ItemGroup>
