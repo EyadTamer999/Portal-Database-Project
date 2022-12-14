@@ -12,9 +12,9 @@ EXEC UserRegister @user_id = NULL, @password = null, @usertype = 'Student', @use
 
 --LECTUERER
 EXEC UserRegister @user_id = NULL, @password = NULL, @usertype = 'Lecturer', @userName = 'Lecturer1', @email = 'LEC1@user',
-@first_name = 'SLIM', @last_name = 'test',@birth_date = '1-1-2002',
-@GPA = 2.0, @semester = 2,@address='street123',@faculty_code='1',@major_code='1',@company_name=NULL,@representative_name='RepTest',
-@representative_email='RepTest@email',@phone_number='12343278',@country_of_residence='testCountry'
+@first_name = 'Slim', @last_name = 'test',@birth_date = '1-1-2002',
+@GPA = NULL, @semester = NULL,@address='street123',@faculty_code='1',@major_code='1',@company_name=NULL,@representative_name= NULL,
+@representative_email= NULL,@phone_number='12343278',@country_of_residence='testCountry'
 
 --Compnay
 EXEC UserRegister @user_id = NULL, @password = NULL, @usertype = 'Company', @userName = 'Comp1', @email = 'Comp1@user',

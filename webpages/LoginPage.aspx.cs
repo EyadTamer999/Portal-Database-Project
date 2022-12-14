@@ -18,16 +18,17 @@ namespace WebApplication3.webpages
         }
         protected void Login(object sender, EventArgs e)
         {
-            SqlConnection conn = new SqlConnection(WebConfigurationManager.ConnectionStrings["Portal"].ToString());
+            String connStr = WebConfigurationManager.ConnectionStrings["Portal"].ToString();
+            SqlConnection conn = new SqlConnection(connStr);
 
             //input from user
             String emailNameEntered = Email.Text;
             String passwordEntered = Password.Text;
 
             //creating and using the procedure of login
-            SqlCommand loginProc = new SqlCommand("LOGIN",conn);  //check lab8 video min 8:37 
-            loginProc.Parameters.Add("@email", emailNameEntered);
-            loginProc.Parameters.Add("@password", passwordEntered);
+            SqlCommand loginProc = new SqlCommand("LOGIN",conn);  
+            loginProc.Parameters.AddWithValue("@email", emailNameEntered);
+            loginProc.Parameters.AddWithValue("@password", passwordEntered);
 
             //output of the proc
             SqlParameter success = loginProc.Parameters.Add("@success", SqlDbType.Bit);
