@@ -28,6 +28,28 @@ namespace WebApplication3.webpages
             SqlCommand loginProc = new SqlCommand("LOGIN",conn);  //check lab8 video min 8:37 
             loginProc.Parameters.Add("@email", emailNameEntered);
             loginProc.Parameters.Add("@password", passwordEntered);
+
+            //output of the proc
+            SqlParameter success = loginProc.Parameters.Add("@success", SqlDbType.Bit);
+            SqlParameter user_id = loginProc.Parameters.Add("@user_id", SqlDbType.Int);
+
+            success.Direction = ParameterDirection.Output;
+            user_id.Direction = ParameterDirection.Output;
+
+            //exec the login proc
+            conn.Open();
+            loginProc.ExecuteNonQuery();
+            conn.Close();
+
+            if(success.Value.ToString() == "1")
+            {
+                Response.Write("Access Granted! Welcome");
+            }
+            else
+            {
+                Response.Write("Invalid Email or Password");
+            }
+
         }
 
         protected void Register(Object sender, EventArgs e)
