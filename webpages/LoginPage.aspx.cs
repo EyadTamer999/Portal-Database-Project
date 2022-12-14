@@ -27,8 +27,8 @@ namespace WebApplication3.webpages
 
             //creating and using the procedure of login
             SqlCommand loginProc = new SqlCommand("LOGIN",conn);  
-            loginProc.Parameters.AddWithValue("@email", emailNameEntered);
-            loginProc.Parameters.AddWithValue("@password", passwordEntered);
+            loginProc.Parameters.Add(new SqlParameter("@email", emailNameEntered));
+            loginProc.Parameters.Add(new SqlParameter("@password", passwordEntered));
 
             //output of the proc
             SqlParameter success = loginProc.Parameters.Add("@success", SqlDbType.Bit);
