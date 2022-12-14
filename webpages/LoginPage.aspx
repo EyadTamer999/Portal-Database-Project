@@ -43,8 +43,8 @@
                 <div style="height: 205px">
                     <asp:Label ID="Text1" runat="server" Text="Login"></asp:Label>
                     <p style="height: 29px">
-                        <asp:TextBox ID="Username" runat="server" Text="Username"></asp:TextBox>
-                        <asp:TextBox ID="Password" runat="server" Text="Password"></asp:TextBox>
+                        <asp:TextBox ID="Email" runat="server" Text="Enter Email"></asp:TextBox>
+                        <asp:TextBox ID="Password" runat="server" Text="Enter Password"></asp:TextBox>
                     </p>
                     <asp:Button ID="LoginButton" runat="server" Text="Login" OnClick="Login" Width="342px" Style="height: 29px" />
                 </div>

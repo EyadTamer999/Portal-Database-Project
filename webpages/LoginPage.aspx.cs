@@ -19,10 +19,15 @@ namespace WebApplication3.webpages
         protected void Login(object sender, EventArgs e)
         {
             SqlConnection conn = new SqlConnection(WebConfigurationManager.ConnectionStrings["Portal"].ToString());
-            String userNameEntered = Username.Text;
+
+            //input from user
+            String emailNameEntered = Email.Text;
             String passwordEntered = Password.Text;
 
-            //SqlCommand loginProc = new SqlCommand("", check lab8 video min 8:37 
+            //creating and using the procedure of login
+            SqlCommand loginProc = new SqlCommand("LOGIN",conn);  //check lab8 video min 8:37 
+            loginProc.Parameters.Add("@email", emailNameEntered);
+            loginProc.Parameters.Add("@password", passwordEntered);
         }
 
         protected void Register(Object sender, EventArgs e)
