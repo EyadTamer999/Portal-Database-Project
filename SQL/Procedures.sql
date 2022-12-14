@@ -115,7 +115,6 @@ END
 GO
 
 ----------------(2)
-
 ------------a
 -- Create the stored procedure in the specified schema
 CREATE PROCEDURE LOGIN
@@ -125,6 +124,13 @@ CREATE PROCEDURE LOGIN
     @success bit output
 AS
 
+if exists(select *
+from Userr
+where Userr.email = email and Userr.Password = @password)
+set @success = 1
+else
+set @success = 0
+
 if exists(select Userr.Userr_id
 from Userr
 where Userr.email = @email and Userr.Password = @password)
@@ -133,15 +139,7 @@ from Userr
 where Userr.email = @email and Userr.Password = @password
 else
 set @user_id = -1
-
-if exists(select *
-from Userr
-where Userr.email = email and Userr.Password = @password)
-set @success = 1
-else
-set @success = 0
-GO
-
+Select @success, @user_id
 ------------b
 GO
 CREATE PROCEDURE ViewProfile

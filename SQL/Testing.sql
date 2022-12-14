@@ -23,7 +23,7 @@ EXEC UserRegister @user_id = NULL, @password = NULL, @usertype = 'Company', @use
 @representative_email='RepTest@email',@phone_number='32131231',@country_of_residence = NULL
 
 --2-A
-EXEC LOGIN @email = 'email@user', @password = '9I4F8#5F', @user_id = NULL, @success = NULL
+exec LOGIN @email = 'LEC1@user', @password = '6%4*8%5J', @user_id = NULL, @success = NULL
 
 --2-B
 EXEC ViewProfile @Userr_id = 30

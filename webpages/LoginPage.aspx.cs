@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Drawing;
 
 namespace WebApplication3.webpages
 {
@@ -18,39 +19,42 @@ namespace WebApplication3.webpages
         }
         protected void Login(object sender, EventArgs e)
         {
-            String connStr = WebConfigurationManager.ConnectionStrings["Portal"].ToString();
-            SqlConnection conn = new SqlConnection(connStr);
+            //set connection string and open connection
+            SqlConnection conn = new SqlConnection(WebConfigurationManager.ConnectionStrings["Portal"].ToString());
+            conn.Open();
+ 
+            //creating and using the procedure of login
+            SqlCommand loginProc = new SqlCommand("LOGIN",conn);
+            loginProc.CommandType= CommandType.StoredProcedure;
 
             //input from user
-            String emailNameEntered = Email.Text;
-            String passwordEntered = Password.Text;
-
-            //creating and using the procedure of login
-            SqlCommand loginProc = new SqlCommand("LOGIN",conn);  
-            loginProc.Parameters.Add(new SqlParameter("@email", emailNameEntered));
-            loginProc.Parameters.Add(new SqlParameter("@password", passwordEntered));
+            SqlParameter emailNameEntered = loginProc.Parameters.Add(new SqlParameter("@email", SqlDbType.VarChar));
+            emailNameEntered.Value = Email.Text;
+            SqlParameter passwordEntered = loginProc.Parameters.Add(new SqlParameter("@password", SqlDbType.VarChar));
+            passwordEntered.Value = Password.Text;
 
             //output of the proc
-            SqlParameter success = loginProc.Parameters.Add("@success", SqlDbType.Bit);
-            SqlParameter user_id = loginProc.Parameters.Add("@user_id", SqlDbType.Int);
-
+            SqlParameter success = loginProc.Parameters.Add(new SqlParameter("@success", SqlDbType.Int));
             success.Direction = ParameterDirection.Output;
+            SqlParameter user_id = loginProc.Parameters.Add(new SqlParameter("@user_id", SqlDbType.Int));
             user_id.Direction = ParameterDirection.Output;
 
             //exec the login proc
-            conn.Open();
             loginProc.ExecuteNonQuery();
-            conn.Close();
 
-            if(success.Value.ToString() == "1")
+            String s = loginProc.Parameters["@success"].Value.ToString();
+
+
+            if (string.Equals(s,"1"))
             {
                 Response.Write("Access Granted! Welcome");
+                InvalidLogin.Visible = false;
             }
             else
             {
-                Response.Write("Invalid Email or Password");
+                InvalidLogin.Visible = true;
             }
-
+            conn.Close();
         }
 
         protected void Register(Object sender, EventArgs e)

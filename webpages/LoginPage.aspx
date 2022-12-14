@@ -16,7 +16,7 @@
     <link href="Bootstrap\js\jquery-3.3.1.slim.min.js" />
 
     <!--Bootstrap-->
-    <link href="Bootstrap\js\jquery-3.3.1.slim.min.js" /> 
+    <link href="Bootstrap\js\jquery-3.3.1.slim.min.js" />
 
     <!--popper js-->
     <link href="Bootstrap\js\jquery-3.3.1.slim.min.js" />
@@ -36,36 +36,29 @@
                 </a>
             </nav>
         </div>
-
-
-        <div>
-            <div style="text-align: center">
+        <div class="card">
+            <div class="card-body" style="text-align: center">
                 <div style="height: 205px">
                     <asp:Label ID="Text1" runat="server" Text="Login"></asp:Label>
                     <p style="height: 29px">
-                        <asp:TextBox ID="Email" runat="server" Text="Enter Email"></asp:TextBox>
-                        <asp:TextBox ID="Password" runat="server" Text="Enter Password"></asp:TextBox>
+                        <asp:TextBox ID="Email" runat="server" placeholder="Enter Email"></asp:TextBox>
+                        <asp:TextBox ID="Password" runat="server" placeholder="Enter Password"></asp:TextBox>
                     </p>
-                    <asp:Button ID="LoginButton" runat="server" Text="Login" OnClick="Login" Width="342px" Style="height: 29px" />
+                    <asp:Button ID="LoginButton" runat="server" Text="Login" OnClick="Login" Width="342px" Style="height: 29px" /> <br />
+                 <asp:Label ID="InvalidLogin" runat="server" Visible="false" style="color:red">Invalid Email or Password</asp:Label> 
                 </div>
                 <div style="text-align: end; height: 255px;">
-                    <asp:Label ID="Text2" runat="server" Text="No Account? Register..."></asp:Label>
-                    <div>
-                        <p style="height: 29px">
-                            <asp:TextBox ID="RegisterUsername" runat="server" Text="Username"></asp:TextBox>
-                            <asp:TextBox ID="RegisterPassword" runat="server" Text="Password"></asp:TextBox>
-                            <div>
-                                <asp:Button ID="RegisterButton" runat="server" Text="Register" OnClick="Register" Height="29px" Width="342px" />
-                            </div>
-                        </p>
-                    </div>
+                    <p>
+                        <asp:Button ID="RegisterButton" runat="server" Text="No Account? Register..." OnClick="Register" Height="29px" Width="342px" />
+                    </p>
                 </div>
             </div>
-            <footer>
-                <p style="text-align: center">
-                    &copy All Rights Reserved. <a class="footerlinks" href="#" targert="_blank">Simple Snippet</a>
-                </p>
-            </footer>
+        </div>
+        <footer>
+            <p style="text-align: center">
+                &copy All Rights Reserved. <a class="footerlinks" href="#" targert="_blank">Simple Snippet</a>
+            </p>
+        </footer>
     </form>
 </body>
 </html>

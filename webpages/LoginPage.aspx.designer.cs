@@ -60,31 +60,13 @@ namespace WebApplication3.webpages
         protected global::System.Web.UI.WebControls.Button LoginButton;
 
         /// <summary>
-        /// Text2 control.
+        /// InvalidLogin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Text2;
-
-        /// <summary>
-        /// RegisterUsername control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox RegisterUsername;
-
-        /// <summary>
-        /// RegisterPassword control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox RegisterPassword;
+        protected global::System.Web.UI.WebControls.Label InvalidLogin;
 
         /// <summary>
         /// RegisterButton control.
