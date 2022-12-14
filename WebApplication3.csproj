@@ -2134,6 +2134,7 @@
     <Content Include="SQL\Testing.sql" />
     <Content Include="Web.config" />
     <Content Include="webpages\LoginPage.aspx" />
+    <Content Include="webpages\RegisterUserPage.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -2143,6 +2144,13 @@
     </Compile>
     <Compile Include="webpages\LoginPage.aspx.designer.cs">
       <DependentUpon>LoginPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webpages\RegisterUserPage.aspx.cs">
+      <DependentUpon>RegisterUserPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webpages\RegisterUserPage.aspx.designer.cs">
+      <DependentUpon>RegisterUserPage.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
