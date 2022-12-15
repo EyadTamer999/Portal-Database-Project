@@ -126,7 +126,14 @@ AS
 
 if exists(select *
 from Userr
-where Userr.email = email and Userr.Password = @password)
+where Userr.email = @email and Userr.Password = @password)
+set @success = 1
+else
+set @success = 0
+
+if exists(select *
+from Employee
+where Employee.Email = @email and Employee.Password = @password)
 set @success = 1
 else
 set @success = 0
@@ -140,6 +147,7 @@ where Userr.email = @email and Userr.Password = @password
 else
 set @user_id = -1
 Select @success, @user_id
+
 ------------b
 GO
 CREATE PROCEDURE ViewProfile
@@ -543,11 +551,10 @@ from Employee
 where Email = @email
 
 INSERT INTO Employee
-    (Staff_id, Company_id , email , Username , Phone , Field, Password)
+    (Company_id , email , Username , Phone , Field, Password)
 VALUES
-    (@Staff_id, @CompanyID, @email, @name, @phone_number, @field, @pass)
+    (@CompanyID, @email, @name, @phone_number, @field, @pass)
 GO
-
 --(B)
 CREATE PROCEDURE CompanyCreateLocalProject
     @company_id int,

@@ -19,7 +19,7 @@ EXEC UserRegister @user_id = NULL, @password = NULL, @usertype = 'Lecturer', @us
 --Compnay
 EXEC UserRegister @user_id = NULL, @password = NULL, @usertype = 'Company', @userName = 'Comp1', @email = 'Comp1@user',
 @first_name = NULL, @last_name = NULL,@birth_date = NULL,
-@GPA = NULL, @semester = NULL,@address = NULL,@faculty_code='1',@major_code= NULL,@company_name='CompanyName1',@representative_name='RepTest',
+@GPA = NULL, @semester = NULL,@address = NULL,@faculty_code=NULL,@major_code= NULL,@company_name='CompanyName1',@representative_name='RepTest',
 @representative_email='RepTest@email',@phone_number='32131231',@country_of_residence = NULL
 
 --2-A
@@ -37,7 +37,7 @@ EXEC ViewBachelorProjects @ProjectType = 'Industrial' , @User_id = 28
 --EXEC ViewMyBachelorProjectGrade @sid = 29, @BachelorGrade = 
 
 --4-A
-exec AddEmployee @CompanyID = 31, @email = 'E2Test@test', @name = 'emp2', @phone_number = '34232312', @field = 'testField', @Staff_id = NULL,  @Company_id_out = NULL, @password = NULL  
+exec AddEmployee @CompanyID = 3, @email = 'E2Test@test', @name = 'emp2', @phone_number = '34232312', @field = 'testField', @Staff_id = NULL,  @Company_id_out = NULL, @password = NULL  
 
 --5-A
  exec LecturerCreateLocalProject @Lecturer_id = 1,
