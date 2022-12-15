@@ -123,6 +123,24 @@ namespace WebApplication3.webpages
         protected global::System.Web.UI.WebControls.TextBox BirthDate;
 
         /// <summary>
+        /// MajorCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox MajorCode;
+
+        /// <summary>
+        /// FacultyCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox FacultyCode;
+
+        /// <summary>
         /// Register control.
         /// </summary>
         /// <remarks>

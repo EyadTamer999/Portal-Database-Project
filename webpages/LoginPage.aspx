@@ -41,18 +41,20 @@
         <div class="sticky-top">
             <nav class="navbar navbar-dark bg-dark">
                 <span class="navbar-brand mb-0 h1">
-                    <img src="../img/giu-logo.png" style="height: 105px; width: 215px" />
+                    <a href="LoginPage.aspx">
+                        <asp:Image src="../img/giu-logo.png" runat="server" Height="180px" Width="344px" />
+                    </a>
                 </span>
             </nav>
         </div>
         <div style="text-align: center">
-            <div class="p-3 mb-2 bg-light text-dark" style="height: 205px">
+            <div class="p-3 mb-2 bg-light text-dark">
                 <asp:Image ID="LoginImg" runat="server" ImageUrl="../img/user-icon.png" Height="60px" Width="60px" />
                 <br />
                 <asp:Label ID="Text1" runat="server" Text="Login"></asp:Label>
                 <p style="height: 29px">
                     <asp:TextBox ID="Email" runat="server" placeholder="Enter Email"></asp:TextBox>
-                    <asp:TextBox ID="Password" runat="server" placeholder="Enter Password"></asp:TextBox>
+                    <asp:TextBox ID="Password" runat="server" type="password" placeholder="Enter Password"></asp:TextBox>
                 </p>
                 <asp:Button ID="LoginButton" class="btn btn-info" runat="server" Text="Login" OnClick="Login" Width="342px" Height="50px" />
                 <br />

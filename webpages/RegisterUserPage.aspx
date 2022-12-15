@@ -54,7 +54,9 @@
             <div class="container py-5 h-100">
                 <nav class="navbar navbar-dark bg-dark">
                     <span class="navbar-brand mb-0 h1">
-                        <img src="../img/giu-logo.png" style="height: 105px; width: 215px" />
+                        <a href="LoginPage.aspx">
+                            <asp:Image src="../img/giu-logo.png" runat="server" Height="180px" Width="344px" />
+                        </a>
                     </span>
                 </nav>
                 <div class="row d-flex justify-content-center align-items-center h-100">
@@ -75,7 +77,7 @@
                                             </div>
                                             <div class="col-md-6 mb-4">
                                                 <div class="form-outline">
-                                                    <asp:TextBox runat="server" type="text" ID="Password" class="form-control form-control-lg" />
+                                                    <asp:TextBox runat="server" type="password" ID="Password" class="form-control form-control-lg" />
                                                     <label class="form-label" for="form3Example1n1">Password</label>
                                                 </div>
                                             </div>
@@ -118,13 +120,10 @@
 
                                         <div class="row">
                                             <div class="col-md-6 mb-4">
-
                                                 <div class="form-outline mb-4">
                                                     <asp:TextBox runat="server" type="text" ID="Semester" class="form-control form-control-lg" />
                                                     <label class="form-label" for="form3Example8">Semester</label>
                                                 </div>
-
-
                                             </div>
                                             <div class="col-md-6 mb-4">
                                                 <asp:DropDownList runat="server" ID="Usertype" OnSelectedIndexChanged="Usertype_SelectedIndexChanged">
@@ -161,13 +160,13 @@
                                         </div>
 
                                         <div class="form-outline mb-4">
-                                            <input type="text" id="form3Example90" class="form-control form-control-lg" />
-                                            <label class="form-label" for="form3Example90">Pincode</label>
+                                            <asp:TextBox runat="server" id="MajorCode" class="form-control form-control-lg" />
+                                            <label class="form-label" for="form3Example90">Major Code</label>
                                         </div>
 
                                         <div class="form-outline mb-4">
-                                            <input type="text" id="form3Example99" class="form-control form-control-lg" />
-                                            <label class="form-label" for="form3Example99">Course</label>
+                                            <asp:TextBox runat="server" id="FacultyCode" class="form-control form-control-lg" />
+                                            <label class="form-label" for="form3Example99">Faculty Code</label>
                                         </div>
 
                                         <div class="form-outline mb-4">
