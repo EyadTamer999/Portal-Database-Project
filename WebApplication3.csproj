@@ -2127,7 +2127,6 @@
     <Content Include="fontawesome\svgs\solid\yen-sign.svg" />
     <Content Include="fontawesome\svgs\solid\yin-yang.svg" />
     <Content Include="fontawesome\svgs\solid\z.svg" />
-    <Content Include="img\giu-logo.png" />
     <Content Include="img\user-icon.png" />
     <Content Include="SQL\Procedures.sql" />
     <Content Include="SQL\Tables.SQL" />

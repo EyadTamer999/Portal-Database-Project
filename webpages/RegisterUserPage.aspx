@@ -51,19 +51,18 @@
 <body>
     <form runat="server">
         <section class="h-100 bg-dark">
-            <div class="container py-5 h-100">
-                <nav class="navbar navbar-dark bg-dark">
-                    <span class="navbar-brand mb-0 h1">
+
+            <div class="row d-flex justify-content-center align-items-center h-100">
+
+                <div class="container py-5 h-100">
+                    <nav class="navbar navbar-light bg-dark">
                         <a href="LoginPage.aspx">
-                            <asp:Image src="../img/giu-logo.png" runat="server" Height="180px" Width="344px" />
+                            <asp:Image src="../img/giu-logo.jpg" runat="server" Height="89px" Width="174px" />
                         </a>
-                    </span>
-                </nav>
-                <div class="row d-flex justify-content-center align-items-center h-100">
+                    </nav>
                     <div class="col">
                         <div class="card card-registration my-4">
                             <div class="row g-0">
-
                                 <div class="col-xl-6">
                                     <div class="card-body p-md-5 text-black">
                                         <h3 class="mb-5 text-uppercase">User registration form</h3>
@@ -72,59 +71,18 @@
                                             <div class="col-md-6 mb-4">
                                                 <div class="form-outline">
                                                     <asp:TextBox runat="server" type="text" ID="Username" class="form-control form-control-lg" />
-                                                    <label class="form-label" for="form3Example1m1">Username</label>
+                                                    <asp:Label runat="server" ID="UsernameLabel" class="form-label" for="form3Example1m1">Username</asp:Label>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 mb-4">
                                                 <div class="form-outline">
                                                     <asp:TextBox runat="server" type="password" ID="Password" class="form-control form-control-lg" />
-                                                    <label class="form-label" for="form3Example1n1">Password</label>
+                                                    <asp:Label runat="server" ID="PasswordLabel" class="form-label" for="form3Example1n1">Password</asp:Label>
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-md-6 mb-4">
-                                                <div class="form-outline">
-                                                    <asp:TextBox runat="server" type="text" ID="FirstName" class="form-control form-control-lg" />
-                                                    <asp:Label runat="server" class="form-label" for="form3Example1m">First name</asp:Label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 mb-4">
-                                                <div class="form-outline">
-                                                    <asp:TextBox runat="server" type="text" ID="LastName" class="form-control form-control-lg" />
-                                                    <asp:Label runat="server" class="form-label" for="form3Example1n">Last name</asp:Label>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-md-6 mb-4">
-                                                <div class="form-outline">
-                                                    <asp:TextBox runat="server" type="text" ID="Email" class="form-control form-control-lg" />
-                                                    <label class="form-label" for="form3Example1m1">Email Address</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 mb-4">
-                                                <div class="form-outline">
-                                                    <asp:TextBox runat="server" type="text" ID="PhoneNumber" class="form-control form-control-lg" />
-                                                    <label class="form-label" for="form3Example1n1">Phone Number</label>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-outline mb-4">
-                                            <asp:TextBox runat="server" type="text" ID="Address" class="form-control form-control-lg" />
-                                            <label class="form-label" for="form3Example8">Address</label>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-md-6 mb-4">
-                                                <div class="form-outline mb-4">
-                                                    <asp:TextBox runat="server" type="text" ID="Semester" class="form-control form-control-lg" />
-                                                    <label class="form-label" for="form3Example8">Semester</label>
-                                                </div>
-                                            </div>
                                             <div class="col-md-6 mb-4">
                                                 <asp:DropDownList runat="server" ID="Usertype" OnSelectedIndexChanged="Usertype_SelectedIndexChanged">
                                                     <asp:ListItem Value="Student">Student</asp:ListItem>
@@ -137,41 +95,79 @@
                                                 <br />
                                                 User Type
                                             </div>
+                                            <div class="col-md-6 mb-4">
+                                                <div class="form-outline mb-4">
+                                                    <asp:TextBox runat="server" type="text"  Visible="false" ID="Semester" class="form-control form-control-lg" />
+                                                    <asp:Label runat="server" ID="SemesterLabel" Visible="false" class="form-label" for="form3Example8">Semester</asp:Label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 mb-4">
+                                                <div class="form-outline">
+                                                    <asp:TextBox runat="server" Visible="false" type="text" id="FirstName" class="form-control form-control-lg" />
+                                                    <asp:Label runat="server" Visible="false" class="form-label" id="FirstNameLabel" for="form3Example1m">First name</asp:Label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 mb-4">
+                                                <div class="form-outline">
+                                                    <asp:TextBox runat="server" Visible="false" type="text" ID="LastName" class="form-control form-control-lg" />
+                                                    <asp:Label runat="server" Visible="false" class="form-label" ID="LastNameLabel" for="form3Example1n">Last name</asp:Label>
+                                                </div>
+                                            </div>
                                         </div>
 
                                         <div class="row">
                                             <div class="col-md-6 mb-4">
                                                 <div class="form-outline">
-                                                    <asp:TextBox runat="server" type="text" ID="GPA" class="form-control form-control-lg" />
-                                                    <label class="form-label" for="form3Example1m1">GPA</label>
+                                                    <asp:TextBox runat="server" type="text" ID="Email" class="form-control form-control-lg" />
+                                                    <asp:Label runat="server" ID="EmailLabel" class="form-label" for="form3Example1m1">Email Address</asp:Label>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 mb-4">
                                                 <div class="form-outline">
-                                                    <asp:TextBox runat="server" type="text" ID="TextBox2" class="form-control form-control-lg" />
-                                                    <label class="form-label" for="form3Example1n1">Phone Number</label>
+                                                    <asp:TextBox runat="server" type="text" ID="PhoneNumber" class="form-control form-control-lg" />
+                                                    <asp:Label runat="server" ID="PhoneLabel" class="form-label" for="form3Example1n1">Phone Number</asp:Label>
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="form-outline mb-4">
-                                            <asp:TextBox runat="server" type="date" ID="BirthDate" class="form-control form-control-lg" />
-                                            <label class="form-label" for="form3Example9">Birth Date</label>
+                                            <asp:TextBox runat="server" type="text" ID="Address" Visible="false"  class="form-control form-control-lg" />
+                                            <asp:Label runat="server" ID="AddressLabel" Visible="false" class="form-label" for="form3Example8">Address</asp:Label>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 mb-4">
+                                                <div class="form-outline">
+                                                    <asp:TextBox runat="server" type="text" Visible="false"  ID="GPA" class="form-control form-control-lg" />
+                                                    <asp:Label runat="server" ID="GPALabel" Visible="false" class="form-label" for="form3Example1m1">GPA</asp:Label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 mb-4">
+                                                <div class="form-outline">
+                                                    <asp:TextBox runat="server" Visible="false"  type="text" ID="Field" class="form-control form-control-lg" />
+                                                    <asp:Label runat="server" ID="FieldLabel" Visible="false" class="form-label" for="form3Example1n1">Field</asp:Label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-outline mb-4">
+                                            <asp:TextBox runat="server" type="date" ID="BirthDate" Visible="false"  class="form-control form-control-lg" />
+                                            <asp:Label runat="server" ID="BirthDateLabel" Visible="false" class="form-label" for="form3Example9">Birth Date</asp:Label>
                                         </div>
 
                                         <div class="form-outline mb-4">
-                                            <asp:TextBox runat="server" id="MajorCode" class="form-control form-control-lg" />
-                                            <label class="form-label" for="form3Example90">Major Code</label>
+                                            <asp:TextBox runat="server" ID="MajorCode" Visible="false"  class="form-control form-control-lg" />
+                                            <asp:Label runat="server" ID="MajorCodeLabel" Visible="false" class="form-label" for="form3Example90">Major Code</asp:Label>
                                         </div>
 
                                         <div class="form-outline mb-4">
-                                            <asp:TextBox runat="server" id="FacultyCode" class="form-control form-control-lg" />
-                                            <label class="form-label" for="form3Example99">Faculty Code</label>
+                                            <asp:TextBox runat="server" ID="Facultyid" Visible="false" class="form-control form-control-lg" />
+                                            <asp:Label runat="server" ID="FacultyidLabel" Visible="false" class="form-label" for="form3Example99">Faculty ID</asp:Label>
                                         </div>
 
                                         <div class="form-outline mb-4">
-                                            <input type="text" id="form3Example97" class="form-control form-control-lg" />
-                                            <label class="form-label" for="form3Example97">Email ID</label>
+                                            <asp:TextBox runat="server" ID="Companyid" Visible="false"  class="form-control form-control-lg" />
+                                            <asp:Label runat="server" ID="CompanyidLabel" Visible="false" class="form-label" for="form3Example99">Company ID</asp:Label>
                                         </div>
 
                                         <div class="d-flex justify-content-end pt-3">

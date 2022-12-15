@@ -24,29 +24,17 @@
 
     <!--popper js-->
     <script src="../Bootstrap/js/popper.min.js"></script>
-
-
-    <style type="text/css">
-        .navbar-toggler {
-            width: 32px;
-            height: 21px;
-        }
-    </style>
-
 </head>
 
 <body>
     <form id="form1" runat="server">
 
-        <div class="sticky-top">
-            <nav class="navbar navbar-dark bg-dark">
-                <span class="navbar-brand mb-0 h1">
-                    <a href="LoginPage.aspx">
-                        <asp:Image src="../img/giu-logo.png" runat="server" Height="180px" Width="344px" />
-                    </a>
-                </span>
-            </nav>
-        </div>
+        <nav class="navbar navbar-light bg-dark">
+            <a href="LoginPage.aspx">
+            <asp:Image src="../img/giu-logo.jpg" runat="server" Height="89px" Width="174px" />
+                </a>
+        </nav>
+
         <div style="text-align: center">
             <div class="p-3 mb-2 bg-light text-dark">
                 <asp:Image ID="LoginImg" runat="server" ImageUrl="../img/user-icon.png" Height="60px" Width="60px" />
