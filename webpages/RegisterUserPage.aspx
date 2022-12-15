@@ -84,7 +84,7 @@
 
                                         <div class="row">
                                             <div class="col-md-6 mb-4">
-                                                <asp:DropDownList runat="server" ID="Usertype" OnSelectedIndexChanged="Usertype_SelectedIndexChanged">
+                                                <asp:DropDownList runat="server" ID="Usertype" OnSelectedIndexChanged="Usertype_SelectedIndexChanged" AutoPostBack="true">
                                                     <asp:ListItem Value="Student">Student</asp:ListItem>
                                                     <asp:ListItem Value="Company">Company</asp:ListItem>
                                                     <asp:ListItem Value="EE">External Examiner</asp:ListItem>
@@ -163,6 +163,17 @@
                                         <div class="form-outline mb-4">
                                             <asp:TextBox runat="server" ID="Facultyid" Visible="false" class="form-control form-control-lg" />
                                             <asp:Label runat="server" ID="FacultyidLabel" Visible="false" class="form-label" for="form3Example99">Faculty ID</asp:Label>
+                                        </div>
+
+                                        
+                                        <div class="form-outline mb-4">
+                                            <asp:TextBox runat="server" ID="RepName" Visible="false"  class="form-control form-control-lg" />
+                                            <asp:Label runat="server" ID="RepNameLabel" Visible="false" class="form-label" for="form3Example99">Company Representative Name</asp:Label>
+                                        </div>
+
+                                         <div class="form-outline mb-4">
+                                            <asp:TextBox runat="server" ID="RepEmail" Visible="false"  class="form-control form-control-lg" />
+                                            <asp:Label runat="server" ID="RepEmailLabel" Visible="false" class="form-label" for="form3Example99">Company Representative Email</asp:Label>
                                         </div>
 
                                         <div class="form-outline mb-4">

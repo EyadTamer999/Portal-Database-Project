@@ -258,6 +258,42 @@ namespace WebApplication3.webpages
         protected global::System.Web.UI.WebControls.Label FacultyidLabel;
 
         /// <summary>
+        /// RepName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox RepName;
+
+        /// <summary>
+        /// RepNameLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label RepNameLabel;
+
+        /// <summary>
+        /// RepEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox RepEmail;
+
+        /// <summary>
+        /// RepEmailLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label RepEmailLabel;
+
+        /// <summary>
         /// Companyid control.
         /// </summary>
         /// <remarks>
