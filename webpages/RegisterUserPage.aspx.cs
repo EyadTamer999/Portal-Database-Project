@@ -50,9 +50,6 @@ namespace WebApplication3.webpages
             Field.Visible = true;
             CompanyidLabel.Visible = true;
             FieldLabel.Visible = true;
-            FirstName.Visible = true;
-            FirstNameLabel.Text = "Name";
-            FirstNameLabel.Visible = true;
         }
 
         public void hideEmployee()
@@ -62,9 +59,6 @@ namespace WebApplication3.webpages
                 Companyid.Visible = false;
                 Field.Visible = false;
                 CompanyidLabel.Visible = false;
-                FieldLabel.Visible = false;
-                FirstName.Visible = false;
-                FirstNameLabel.Text = "First Name";
                 FirstNameLabel.Visible = false;
             }
         }
