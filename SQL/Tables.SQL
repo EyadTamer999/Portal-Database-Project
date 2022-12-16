@@ -111,6 +111,26 @@ CREATE TABLE Major
     -- specify more columns here
 );
 
+CREATE TABLE Bachelor_Project
+(
+    Code INT PRIMARY KEY,
+    -- primary key column
+    Name VARCHAR(20),
+    Submitted_Materials VARCHAR(20),
+    Description VARCHAR(20),
+    -- specify more columns here
+);
+
+CREATE TABLE MajorHasBachelorProject
+(
+    Major_code INT ,
+    Code INT ,
+    PRIMARY KEY (Major_code , Code),-- primary key column
+    FOREIGN KEY (Major_code) REFERENCES Major ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (Code) REFERENCES Bachelor_Project ON DELETE CASCADE ON UPDATE CASCADE
+    -- specify more columns here
+);
+
 CREATE TABLE Student
 (
     sid INT PRIMARY KEY,
@@ -131,15 +151,6 @@ CREATE TABLE Student
     -- specify more columns here
 );
 
-CREATE TABLE Bachelor_Project
-(
-    Code INT PRIMARY KEY,
-    -- primary key column
-    Name VARCHAR(20),
-    Submitted_Materials VARCHAR(20),
-    Description VARCHAR(20),
-    -- specify more columns here
-);
 
 CREATE TABLE BachelorSubmittedMaterials
 (
@@ -365,16 +376,5 @@ CREATE TABLE StudentPreferences
     PRIMARY KEY (sid,p_code),-- primary key columns
     FOREIGN KEY (sid) references Student ON DELETE CASCADE ON UPDATE CASCADE ,
     FOREIGN KEY (p_code) references Bachelor_Project ON DELETE NO ACTION ON UPDATE NO ACTION
-    -- specify more columns here
-);
-
-
-CREATE TABLE MajorHasBachelorProject
-(
-    Major_code INT ,
-    Code INT ,
-    PRIMARY KEY (Major_code , Code),-- primary key column
-    FOREIGN KEY (Major_code) REFERENCES Major ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (Code) REFERENCES Bachelor_Project ON DELETE CASCADE ON UPDATE CASCADE
     -- specify more columns here
 );

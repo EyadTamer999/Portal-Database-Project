@@ -1,4 +1,9 @@
 {
-  "ExpandedNodes": [],
+  "ExpandedNodes": [
+    "",
+    "\\SQL",
+    "\\webpages"
+  ],
+  "SelectedNode": "\\SQL\\Testing.sql",
   "PreviewInSolutionExplorer": false
 }
