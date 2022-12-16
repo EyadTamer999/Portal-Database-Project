@@ -2132,11 +2132,19 @@
     <Content Include="SQL\Tables.SQL" />
     <Content Include="SQL\Testing.sql" />
     <Content Include="Web.config" />
+    <Content Include="webpages\CompanyPage.aspx" />
     <Content Include="webpages\LoginPage.aspx" />
     <Content Include="webpages\RegisterUserPage.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="webpages\CompanyPage.aspx.cs">
+      <DependentUpon>CompanyPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webpages\CompanyPage.aspx.designer.cs">
+      <DependentUpon>CompanyPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="webpages\LoginPage.aspx.cs">
       <DependentUpon>LoginPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

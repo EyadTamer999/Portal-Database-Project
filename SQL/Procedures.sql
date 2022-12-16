@@ -129,8 +129,6 @@ from Userr
 where Userr.email = @email and Userr.Password = @password)
 set @success = 1
 else
-set @success = 0
-
 if exists(select *
 from Employee
 where Employee.Email = @email and Employee.Password = @password)
@@ -984,4 +982,19 @@ AS
 INSERT INTO ProgressReport
     (sid, Date, UpdatingUserr_id, Content)
 VALUES(@sid, @date, @Employee_id, @content)
+GO
 --
+
+CREATE PROCEDURE UserType
+    @email varchar(50),
+    @role varchar(50) output
+as
+if exists(select Userr.Role from Userr where  @email = Email)
+set @role = (select Userr.Role from Userr where  @email = Email)
+else if exists(select Staff_id from Employee where  @email = Email)
+set @role = 'Employee'
+else 
+set @role = '0'
+
+select @role
+Go

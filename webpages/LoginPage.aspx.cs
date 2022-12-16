@@ -13,14 +13,16 @@ namespace WebApplication3.webpages
 {
     public partial class LoginPage : System.Web.UI.Page
     {
+        //Set connection string
+        SqlConnection conn = new SqlConnection(WebConfigurationManager.ConnectionStrings["Portal"].ToString());
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
         protected void Login(object sender, EventArgs e)
         {
-            //set connection string and open connection
-            SqlConnection conn = new SqlConnection(WebConfigurationManager.ConnectionStrings["Portal"].ToString());
+            //open connection
             conn.Open();
  
             //creating and using the procedure of login
@@ -28,9 +30,9 @@ namespace WebApplication3.webpages
             loginProc.CommandType= CommandType.StoredProcedure;
 
             //input from user
-            SqlParameter emailNameEntered = loginProc.Parameters.Add(new SqlParameter("@email", SqlDbType.VarChar));
+            SqlParameter emailNameEntered = loginProc.Parameters.Add(new SqlParameter("@email", SqlDbType.VarChar,50));
             emailNameEntered.Value = Email.Text;
-            SqlParameter passwordEntered = loginProc.Parameters.Add(new SqlParameter("@password", SqlDbType.VarChar));
+            SqlParameter passwordEntered = loginProc.Parameters.Add(new SqlParameter("@password", SqlDbType.VarChar,10));
             passwordEntered.Value = Password.Text;
 
             //output of the proc
@@ -42,24 +44,57 @@ namespace WebApplication3.webpages
             //exec the login proc
             loginProc.ExecuteNonQuery();
 
-            String s = loginProc.Parameters["@success"].Value.ToString();
-
-
-            if (string.Equals(s,"1"))
+            if (string.Equals(loginProc.Parameters["@success"].Value.ToString(), "1"))
             {
-                Response.Write("Access Granted! Welcome");
                 InvalidLogin.Visible = false;
+                switch (getUserType())
+                {
+                    case "Student": Response.Redirect("StudentPage.aspx"); break;
+                    case "Company": Response.Redirect("CompanyPage.aspx"); break;
+                    case "Lecturer": Response.Redirect("LecturerPage.aspx"); break;
+                    case "Teaching Assistant": Response.Redirect("TAPage.aspx"); break;
+                    case "External examiner": Response.Redirect("EEPage.aspx"); break;
+                    case "Coordinator": Response.Redirect("CoordinatorPage.aspx"); break;
+                    case "Employee": Response.Redirect("EmployeePage.aspx"); break;
+                    case "0": InvalidLogin.Text = "Unkown User"; InvalidLogin.Visible = true; break;
+                }
+
             }
             else
             {
                 InvalidLogin.Visible = true;
+                InvalidLogin.Text = "Invalid Email or Password!";
             }
+
+            //close connection
             conn.Close();
         }
 
         protected void Register(Object sender, EventArgs e)
         {
             Response.Redirect("RegisterUserPage.aspx");
+        }
+
+        protected String getUserType()
+        {
+
+            //creating and using the procedure of login
+            SqlCommand getUserProc = new SqlCommand("UserType", conn);
+            getUserProc.CommandType = CommandType.StoredProcedure;
+
+            //input from user
+            SqlParameter emailNameEntered = getUserProc.Parameters.Add(new SqlParameter("@email", SqlDbType.VarChar,50));
+            emailNameEntered.Value = Email.Text;
+
+            //output of the proc
+            SqlParameter role = getUserProc.Parameters.Add(new SqlParameter("@role", SqlDbType.VarChar,20));
+            role.Direction = ParameterDirection.Output;
+
+            //exec the login proc
+            getUserProc.ExecuteNonQuery();
+
+            //return user type as string
+            return getUserProc.Parameters["@role"].Value.ToString();
         }
 
     }
