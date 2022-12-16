@@ -50,7 +50,9 @@ namespace WebApplication3.webpages
             Field.Visible = true;
             CompanyidLabel.Visible = true;
             FieldLabel.Visible = true;
-
+            FirstName.Visible = true;
+            FirstNameLabel.Text = "Name";
+            FirstNameLabel.Visible = true;
         }
 
         public void hideEmployee()
@@ -61,6 +63,9 @@ namespace WebApplication3.webpages
                 Field.Visible = false;
                 CompanyidLabel.Visible = false;
                 FieldLabel.Visible = false;
+                FirstName.Visible = false;
+                FirstNameLabel.Text = "First Name";
+                FirstNameLabel.Visible = false;
             }
         }
 
@@ -69,10 +74,16 @@ namespace WebApplication3.webpages
 
             hideStudent();
             hideEmployee();
+            FirstName.Visible = true;
+            FirstNameLabel.Text = "Name";
+            FirstNameLabel.Visible = true;
             RepName.Visible = true;
             RepEmail.Visible = true;
             RepNameLabel.Visible = true;
             RepEmailLabel.Visible = true;
+            Address.Visible = true;
+            AddressLabel.Visible = true;
+
         }
 
         public void hideCompany()
@@ -83,6 +94,11 @@ namespace WebApplication3.webpages
                 RepEmail.Visible = false;
                 RepNameLabel.Visible = false;
                 RepEmailLabel.Visible = false;
+                FirstName.Visible = false;
+                FirstNameLabel.Text = "First Name";
+                FirstNameLabel.Visible = false;
+                Address.Visible = false;
+                AddressLabel.Visible = false;
             }
         }
         protected void showStudentRelated()

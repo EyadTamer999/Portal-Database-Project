@@ -4,7 +4,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Company</title>
+    <title>Company Page</title>
+
     <!--Bootstrap CSS-->
     <link href="../Bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
@@ -24,27 +25,8 @@
     <!--popper js-->
     <script src="../Bootstrap/js/popper.min.js"></script>
 </head>
-<body>
-    <form id="CompanyForm" runat="server">
-        <nav class="navbar navbar-dark bg-dark navbar-default">
-            <div class="container-fluid">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#"> <asp:Image runat="server" src="../img/giu-logo.jpg" /> </a>
-                </div>
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                    <form class="navbar-form navbar-left">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search">
-                        </div>
-                        <button type="submit" class="btn btn-default">Submit</button>
-                    </form>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="LoginPage.aspx">Log out</a></li>
-                    </ul>
-                </div>
-        </nav>
+<body class="home">
+    <form id="form1" runat="server">
     </form>
 </body>
 </html>
