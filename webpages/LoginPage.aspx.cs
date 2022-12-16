@@ -24,15 +24,15 @@ namespace WebApplication3.webpages
         {
             //open connection
             conn.Open();
- 
+
             //creating and using the procedure of login
-            SqlCommand loginProc = new SqlCommand("LOGIN",conn);
-            loginProc.CommandType= CommandType.StoredProcedure;
+            SqlCommand loginProc = new SqlCommand("LOGIN", conn);
+            loginProc.CommandType = CommandType.StoredProcedure;
 
             //input from user
-            SqlParameter emailNameEntered = loginProc.Parameters.Add(new SqlParameter("@email", SqlDbType.VarChar,50));
+            SqlParameter emailNameEntered = loginProc.Parameters.Add(new SqlParameter("@email", SqlDbType.VarChar, 50));
             emailNameEntered.Value = Email.Text;
-            SqlParameter passwordEntered = loginProc.Parameters.Add(new SqlParameter("@password", SqlDbType.VarChar,10));
+            SqlParameter passwordEntered = loginProc.Parameters.Add(new SqlParameter("@password", SqlDbType.VarChar, 10));
             passwordEntered.Value = Password.Text;
 
             //output of the proc
@@ -83,11 +83,11 @@ namespace WebApplication3.webpages
             getUserProc.CommandType = CommandType.StoredProcedure;
 
             //input from user
-            SqlParameter emailNameEntered = getUserProc.Parameters.Add(new SqlParameter("@email", SqlDbType.VarChar,50));
+            SqlParameter emailNameEntered = getUserProc.Parameters.Add(new SqlParameter("@email", SqlDbType.VarChar, 50));
             emailNameEntered.Value = Email.Text;
 
             //output of the proc
-            SqlParameter role = getUserProc.Parameters.Add(new SqlParameter("@role", SqlDbType.VarChar,20));
+            SqlParameter role = getUserProc.Parameters.Add(new SqlParameter("@role", SqlDbType.VarChar, 20));
             role.Direction = ParameterDirection.Output;
 
             //exec the login proc

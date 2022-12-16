@@ -31,8 +31,8 @@
 
         <nav class="navbar navbar-light bg-dark">
             <a href="LoginPage.aspx">
-            <asp:Image src="../img/giu-logo.jpg" runat="server" Height="89px" Width="174px" />
-                </a>
+                <asp:Image src="../img/giu-logo.jpg" runat="server" Height="89px" Width="174px" />
+            </a>
         </nav>
 
         <div style="text-align: center">

@@ -2133,8 +2133,14 @@
     <Content Include="SQL\Testing.sql" />
     <Content Include="Web.config" />
     <Content Include="webpages\CompanyPage.aspx" />
+    <Content Include="webpages\CoordinatorPage.aspx" />
+    <Content Include="webpages\EEPage.aspx" />
+    <Content Include="webpages\EmployeePage.aspx" />
+    <Content Include="webpages\LecturerPage.aspx" />
     <Content Include="webpages\LoginPage.aspx" />
     <Content Include="webpages\RegisterUserPage.aspx" />
+    <Content Include="webpages\StudentPage.aspx" />
+    <Content Include="webpages\TAPage.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -2144,6 +2150,34 @@
     </Compile>
     <Compile Include="webpages\CompanyPage.aspx.designer.cs">
       <DependentUpon>CompanyPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webpages\CoordinatorPage.aspx.cs">
+      <DependentUpon>CoordinatorPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webpages\CoordinatorPage.aspx.designer.cs">
+      <DependentUpon>CoordinatorPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webpages\EEPage.aspx.cs">
+      <DependentUpon>EEPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webpages\EEPage.aspx.designer.cs">
+      <DependentUpon>EEPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webpages\EmployeePage.aspx.cs">
+      <DependentUpon>EmployeePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webpages\EmployeePage.aspx.designer.cs">
+      <DependentUpon>EmployeePage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webpages\LecturerPage.aspx.cs">
+      <DependentUpon>LecturerPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webpages\LecturerPage.aspx.designer.cs">
+      <DependentUpon>LecturerPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="webpages\LoginPage.aspx.cs">
       <DependentUpon>LoginPage.aspx</DependentUpon>
@@ -2158,6 +2192,20 @@
     </Compile>
     <Compile Include="webpages\RegisterUserPage.aspx.designer.cs">
       <DependentUpon>RegisterUserPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webpages\StudentPage.aspx.cs">
+      <DependentUpon>StudentPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webpages\StudentPage.aspx.designer.cs">
+      <DependentUpon>StudentPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webpages\TAPage.aspx.cs">
+      <DependentUpon>TAPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webpages\TAPage.aspx.designer.cs">
+      <DependentUpon>TAPage.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
