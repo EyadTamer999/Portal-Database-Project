@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.Configuration;
@@ -26,6 +27,15 @@ namespace WebApplication3.webpages
         {
             if (!string.IsNullOrEmpty(Request.QueryString.ToString()))
             {
+                if (!ShowMyProfileDiv.Visible)
+                {
+                    ShowMyProfileDiv.Visible = true;
+                }
+                else
+                {
+                    ShowMyProfileDiv.Visible = false;
+                }
+
                 conn.Open();
                 SqlCommand showMyProfile = new SqlCommand("ViewProfile", conn);
                 int value = Int32.Parse(Request.QueryString["UserNameValue"].ToString());
@@ -51,8 +61,6 @@ namespace WebApplication3.webpages
 
                 }
 
-                ShowMyProfileDiv.Visible = true;
-
             }
 
 
@@ -60,12 +68,27 @@ namespace WebApplication3.webpages
 
         protected void ShowEmployees(object sender, EventArgs e)
         {
-            
+            if (!EmployeeTable.Visible)
+            {
+                EmployeeTable.Visible = true;
+            }
+            else
+            {
+                EmployeeTable.Visible = false;
+            }
+
+            string cmd = "SELECT [Staff_id], [Username], [Password], [Email], [Field], [Phone] FROM [Employee] WHERE ([Company_id] = '3') ORDER BY [Staff_id]";
+            conn.Open();
+            SqlCommand getEmployees = new SqlCommand(cmd, conn);
+            SqlDataReader dr = getEmployees.ExecuteReader();
+            EmployeeTable.DataSource = dr;
+            EmployeeTable.DataBind();
+            conn.Close();
+
             if (!EmployeesLabelHeading.Visible)
             {
                 EmployeesLabelHeading.Visible = true;
-                //int value = Int32.Parse(Request.QueryString["UserNameValue"].ToString());
-                
+
             }
             else
             {
@@ -85,7 +108,7 @@ namespace WebApplication3.webpages
 
             ShowEmployeeFields();
             if (!Username.Text.Equals(""))
-            { 
+            {
                 SqlCommand AddEmployee = new SqlCommand("AddEmployee", conn);
                 AddEmployee.CommandType = CommandType.StoredProcedure;
 

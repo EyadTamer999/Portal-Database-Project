@@ -68,14 +68,14 @@
 
             <br />
             <!--Show my profile-->
-            <div runat="server" visible="false" class="my-3 p-3 bg-white justify-content-center align-content-center rounded box-shadow border-gray" id="ShowMyProfileDiv">
+            <div  class="my-3 p-3 bg-white justify-content-center align-content-center rounded box-shadow border-gray">
                 <small class="d-block text-right mt-3">
                     <br />
                     <asp:Label runat="server" class="form-label" Text="My Profile" ID="MyProfile"></asp:Label>
                 </small>
                 <div class="media text-muted pt-3">
                     <div class="row justify-content-center align-baseline">
-                        <div class="col">
+                        <div class="col" runat="server" visible="false" id="ShowMyProfileDiv">
                             <br />
                             <asp:Label runat="server" ID="MyCompanyID" Visible="true" class="form-label" Text="My Company ID: " for="form3Example1m1"></asp:Label>
                             <br />
@@ -108,14 +108,15 @@
                                 f) Grade progress report for a specific student.
                                                                                                                     ---------------->
                 <!--Show my Employees-->
-                <div runat="server" visible="false" class="my-3 p-3 bg-white justify-content-center align-content-center rounded box-shadow" id="EmployeesLabelHeading">
+                <div class="my-3 p-3 bg-white justify-content-center align-content-center rounded box-shadow">
                     <h6 class="border-bottom border-gray pb-2 mb-0">Employees</h6>
-                    <small class="d-block text-right mt-3">
-                        <asp:Button runat="server" ID="AddEmployeeButton" OnClick="AddNewEmployee" Text="Add Employee" class="alert-info" />
-                    </small>
+
                     <div class="media text-muted pt-3">
                         <div class="row justify-content-center align-baseline">
-                            <div>
+                            <div runat="server" visible="false" id="EmployeesLabelHeading">
+                                <small class="d-block text-right mt-3">
+                                    <asp:Button runat="server" ID="AddEmployeeButton" OnClick="AddNewEmployee" Text="Add Employee" class="alert-info" />
+                                </small>
                                 <div class="row">
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline">
@@ -152,21 +153,16 @@
 
                             </div>
                             <div class="media text-muted pt-3">
-                                <asp:GridView ID="GridView1" class="table table-bordered table-condensed table-responsive table-hover " runat="server" AutoGenerateColumns="False" DataSourceID="EmployeeSQL">
+                                <asp:GridView ID="EmployeeTable" Visible="false" class="table table-bordered table-condensed table-responsive table-hover " runat="server" AutoGenerateColumns="False">
                                     <Columns>
-                                        <asp:BoundField DataField="Staff_id" HeaderText="Staff_id" InsertVisible="False" ReadOnly="True" SortExpression="Staff_id" />
-                                        <asp:BoundField DataField="Username" HeaderText="Username" SortExpression="Username" />
-                                        <asp:BoundField DataField="Password" HeaderText="Password" SortExpression="Password" />
-                                        <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
-                                        <asp:BoundField DataField="Field" HeaderText="Field" SortExpression="Field" />
-                                        <asp:BoundField DataField="Phone" HeaderText="Phone" SortExpression="Phone" />
+                                        <asp:TemplateField  HeaderText="Staff_id" InsertVisible="False" SortExpression="Staff_id" />
+                                        <asp:TemplateField  HeaderText="Username" SortExpression="Username" />
+                                        <asp:TemplateField  HeaderText="Password" SortExpression="Password" />
+                                        <asp:TemplateField  HeaderText="Email" SortExpression="Email" />
+                                        <asp:TemplateField  HeaderText="Field" SortExpression="Field" />
+                                        <asp:TemplateField  HeaderText="Phone" SortExpression="Phone" />
                                     </Columns>
                                 </asp:GridView>
-                                <asp:SqlDataSource ID="EmployeeSQL" runat="server" ConnectionString="<%$ ConnectionStrings:PortalConnectionString %>" SelectCommand="SELECT [Staff_id], [Username], [Password], [Email], [Field], [Phone] FROM [Employee] WHERE ([Company_id] = @Company_id) ORDER BY [Staff_id]">
-                                    <SelectParameters>
-                                        <asp:QueryStringParameter Name="Company_id" QueryStringField="UserNameValue" Type="Int32"  />
-                                    </SelectParameters>
-                                </asp:SqlDataSource>
                             </div>
                         </div>
                     </div>
@@ -231,13 +227,11 @@
                                     <asp:BoundField DataField="Phone" HeaderText="Phone" SortExpression="Phone" />
                                 </Columns>
                             </asp:GridView>
-                            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PortalConnectionString %>" SelectCommand="SELECT [Staff_id], [Username], [Password], [Email], [Field], [Phone] FROM [Employee]"></asp:SqlDataSource>
                         </div>
                     </div>
                 </div>
             </div>
         </main>
-
         <defs>
         </defs>
     </form>

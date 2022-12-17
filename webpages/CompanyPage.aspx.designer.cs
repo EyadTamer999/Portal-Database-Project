@@ -60,15 +60,6 @@ namespace WebApplication3.webpages
         protected global::System.Web.UI.WebControls.Button StudentsDropDown;
 
         /// <summary>
-        /// ShowMyProfileDiv control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ShowMyProfileDiv;
-
-        /// <summary>
         /// MyProfile control.
         /// </summary>
         /// <remarks>
@@ -76,6 +67,15 @@ namespace WebApplication3.webpages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label MyProfile;
+
+        /// <summary>
+        /// ShowMyProfileDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ShowMyProfileDiv;
 
         /// <summary>
         /// MyCompanyID control.
@@ -249,22 +249,13 @@ namespace WebApplication3.webpages
         protected global::System.Web.UI.WebControls.Label PhoneLabel;
 
         /// <summary>
-        /// GridView1 control.
+        /// EmployeeTable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
-
-        /// <summary>
-        /// EmployeeSQL control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource EmployeeSQL;
+        protected global::System.Web.UI.WebControls.GridView EmployeeTable;
 
         /// <summary>
         /// StudentsLabelHeading control.
@@ -382,14 +373,5 @@ namespace WebApplication3.webpages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridView2;
-
-        /// <summary>
-        /// SqlDataSource1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
     }
 }
