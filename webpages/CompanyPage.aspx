@@ -71,7 +71,8 @@
                                 c) Assign Employees to supervise local industrial projects that belongs to them.
                                 d) Grade thesis of a specific student.
                                 e) Grade defense of a specific student.
-                                f) Grade progress report for a specific student.                                                                                                                    ---------------->
+                                f) Grade progress report for a specific student.
+                                                                                                                    ---------------->
 
                 <div runat="server" visible="false" class="my-3 p-3 bg-white justify-content-center align-content-center rounded box-shadow" id="EmployeesLabelHeading">
                     <h6 class="border-bottom border-gray pb-2 mb-0">Employees</h6>
@@ -133,7 +134,11 @@
                                         <asp:BoundField DataField="Phone" HeaderText="Phone" SortExpression="Phone" />
                                     </Columns>
                                 </asp:GridView>
-                                <asp:SqlDataSource ID="Employee" runat="server" ConnectionString="<%$ ConnectionStrings:PortalConnectionString %>" SelectCommand="SELECT [Staff_id], [Username], [Password], [Email], [Field], [Phone] FROM [Employee]"></asp:SqlDataSource>
+                                <asp:SqlDataSource ID="Employee" runat="server" ConnectionString="<%$ ConnectionStrings:PortalConnectionString %>" SelectCommand="SELECT [Staff_id], [Username], [Password], [Email], [Field], [Phone] FROM [Employee] ORDER BY [Staff_id]">
+                                    <SelectParameters>
+                                        <asp:Parameter DefaultValue="" Name="Company_id" Type="Int32" />
+                                    </SelectParameters>
+                                </asp:SqlDataSource>
                             </div>
                         </div>
                     </div>

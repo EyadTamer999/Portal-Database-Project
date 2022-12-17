@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -9,6 +12,10 @@ namespace WebApplication3.webpages
 {
     public partial class RegisterUserPage : System.Web.UI.Page
     {
+        //Set connection string
+        SqlConnection conn = new SqlConnection(WebConfigurationManager.ConnectionStrings["Portal"].ToString());
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -16,8 +23,64 @@ namespace WebApplication3.webpages
 
         protected void RegisterUser(Object sender, EventArgs e)
         {
+            if (Usertype.SelectedItem.Value.Equals(" "))
+            {
+                Error.Visible = true;
+            }
+
+            //clear all textboxes
+
+            //open connection
+            conn.Open();
+            if (Usertype.SelectedItem.ToString().Equals("Employee"))
+            {
+                //Add employee method
+                AddEmployee();
+
+            }
+            else
+            {
+                //UserRegister method
+            }
+
+
+            //close connection
+            conn.Close();
 
         }
+
+
+        protected void AddEmployee()
+        {
+            //Create Sql proc
+            SqlCommand AddEmployee = new SqlCommand("AddEmployee", conn);
+            AddEmployee.CommandType = CommandType.StoredProcedure;
+
+
+            //input from user
+            SqlParameter companyIdEntered = AddEmployee.Parameters.Add(new SqlParameter("@CompanyID", SqlDbType.Int));
+            companyIdEntered.Value = Companyid.Text;
+            SqlParameter emailEntered = AddEmployee.Parameters.Add(new SqlParameter("@email", SqlDbType.VarChar, 50));
+            emailEntered.Value = Email.Text;
+            SqlParameter nameEntered = AddEmployee.Parameters.Add(new SqlParameter("@name", SqlDbType.VarChar, 20));
+            nameEntered.Value = Username.Text;
+            SqlParameter phoneEntered = AddEmployee.Parameters.Add(new SqlParameter("@phone_number", SqlDbType.VarChar, 20));
+            phoneEntered.Value = Password.Text;
+            SqlParameter fieldEntered = AddEmployee.Parameters.Add(new SqlParameter("@field", SqlDbType.VarChar, 25));
+            fieldEntered.Value = Field.Text;
+
+            //output of the proc
+            SqlParameter staffIdOut = AddEmployee.Parameters.Add(new SqlParameter("@Staff_id", SqlDbType.Int));
+            staffIdOut.Direction = ParameterDirection.Output;
+            SqlParameter CompanyIdOut = AddEmployee.Parameters.Add(new SqlParameter("@Company_id_out", SqlDbType.Int));
+            CompanyIdOut.Direction = ParameterDirection.Output;  
+            SqlParameter passwordOut = AddEmployee.Parameters.Add(new SqlParameter("@password", SqlDbType.VarChar,10));
+            passwordOut.Direction = ParameterDirection.Output;
+
+
+            AddEmployee.ExecuteNonQuery();
+        }
+
 
         protected void Usertype_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -30,7 +93,7 @@ namespace WebApplication3.webpages
                 case "TA": showUserRelated(); break;
                 case "Lecturer": showUserRelated(); break;
                 case "Coordinator": showUserRelated(); break;
-                case "Employee": showEmployeeRelated(); break;
+                case "Employee": showEmployeeRelated(); break;                
             }
         }
 
@@ -46,20 +109,27 @@ namespace WebApplication3.webpages
             hideCompany();
             hideStudent();
 
+            UsernameLabel.Text = "Name";
             Companyid.Visible = true;
             Field.Visible = true;
             CompanyidLabel.Visible = true;
             FieldLabel.Visible = true;
+            Password.Visible = false;
+            PasswordLabel.Visible = false;  
         }
 
         public void hideEmployee()
         {
             if (Companyid.Visible)
             {
+                UsernameLabel.Text = "Username";
                 Companyid.Visible = false;
                 Field.Visible = false;
+                FieldLabel.Visible = false;
                 CompanyidLabel.Visible = false;
                 FirstNameLabel.Visible = false;
+                Password.Visible = true;
+                PasswordLabel.Visible = true;
             }
         }
 

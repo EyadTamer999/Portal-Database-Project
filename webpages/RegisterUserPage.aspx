@@ -66,7 +66,7 @@
                                 <div class="col-xl-6">
                                     <div class="card-body p-md-5 text-black">
                                         <h3 class="mb-5 text-uppercase">User registration form</h3>
-
+                                         <asp:Label ID="Error" runat="server" Text="Oops Somthing went wrong!" Visible="false" ForeColor="Red"></asp:Label>
                                         <div class="row">
                                             <div class="col-md-6 mb-4">
                                                 <div class="form-outline">
@@ -85,6 +85,7 @@
                                         <div class="row">
                                             <div class="col-md-6 mb-4">
                                                 <asp:DropDownList runat="server" ID="Usertype" OnSelectedIndexChanged="Usertype_SelectedIndexChanged" AutoPostBack="true">
+                                                    <asp:ListItem Value=" ">-->Select User type<--</asp:ListItem>
                                                     <asp:ListItem Value="Student">Student</asp:ListItem>
                                                     <asp:ListItem Value="Company">Company</asp:ListItem>
                                                     <asp:ListItem Value="EE">External Examiner</asp:ListItem>
