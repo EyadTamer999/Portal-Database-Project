@@ -62,7 +62,7 @@ namespace WebApplication3.webpages
             SqlParameter UserNameIn = RegisterUser.Parameters.Add(new SqlParameter("@userName", SqlDbType.VarChar, 20));
             UserNameIn.Value = Username.Text;
             SqlParameter phoneEntered = RegisterUser.Parameters.Add(new SqlParameter("@phone_number", SqlDbType.VarChar, 20));
-            phoneEntered.Value = Password.Text;
+            phoneEntered.Value = PhoneNumber.Text;
             SqlParameter emailEntered = RegisterUser.Parameters.Add(new SqlParameter("@email", SqlDbType.VarChar, 100));
             emailEntered.Value = Email.Text;
             SqlParameter PasswordIn = RegisterUser.Parameters.Add(new SqlParameter("@password", SqlDbType.VarChar, 10));

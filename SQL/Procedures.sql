@@ -155,7 +155,7 @@ BEGIN
     from Student
     where sid = @Userr_id)
 BEGIN
-        SELECT S.* , U.Username , U.Email
+        SELECT S.* , U.Username , U.Email, U.phone_number, U.Password
         FROM Student S, Userr U
         WHERE S.sid = @Userr_id AND U.Userr_id = @Userr_id
     END
@@ -164,7 +164,7 @@ BEGIN
         if exists(select Company_id
         from Company
         where Company_id = @Userr_id)
-            SELECT C.* , U.Username , U.Email
+            SELECT C.* , U.Username , U.Email, U.phone_number, U.Password
         FROM Company C, Userr U
         WHERE C.Company_id = @Userr_id AND U.Userr_id = @Userr_id
     END
@@ -173,7 +173,7 @@ BEGIN
         if exists(select TA_id
         from Teaching_Assistant
         where TA_id = @Userr_id)
-                    SELECT TA.* , U.Username , U.Email
+                    SELECT TA.* , U.Username , U.Email, U.phone_number, U.Password
         FROM Teaching_Assistant TA, Userr U
         WHERE TA.TA_id = @Userr_id AND U.Userr_id = @Userr_id
     END
@@ -182,7 +182,7 @@ BEGIN
         if exists(select EE_id
         from External_Examiner
         where EE_id = @Userr_id)
-                            SELECT EE.* , U.Username , U.Email
+                            SELECT EE.* , U.Username , U.Email, U.phone_number, U.Password
         FROM External_Examiner EE, Userr U
         WHERE EE.EE_id = @Userr_id AND U.Userr_id = @Userr_id
     END
@@ -191,7 +191,7 @@ BEGIN
         if exists(select coordinator_id
         from Coordinator
         where coordinator_id = @Userr_id)
-                                SELECT C.* , U.Username , U.Email
+                                SELECT C.* , U.Username , U.Email, U.phone_number, U.Password
         FROM Coordinator C, Userr U
         WHERE C.coordinator_id = @Userr_id AND U.Userr_id = @Userr_id
     END
@@ -200,7 +200,7 @@ BEGIN
         if exists(select Lecturer_id
         from Lecturer
         where Lecturer_id = @Userr_id)
-                                    SELECT L.* , U.Username , U.Email
+                                    SELECT L.* , U.Username , U.Email, U.phone_number, U.Password
         FROM Lecturer L, Userr U
         WHERE L.Lecturer_id = @Userr_id AND U.Userr_id = @Userr_id
     END

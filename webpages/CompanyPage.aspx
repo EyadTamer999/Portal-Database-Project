@@ -44,8 +44,8 @@
 
                     <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
                         <ul class="navbar-nav mr-auto">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="#">Dashboard <span class="sr-only">(current)</span></a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Dashboard</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Create Project</a>
@@ -64,7 +64,40 @@
                         </ul>
                     </div>
                 </nav>
+            </div>
 
+            <br />
+            <!--Show my profile-->
+            <div runat="server" visible="false" class="my-3 p-3 bg-white justify-content-center align-content-center rounded box-shadow border-gray" id="ShowMyProfileDiv">
+                <small class="d-block text-right mt-3">
+                    <br />
+                    <asp:Label runat="server" class="form-label" Text="My Profile" ID="MyProfile"></asp:Label>
+                </small>
+                <div class="media text-muted pt-3">
+                    <div class="row justify-content-center align-baseline">
+                        <div class="col">
+                            <br />
+                            <asp:Label runat="server" ID="MyCompanyID" Visible="true" class="form-label" Text="My Company ID: " for="form3Example1m1"></asp:Label>
+                            <br />
+                            <asp:Label runat="server" ID="MyUserName" Visible="true" class="form-label" Text="My User Name: " for="form3Example1m1"></asp:Label>
+                            <br />
+                            <asp:Label runat="server" ID="MyPassword" Visible="true" class="form-label" Text="My Password: " for="form3Example1m1"></asp:Label>
+                            <br />
+                            <asp:Label runat="server" ID="MyName" Visible="true" class="form-label" Text="My Name: " for="form3Example1m1"></asp:Label>
+                            <br />
+                            <asp:Label runat="server" ID="MyEmail" Visible="true" class="form-label" Text="My Email: " for="form3Example1m1"></asp:Label>
+                            <br />
+                            <asp:Label runat="server" ID="MyPhone" Visible="true" class="form-label" Text="My Phone Number: " for="form3Example1m1"></asp:Label>
+                            <br />
+                            <asp:Label runat="server" ID="MyLocation" Visible="true" class="form-label" Text="My Location: " for="form3Example1m1"></asp:Label>
+                            <br />
+                            <asp:Label runat="server" ID="MyRepEmail" Visible="true" class="form-label" Text="My Representative Email: " for="form3Example1m1"></asp:Label>
+                            <br />
+                            <asp:Label runat="server" ID="MyRepName" Visible="true" class="form-label" Text="My Representative Name: " for="form3Example1m1"></asp:Label>
+                            <br />
+                        </div>
+                    </div>
+                </div>
 
 
                 <!----------------  a) Add employees to the system and generate passwords for them.
@@ -74,7 +107,7 @@
                                 e) Grade defense of a specific student.
                                 f) Grade progress report for a specific student.
                                                                                                                     ---------------->
-
+                <!--Show my Employees-->
                 <div runat="server" visible="false" class="my-3 p-3 bg-white justify-content-center align-content-center rounded box-shadow" id="EmployeesLabelHeading">
                     <h6 class="border-bottom border-gray pb-2 mb-0">Employees</h6>
                     <small class="d-block text-right mt-3">
@@ -88,12 +121,6 @@
                                         <div class="form-outline">
                                             <asp:TextBox runat="server" Visible="false" type="text" ID="Username" class="form-control form-control-lg" />
                                             <asp:Label runat="server" ID="UsernameLabel" Visible="false" class="form-label" for="form3Example1m1">Username</asp:Label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 mb-4">
-                                        <div class="form-outline">
-                                            <asp:TextBox runat="server" type="text" Visible="false" ID="Password" class="form-control form-control-lg" />
-                                            <asp:Label runat="server" ID="PasswordLabel" Visible="false" class="form-label" for="form3Example1n1">Password</asp:Label>
                                         </div>
                                     </div>
                                 </div>
@@ -125,7 +152,7 @@
 
                             </div>
                             <div class="media text-muted pt-3">
-                                <asp:GridView ID="GridView1" class="table table-bordered table-condensed table-responsive table-hover " runat="server" AutoGenerateColumns="False" DataSourceID="Employee">
+                                <asp:GridView ID="GridView1" class="table table-bordered table-condensed table-responsive table-hover " runat="server" AutoGenerateColumns="False" DataSourceID="EmployeeSQL">
                                     <Columns>
                                         <asp:BoundField DataField="Staff_id" HeaderText="Staff_id" InsertVisible="False" ReadOnly="True" SortExpression="Staff_id" />
                                         <asp:BoundField DataField="Username" HeaderText="Username" SortExpression="Username" />
@@ -135,9 +162,9 @@
                                         <asp:BoundField DataField="Phone" HeaderText="Phone" SortExpression="Phone" />
                                     </Columns>
                                 </asp:GridView>
-                                <asp:SqlDataSource ID="Employee" runat="server" ConnectionString="<%$ ConnectionStrings:PortalConnectionString %>" SelectCommand="SELECT [Staff_id], [Username], [Password], [Email], [Field], [Phone] FROM [Employee] ORDER BY [Staff_id]">
+                                <asp:SqlDataSource ID="EmployeeSQL" runat="server" ConnectionString="<%$ ConnectionStrings:PortalConnectionString %>" SelectCommand="SELECT [Staff_id], [Username], [Password], [Email], [Field], [Phone] FROM [Employee] WHERE ([Company_id] = @Company_id) ORDER BY [Staff_id]">
                                     <SelectParameters>
-                                        <asp:Parameter DefaultValue="" Name="Company_id" Type="Int32" />
+                                        <asp:QueryStringParameter Name="Company_id" QueryStringField="UserNameValue" Type="Int32"  />
                                     </SelectParameters>
                                 </asp:SqlDataSource>
                             </div>
@@ -145,6 +172,7 @@
                     </div>
                 </div>
 
+                <!--Show my Students-->
                 <div runat="server" visible="false" class="my-3 p-3 bg-white rounded box-shadow" id="StudentsLabelHeading">
                     <h6 class="border-bottom border-gray pb-2 mb-0">Employees</h6>
                     <small class="d-block text-right mt-3">
@@ -193,7 +221,7 @@
 
                         </div>
                         <div class="media text-muted pt-3">
-                            <asp:GridView ID="GridView2" class="table table-bordered table-condensed table-responsive table-hover " runat="server" AutoGenerateColumns="False" DataSourceID="Employee">
+                            <asp:GridView ID="GridView2" class="table table-bordered table-condensed table-responsive table-hover " runat="server" AutoGenerateColumns="False">
                                 <Columns>
                                     <asp:BoundField DataField="Staff_id" HeaderText="Staff_id" InsertVisible="False" ReadOnly="True" SortExpression="Staff_id" />
                                     <asp:BoundField DataField="Username" HeaderText="Username" SortExpression="Username" />

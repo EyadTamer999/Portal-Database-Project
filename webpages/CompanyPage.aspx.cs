@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -23,24 +24,48 @@ namespace WebApplication3.webpages
 
         protected void ShowMyProfile(object sender, EventArgs e)
         {
-            conn.Open();
-            SqlCommand showMyProfile = new SqlCommand("ViewProfile", conn);
-            string value = Request.QueryString["UserNameValue"].ToString();
-            showMyProfile.CommandType = CommandType.StoredProcedure;
+            if (!string.IsNullOrEmpty(Request.QueryString.ToString()))
+            {
+                conn.Open();
+                SqlCommand showMyProfile = new SqlCommand("ViewProfile", conn);
+                int value = Int32.Parse(Request.QueryString["UserNameValue"].ToString());
+                showMyProfile.CommandType = CommandType.StoredProcedure;
+                //input from user
+                SqlParameter userIdEntered = showMyProfile.Parameters.Add(new SqlParameter("@Userr_id", SqlDbType.Int));
+                userIdEntered.Value = value;
 
-            //input from user
-            SqlParameter userIdEntered = showMyProfile.Parameters.Add(new SqlParameter("@Userr_id", SqlDbType.Int));
-            userIdEntered.Value = value;
+                SqlDataReader sqlReader = showMyProfile.ExecuteReader();
 
+                while (sqlReader.Read())
+                {
+                    MyCompanyID.Text = $"My Company ID: {sqlReader["Company_id"].ToString()}";
+                    MyUserName.Text = $"My User Name: {sqlReader["Username"].ToString()}";
+                    MyPassword.Text = $"My Password: {sqlReader["Password"].ToString()}";
+                    MyName.Text = $"My Name: {sqlReader["Name"].ToString()}";
+                    MyEmail.Text = $"My Email: {sqlReader["Email"].ToString()}";
+                    MyPhone.Text = $"My Phone Number: {sqlReader["phone_number"].ToString()}";
+                    MyLocation.Text = $"My Location: {sqlReader["Location"].ToString()}";
+                    MyRepEmail.Text = $"My Representative Email: {sqlReader["Representative_Email"].ToString()}";
+                    MyRepName.Text = $"My Representative Name: {sqlReader["Representative_name"].ToString()}";
+
+
+                }
+
+                ShowMyProfileDiv.Visible = true;
+
+            }
 
 
         }
 
         protected void ShowEmployees(object sender, EventArgs e)
         {
+            
             if (!EmployeesLabelHeading.Visible)
             {
                 EmployeesLabelHeading.Visible = true;
+                //int value = Int32.Parse(Request.QueryString["UserNameValue"].ToString());
+                
             }
             else
             {
@@ -59,28 +84,33 @@ namespace WebApplication3.webpages
             conn.Open();
 
             ShowEmployeeFields();
-            if (!Username.Text.Equals(null))
-            {
-
-                //store varibles 
-                String userNameIn = Username.Text.ToString();
-                String PasswordIn = Password.Text.ToString();
-                String EmailIn = Email.Text.ToString();
-                String FieldIn = Field.Text.ToString();
-                String PhoneIn = Phone.Text.ToString();
-
-
-                //create proc
+            if (!Username.Text.Equals(""))
+            { 
                 SqlCommand AddEmployee = new SqlCommand("AddEmployee", conn);
                 AddEmployee.CommandType = CommandType.StoredProcedure;
 
                 //input from user
+                SqlParameter companyIdEntered = AddEmployee.Parameters.Add(new SqlParameter("@CompanyID", SqlDbType.Int));
+                companyIdEntered.Value = Int32.Parse(Request.QueryString["UserNameValue"].ToString());
+                SqlParameter emailEntered = AddEmployee.Parameters.Add(new SqlParameter("@email", SqlDbType.VarChar, 100));
+                emailEntered.Value = Email.Text;
+                SqlParameter nameEntered = AddEmployee.Parameters.Add(new SqlParameter("@name", SqlDbType.VarChar, 20));
+                nameEntered.Value = Username.Text;
+                SqlParameter phoneEntered = AddEmployee.Parameters.Add(new SqlParameter("@phone_number", SqlDbType.VarChar, 20));
+                phoneEntered.Value = Phone.Text;
+                SqlParameter fieldEntered = AddEmployee.Parameters.Add(new SqlParameter("@field", SqlDbType.VarChar, 25));
+                fieldEntered.Value = Field.Text;
 
-                SqlParameter emailNameEntered = AddEmployee.Parameters.Add(new SqlParameter("@email", SqlDbType.VarChar, 50));
-                emailNameEntered.Value = Email.Text;
+                //output of the proc
+                SqlParameter staffIdOut = AddEmployee.Parameters.Add(new SqlParameter("@Staff_id", SqlDbType.Int));
+                staffIdOut.Direction = ParameterDirection.Output;
+                SqlParameter CompanyIdOut = AddEmployee.Parameters.Add(new SqlParameter("@Company_id_out", SqlDbType.Int));
+                CompanyIdOut.Direction = ParameterDirection.Output;
+                SqlParameter passwordOut = AddEmployee.Parameters.Add(new SqlParameter("@password", SqlDbType.VarChar, 10));
+                passwordOut.Direction = ParameterDirection.Output;
 
 
-                //exec the Add employee procedure
+                AddEmployee.ExecuteNonQuery();
             }
 
 
@@ -95,8 +125,6 @@ namespace WebApplication3.webpages
             {
                 Username.Visible = true;
                 UsernameLabel.Visible = true;
-                Password.Visible = true;
-                PasswordLabel.Visible = true;
                 Email.Visible = true;
                 EmailLabel.Visible = true;
                 Field.Visible = true;
@@ -108,8 +136,6 @@ namespace WebApplication3.webpages
             {
                 Username.Visible = false;
                 UsernameLabel.Visible = false;
-                Password.Visible = false;
-                PasswordLabel.Visible = false;
                 Email.Visible = false;
                 EmailLabel.Visible = false;
                 Field.Visible = false;
