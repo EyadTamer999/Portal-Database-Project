@@ -21,6 +21,21 @@ namespace WebApplication3.webpages
 
         }
 
+        protected void ShowMyProfile(object sender, EventArgs e)
+        {
+            conn.Open();
+            SqlCommand showMyProfile = new SqlCommand("ViewProfile", conn);
+            string value = Request.QueryString["UserNameValue"].ToString();
+            showMyProfile.CommandType = CommandType.StoredProcedure;
+
+            //input from user
+            SqlParameter userIdEntered = showMyProfile.Parameters.Add(new SqlParameter("@Userr_id", SqlDbType.Int));
+            userIdEntered.Value = value;
+
+
+
+        }
+
         protected void ShowEmployees(object sender, EventArgs e)
         {
             if (!EmployeesLabelHeading.Visible)
@@ -33,10 +48,13 @@ namespace WebApplication3.webpages
             }
 
         }
+        protected void ShowStudents(object sender, EventArgs e)
+        {
+
+        }
 
         protected void AddNewEmployee(object sender, EventArgs e)
         {
-
             //open connection
             conn.Open();
 
@@ -57,7 +75,7 @@ namespace WebApplication3.webpages
                 AddEmployee.CommandType = CommandType.StoredProcedure;
 
                 //input from user
-                
+
                 SqlParameter emailNameEntered = AddEmployee.Parameters.Add(new SqlParameter("@email", SqlDbType.VarChar, 50));
                 emailNameEntered.Value = Email.Text;
 
@@ -99,11 +117,6 @@ namespace WebApplication3.webpages
                 Phone.Visible = false;
                 PhoneLabel.Visible = false;
             }
-
-        }
-
-        protected void ShowStudents(object sender, EventArgs e)
-        {
 
         }
 
