@@ -28,7 +28,8 @@ namespace WebApplication3.webpages
                 Error.Visible = true;
             }
 
-            //clear all textboxes
+            //clear all textboxes 
+            //
 
             //open connection
             conn.Open();
