@@ -30,7 +30,7 @@ namespace WebApplication3.webpages
             loginProc.CommandType = CommandType.StoredProcedure;
 
             //input from user
-            SqlParameter emailNameEntered = loginProc.Parameters.Add(new SqlParameter("@email", SqlDbType.VarChar, 50));
+            SqlParameter emailNameEntered = loginProc.Parameters.Add(new SqlParameter("@email", SqlDbType.VarChar, 100));
             emailNameEntered.Value = Email.Text;
             SqlParameter passwordEntered = loginProc.Parameters.Add(new SqlParameter("@password", SqlDbType.VarChar, 10));
             passwordEntered.Value = Password.Text;

@@ -5,34 +5,34 @@
  ------------a
  GO
 -- Create the stored procedure in the specified schema
+-- Create the stored procedure in the specified schema
+-- Create the stored procedure in the specified schema
 CREATE PROCEDURE UserRegister
     @user_id INT OUTPUT,
-    @password VARCHAR(10) OUTPUT,
+    @password VARCHAR(10),
     @usertype varchar(20),
     @userName varchar(20),
-    @email varchar(50),
+    @email varchar(100),
     @first_name varchar(20),
     @last_name varchar(20),
     @birth_date datetime,
-    @GPA decimal(3,2),
+    @GPA decimal,
     @semester INT,
     @address varchar(100),
     @faculty_code varchar(10),
     @major_code varchar(10),
     @company_name varchar(20),
     @representative_name varchar(20),
-    @representative_email varchar(50),
+    @representative_email varchar(100),
     @phone_number varchar(20),
     @country_of_residence varchar(20)
 AS
 -- body of the stored procedure
-declare @pass varchar(8)
-exec GENERATEPWD @pass output
 BEGIN
     INSERT INTO Userr
         (Username,Email,phone_number,Password,Role)
     VALUES
-        (@userName, @email, @phone_number, @pass, @usertype)
+        (@userName, @email, @phone_number, @password, @usertype)
     select @user_id = U.Userr_id
     from Userr U
     where U.Email = @email
@@ -46,9 +46,9 @@ BEGIN
     IF(@usertype = 'Company')
     BEGIN
         INSERT INTO Company
-            (Company_id,Name,representative_name,representative_email)
+            (Company_id,Name,representative_name,representative_email,Location)
         VALUES
-            (@user_id, @userName, @Representative_name, @representative_email)
+            (@user_id, @userName, @Representative_name, @representative_email,@country_of_residence)
     END
     IF(@usertype = 'Lecturer')
     BEGIN
@@ -80,8 +80,6 @@ BEGIN
     END
 END
 PRINT @User_id + ' ' + @Password
-GO
-
 GO
 --Helper proc
 CREATE PROCEDURE GENERATEPWD(@OUTMESSAGE VARCHAR(10) OUTPUT)
@@ -118,7 +116,7 @@ GO
 ------------a
 -- Create the stored procedure in the specified schema
 CREATE PROCEDURE LOGIN
-    @email varchar(50),
+    @email varchar(100),
     @password varchar(10),
     @user_id int output,
     @success bit output
@@ -523,7 +521,7 @@ GO
 
 CREATE PROCEDURE AddEmployee
     @CompanyID int,
-    @email varchar(50),
+    @email varchar(100),
     @name varchar(20),
     @phone_number varchar(20),
     @field varchar(25),
@@ -986,7 +984,7 @@ GO
 --
 
 CREATE PROCEDURE UserType
-    @email varchar(50),
+    @email varchar(100),
     @role varchar(50) output
 as
 if exists(select Userr.Role from Userr where  @email = Email)

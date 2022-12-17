@@ -39,7 +39,7 @@
                     </button>
 
                     <div>
-                        <asp:Label runat="server" Text="Welcome" ID="CompanyID" ></asp:Label> 
+                        <asp:Label runat="server" Text="Welcome" ID="CompanyID"></asp:Label>
                     </div>
 
                     <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
@@ -56,6 +56,7 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">View</a>
                                 <div class="dropdown-menu" aria-labelledby="dropdown01">
+                                    <asp:Button runat="server" ID="ViewMyProfile" class="dropdown-item" OnClick="ShowMyProfile" Text="My Profile"></asp:Button>
                                     <asp:Button runat="server" ID="EmployeesDropDown" class="dropdown-item" OnClick="ShowEmployees" Text="Employees"></asp:Button>
                                     <asp:Button runat="server" ID="StudentsDropDown" class="dropdown-item" OnClick="ShowStudents" Text="Students"></asp:Button>
                                 </div>

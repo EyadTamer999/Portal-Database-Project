@@ -249,22 +249,22 @@ namespace WebApplication3.webpages
         protected global::System.Web.UI.WebControls.Label MajorCodeLabel;
 
         /// <summary>
-        /// Facultyid control.
+        /// FacultyCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Facultyid;
+        protected global::System.Web.UI.WebControls.TextBox FacultyCode;
 
         /// <summary>
-        /// FacultyidLabel control.
+        /// FacultyCodeLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label FacultyidLabel;
+        protected global::System.Web.UI.WebControls.Label FacultyCodeLabel;
 
         /// <summary>
         /// RepName control.

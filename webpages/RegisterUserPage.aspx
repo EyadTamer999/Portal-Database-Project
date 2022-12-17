@@ -162,8 +162,8 @@
                                         </div>
 
                                         <div class="form-outline mb-4">
-                                            <asp:TextBox runat="server" ID="Facultyid" Visible="false" class="form-control form-control-lg" />
-                                            <asp:Label runat="server" ID="FacultyidLabel" Visible="false" class="form-label" for="form3Example99">Faculty ID</asp:Label>
+                                            <asp:TextBox runat="server" ID="FacultyCode" Visible="false" class="form-control form-control-lg" />
+                                            <asp:Label runat="server" ID="FacultyCodeLabel" Visible="false" class="form-label" for="form3Example99">Faculty Code</asp:Label>
                                         </div>
 
 
