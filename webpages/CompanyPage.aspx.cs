@@ -38,7 +38,7 @@ namespace WebApplication3.webpages
 
                 conn.Open();
                 SqlCommand showMyProfile = new SqlCommand("ViewProfile", conn);
-                int value = Int32.Parse(Request.QueryString["UserNameValue"].ToString());
+                int value = Int32.Parse(Request.QueryString["UserID"].ToString());
                 showMyProfile.CommandType = CommandType.StoredProcedure;
                 //input from user
                 SqlParameter userIdEntered = showMyProfile.Parameters.Add(new SqlParameter("@Userr_id", SqlDbType.Int));
@@ -77,22 +77,27 @@ namespace WebApplication3.webpages
                 EmployeeTable.Visible = false;
             }
 
+            /*
             string cmd = "SELECT [Staff_id], [Username], [Password], [Email], [Field], [Phone] FROM [Employee] WHERE ([Company_id] = '3') ORDER BY [Staff_id]";
             conn.Open();
-            SqlCommand getEmployees = new SqlCommand(cmd, conn);
-            SqlDataReader dr = getEmployees.ExecuteReader();
-            EmployeeTable.DataSource = dr;
+            SqlDataAdapter getEmployees = new SqlDataAdapter(cmd, conn);
+
+            DataTable DT = new DataTable();
+
+            getEmployees.Fill(DT);
+
+            EmployeeTable.DataSource = DT;
             EmployeeTable.DataBind();
             conn.Close();
+            */
 
             if (!EmployeesLabelHeading.Visible)
             {
                 EmployeesLabelHeading.Visible = true;
-
             }
             else
             {
-                EmployeesLabelHeading.Visible = false;
+                EmployeesLabelHeading.Visible = false;  
             }
 
         }
@@ -114,7 +119,7 @@ namespace WebApplication3.webpages
 
                 //input from user
                 SqlParameter companyIdEntered = AddEmployee.Parameters.Add(new SqlParameter("@CompanyID", SqlDbType.Int));
-                companyIdEntered.Value = Int32.Parse(Request.QueryString["UserNameValue"].ToString());
+                companyIdEntered.Value = Int32.Parse(Request.QueryString["UserID"].ToString());
                 SqlParameter emailEntered = AddEmployee.Parameters.Add(new SqlParameter("@email", SqlDbType.VarChar, 100));
                 emailEntered.Value = Email.Text;
                 SqlParameter nameEntered = AddEmployee.Parameters.Add(new SqlParameter("@name", SqlDbType.VarChar, 20));

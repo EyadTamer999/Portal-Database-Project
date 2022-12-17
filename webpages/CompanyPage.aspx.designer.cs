@@ -258,6 +258,15 @@ namespace WebApplication3.webpages
         protected global::System.Web.UI.WebControls.GridView EmployeeTable;
 
         /// <summary>
+        /// EmployeeSQL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource EmployeeSQL;
+
+        /// <summary>
         /// StudentsLabelHeading control.
         /// </summary>
         /// <remarks>

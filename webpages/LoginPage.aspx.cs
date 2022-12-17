@@ -49,13 +49,13 @@ namespace WebApplication3.webpages
                 InvalidLogin.Visible = false;
                 switch (getUserType())
                 {
-                    case "Student": Response.Redirect("StudentPage.aspx?UserNameValue=" + Server.UrlEncode(loginProc.Parameters["@user_id"].Value.ToString())); break;
-                    case "Company": Response.Redirect("CompanyPage.aspx?UserNameValue=" + Server.UrlEncode(loginProc.Parameters["@user_id"].Value.ToString())); break;
-                    case "Lecturer": Response.Redirect("LecturerPage.aspx?UserNameValue=" + Server.UrlEncode(loginProc.Parameters["@user_id"].Value.ToString())); break;
-                    case "Teaching Assistant": Response.Redirect("TAPage.aspx?UserNameValue=" + Server.UrlEncode(loginProc.Parameters["@user_id"].Value.ToString())); break;
-                    case "External examiner": Response.Redirect("EEPage.aspx?UserNameValue=" + Server.UrlEncode(loginProc.Parameters["@user_id"].Value.ToString())); break;
-                    case "Coordinator": Response.Redirect("CoordinatorPage.aspx?UserNameValue=" + Server.UrlEncode(loginProc.Parameters["@user_id"].Value.ToString())); break;
-                    case "Employee": Response.Redirect("EmployeePage.aspx?UserNameValue=" + Server.UrlEncode(loginProc.Parameters["@user_id"].Value.ToString())); break;
+                    case "Student": Response.Redirect("StudentPage.aspx?UserID=" + Server.UrlEncode(loginProc.Parameters["@user_id"].Value.ToString())); break;
+                    case "Company": Response.Redirect("CompanyPage.aspx?UserID=" + Server.UrlEncode(loginProc.Parameters["@user_id"].Value.ToString())); break;
+                    case "Lecturer": Response.Redirect("LecturerPage.aspx?UserID=" + Server.UrlEncode(loginProc.Parameters["@user_id"].Value.ToString())); break;
+                    case "Teaching Assistant": Response.Redirect("TAPage.aspx?UserID=" + Server.UrlEncode(loginProc.Parameters["@user_id"].Value.ToString())); break;
+                    case "External examiner": Response.Redirect("EEPage.aspx?UserID=" + Server.UrlEncode(loginProc.Parameters["@user_id"].Value.ToString())); break;
+                    case "Coordinator": Response.Redirect("CoordinatorPage.aspx?UserID=" + Server.UrlEncode(loginProc.Parameters["@user_id"].Value.ToString())); break;
+                    case "Employee": Response.Redirect("EmployeePage.aspx?UserID=" + Server.UrlEncode(loginProc.Parameters["@user_id"].Value.ToString())); break;
                     case "0": InvalidLogin.Text = "Unkown User"; InvalidLogin.Visible = true; break;
                 }
 

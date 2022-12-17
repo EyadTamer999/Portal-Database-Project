@@ -100,7 +100,7 @@
                 </div>
 
 
-                <!----------------  a) Add employees to the system and generate passwords for them.
+                <!----------------
                                 b) Create projects on the system.
                                 c) Assign Employees to supervise local industrial projects that belongs to them.
                                 d) Grade thesis of a specific student.
@@ -153,16 +153,21 @@
 
                             </div>
                             <div class="media text-muted pt-3">
-                                <asp:GridView ID="EmployeeTable" Visible="false" class="table table-bordered table-condensed table-responsive table-hover " runat="server" AutoGenerateColumns="False">
+                                <asp:GridView ID="EmployeeTable" Visible="False" class="table table-bordered table-condensed table-responsive table-hover " runat="server" AutoGenerateColumns="False" DataSourceID="EmployeeSQL">
                                     <Columns>
-                                        <asp:TemplateField  HeaderText="Staff_id" InsertVisible="False" SortExpression="Staff_id" />
-                                        <asp:TemplateField  HeaderText="Username" SortExpression="Username" />
-                                        <asp:TemplateField  HeaderText="Password" SortExpression="Password" />
-                                        <asp:TemplateField  HeaderText="Email" SortExpression="Email" />
-                                        <asp:TemplateField  HeaderText="Field" SortExpression="Field" />
-                                        <asp:TemplateField  HeaderText="Phone" SortExpression="Phone" />
+                                        <asp:BoundField DataField="Staff_id" HeaderText="Staff_id" InsertVisible="False" ReadOnly="True" SortExpression="Staff_id" />
+                                        <asp:BoundField DataField="Username" HeaderText="Username" SortExpression="Username" />
+                                        <asp:BoundField DataField="Password" HeaderText="Password" SortExpression="Password" />
+                                        <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
+                                        <asp:BoundField DataField="Field" HeaderText="Field" SortExpression="Field" />
+                                        <asp:BoundField DataField="Phone" HeaderText="Phone" SortExpression="Phone" />
                                     </Columns>
                                 </asp:GridView>
+                                <asp:SqlDataSource ID="EmployeeSQL" runat="server" ConnectionString="<%$ ConnectionStrings:PortalConnectionString %>" SelectCommand="SELECT [Staff_id], [Username], [Password], [Email], [Field], [Phone] FROM [Employee] WHERE ([Company_id] = @Company_id) ORDER BY [Staff_id]">
+                                    <SelectParameters>
+                                        <asp:QueryStringParameter Name="Company_id" QueryStringField="UserID" Direction = "Input" Type="Int32" />
+                                    </SelectParameters>
+                                </asp:SqlDataSource>
                             </div>
                         </div>
                     </div>
