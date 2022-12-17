@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -9,6 +12,10 @@ namespace WebApplication3.webpages
 {
     public partial class CompanyPage : System.Web.UI.Page
     {
+
+        //set connection string
+        SqlConnection conn = new SqlConnection(WebConfigurationManager.ConnectionStrings["Portal"].ToString());
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -25,32 +32,42 @@ namespace WebApplication3.webpages
                 EmployeesLabelHeading.Visible = false;
             }
 
-            if (!this.IsPostBack)
-            {
-                System.Data.DataTable dt = new System.Data.DataTable();
-                dt.Columns.AddRange(new System.Data.DataColumn[6] {
-            new System.Data.DataColumn("EmployeeID"),
-            new System.Data.DataColumn("UserName"),
-            new System.Data.DataColumn("Password"),
-            new System.Data.DataColumn("Field"),
-            new System.Data.DataColumn("Email"),
-            new System.Data.DataColumn("Phone") });
-                dt.Rows.Add(1, "John Hammond", "United States");
-                dt.Rows.Add(2, "Mudassar Khan", "India");
-                dt.Rows.Add(3, "Suzanne Mathews", "France");
-                dt.Rows.Add(4, "Robert Schidner", "Russia");
-                GridView1.DataSource = dt;
-                GridView1.DataBind();
-                GridView1.UseAccessibleHeader = true;
-                GridView1.HeaderRow.TableSection = TableRowSection.TableHeader;
-            }
-
-
         }
 
         protected void AddNewEmployee(object sender, EventArgs e)
         {
+
+            //open connection
+            conn.Open();
+
             ShowEmployeeFields();
+            if (!Username.Text.Equals(null))
+            {
+
+                //store varibles 
+                String userNameIn = Username.Text.ToString();
+                String PasswordIn = Password.Text.ToString();
+                String EmailIn = Email.Text.ToString();
+                String FieldIn = Field.Text.ToString();
+                String PhoneIn = Phone.Text.ToString();
+
+
+                //create proc
+                SqlCommand AddEmployee = new SqlCommand("AddEmployee", conn);
+                AddEmployee.CommandType = CommandType.StoredProcedure;
+
+                //input from user
+                
+                SqlParameter emailNameEntered = AddEmployee.Parameters.Add(new SqlParameter("@email", SqlDbType.VarChar, 50));
+                emailNameEntered.Value = Email.Text;
+
+
+                //exec the Add employee procedure
+            }
+
+
+            //close connection
+            conn.Close();
 
         }
 
