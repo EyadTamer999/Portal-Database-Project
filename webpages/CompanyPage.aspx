@@ -27,7 +27,7 @@
 
     <link href="offcanvas.css" rel="stylesheet" />
 </head>
-<body class="home bg-light">
+<body class="home bg-info">
     <form id="form1" runat="server">
         <main role="main" class="container">
             <div class="container">
@@ -51,7 +51,7 @@
                                 <a class="nav-link" href="#">Create Project</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="LoginPage.aspx">Logout</a>
+                                <asp:LinkButton runat="server" OnClick="LogOut" class="nav-link">Logout</asp:LinkButton>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">View</a>
@@ -68,35 +68,32 @@
 
             <br />
             <!--Show my profile-->
-            <div  class="my-3 p-3 bg-white justify-content-center align-content-center rounded box-shadow border-gray">
+            <div class="my-3 p-3 bg-white justify-content-center align-content-lg-center rounded box-shadow border-gray" style="margin-top: 5rem!important;">
+
                 <small class="d-block text-right mt-3">
                     <br />
-                    <asp:Label runat="server" class="form-label" Text="My Profile" ID="MyProfile"></asp:Label>
+                    <asp:Label runat="server" class="form-label justify-content-end align-content-end" Text="My Profile"></asp:Label>
                 </small>
-                <div class="media text-muted pt-3">
-                    <div class="row justify-content-center align-baseline">
-                        <div class="col" runat="server" visible="false" id="ShowMyProfileDiv">
-                            <br />
-                            <asp:Label runat="server" ID="MyCompanyID" Visible="true" class="form-label" Text="My Company ID: " for="form3Example1m1"></asp:Label>
-                            <br />
-                            <asp:Label runat="server" ID="MyUserName" Visible="true" class="form-label" Text="My User Name: " for="form3Example1m1"></asp:Label>
-                            <br />
-                            <asp:Label runat="server" ID="MyPassword" Visible="true" class="form-label" Text="My Password: " for="form3Example1m1"></asp:Label>
-                            <br />
-                            <asp:Label runat="server" ID="MyName" Visible="true" class="form-label" Text="My Name: " for="form3Example1m1"></asp:Label>
-                            <br />
-                            <asp:Label runat="server" ID="MyEmail" Visible="true" class="form-label" Text="My Email: " for="form3Example1m1"></asp:Label>
-                            <br />
-                            <asp:Label runat="server" ID="MyPhone" Visible="true" class="form-label" Text="My Phone Number: " for="form3Example1m1"></asp:Label>
-                            <br />
-                            <asp:Label runat="server" ID="MyLocation" Visible="true" class="form-label" Text="My Location: " for="form3Example1m1"></asp:Label>
-                            <br />
-                            <asp:Label runat="server" ID="MyRepEmail" Visible="true" class="form-label" Text="My Representative Email: " for="form3Example1m1"></asp:Label>
-                            <br />
-                            <asp:Label runat="server" ID="MyRepName" Visible="true" class="form-label" Text="My Representative Name: " for="form3Example1m1"></asp:Label>
-                            <br />
-                        </div>
-                    </div>
+                <div class="col" runat="server" visible="false" id="ShowMyProfileDiv">
+                    <br />
+                    <asp:Label runat="server" ID="MyCompanyID" Visible="true" class="form-label" Text="My Company ID: " for="form3Example1m1"></asp:Label>
+                    <br />
+                    <asp:Label runat="server" ID="MyUserName" Visible="true" class="form-label" Text="My User Name: " for="form3Example1m1"></asp:Label>
+                    <br />
+                    <asp:Label runat="server" ID="MyPassword" Visible="true" class="form-label" Text="My Password: " for="form3Example1m1"></asp:Label>
+                    <br />
+                    <asp:Label runat="server" ID="MyName" Visible="true" class="form-label" Text="My Name: " for="form3Example1m1"></asp:Label>
+                    <br />
+                    <asp:Label runat="server" ID="MyEmail" Visible="true" class="form-label" Text="My Email: " for="form3Example1m1"></asp:Label>
+                    <br />
+                    <asp:Label runat="server" ID="MyPhone" Visible="true" class="form-label" Text="My Phone Number: " for="form3Example1m1"></asp:Label>
+                    <br />
+                    <asp:Label runat="server" ID="MyLocation" Visible="true" class="form-label" Text="My Location: " for="form3Example1m1"></asp:Label>
+                    <br />
+                    <asp:Label runat="server" ID="MyRepEmail" Visible="true" class="form-label" Text="My Representative Email: " for="form3Example1m1"></asp:Label>
+                    <br />
+                    <asp:Label runat="server" ID="MyRepName" Visible="true" class="form-label" Text="My Representative Name: " for="form3Example1m1"></asp:Label>
+                    <br />
                 </div>
 
 
@@ -108,14 +105,14 @@
                                 f) Grade progress report for a specific student.
                                                                                                                     ---------------->
                 <!--Show my Employees-->
-                <div class="my-3 p-3 bg-white justify-content-center align-content-center rounded box-shadow">
+                <div class="my-3 p-3 bg-white justify-content-center align-content-center rounded box-shadow"style="margin-top: 15rem!important; height: 56rem;">
                     <h6 class="border-bottom border-gray pb-2 mb-0">Employees</h6>
 
-                    <div class="media text-muted pt-3">
+                    <div class="media text-muted pt-3 " style="margin-top: -5rem; padding-top: 7rem!important;">
                         <div class="row justify-content-center align-baseline">
                             <div runat="server" visible="false" id="EmployeesLabelHeading">
-                                <small class="d-block text-right mt-3">
-                                    <asp:Button runat="server" ID="AddEmployeeButton" OnClick="AddNewEmployee" Text="Add Employee" class="alert-info" />
+                                <small class="d-block text-right mt-3 justify-content-center align-content-center">
+                                    <asp:Button runat="server" ID="AddEmployeeButton" OnClick="AddNewEmployee" Text="Add Employee" class="alert-info" />                                    
                                 </small>
                                 <div class="row">
                                     <div class="col-md-6 mb-4">
@@ -153,7 +150,7 @@
 
                             </div>
                             <div class="media text-muted pt-3">
-                                <asp:GridView ID="EmployeeTable" Visible="False" class="table table-bordered table-condensed table-responsive table-hover " runat="server" AutoGenerateColumns="False" DataSourceID="EmployeeSQL">
+                                <asp:GridView ID="EmployeeTable" Visible="False" class="table table-bordered table-condensed table-responsive table-hover " runat="server" AutoGenerateColumns="False" DataSourceID="EmployeeSQL" style="overflow-y:scroll">
                                     <Columns>
                                         <asp:BoundField DataField="Staff_id" HeaderText="Staff_id" InsertVisible="False" ReadOnly="True" SortExpression="Staff_id" />
                                         <asp:BoundField DataField="Username" HeaderText="Username" SortExpression="Username" />
@@ -165,7 +162,7 @@
                                 </asp:GridView>
                                 <asp:SqlDataSource ID="EmployeeSQL" runat="server" ConnectionString="<%$ ConnectionStrings:PortalConnectionString %>" SelectCommand="SELECT [Staff_id], [Username], [Password], [Email], [Field], [Phone] FROM [Employee] WHERE ([Company_id] = @Company_id) ORDER BY [Staff_id]">
                                     <SelectParameters>
-                                        <asp:QueryStringParameter Name="Company_id" QueryStringField="UserID" Direction = "Input" Type="Int32" />
+                                        <asp:QueryStringParameter Name="Company_id" QueryStringField="UserID" Direction="Input" Type="Int32" />
                                     </SelectParameters>
                                 </asp:SqlDataSource>
                             </div>

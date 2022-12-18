@@ -20,7 +20,10 @@ namespace WebApplication3.webpages
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if(Session["user"] == null)
+            {
+                Response.Redirect("LoginPage.aspx");
+            }
         }
 
         protected void ShowMyProfile(object sender, EventArgs e)
@@ -172,6 +175,13 @@ namespace WebApplication3.webpages
                 PhoneLabel.Visible = false;
             }
 
+        }
+
+        protected void LogOut(object sender, EventArgs e)
+        {
+            Session.RemoveAll();
+            Session.Abandon();
+            Response.Redirect("LoginPage.aspx");
         }
 
     }

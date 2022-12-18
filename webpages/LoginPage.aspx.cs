@@ -46,6 +46,7 @@ namespace WebApplication3.webpages
 
             if (string.Equals(loginProc.Parameters["@success"].Value.ToString(), "1"))
             {
+                Session["user"] = user_id.Value;
                 InvalidLogin.Visible = false;
                 switch (getUserType())
                 {
@@ -58,6 +59,7 @@ namespace WebApplication3.webpages
                     case "Employee": Response.Redirect("EmployeePage.aspx?UserID=" + Server.UrlEncode(loginProc.Parameters["@user_id"].Value.ToString())); break;
                     case "0": InvalidLogin.Text = "Unkown User"; InvalidLogin.Visible = true; break;
                 }
+                Session.RemoveAll();
 
             }
             else
