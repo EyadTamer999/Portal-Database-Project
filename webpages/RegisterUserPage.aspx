@@ -66,6 +66,8 @@
                                 <div class="col-xl-6">
                                     <div class="card-body p-md-5 text-black">
                                         <h3 class="mb-5 text-uppercase">User registration form</h3>
+                                        <br />
+                                        <h2 runat="server" class="mb-5 text-uppercase" style="color:red" visible="false" id="Success">User Registered!</h2>
                                          <asp:Label ID="Error" runat="server" Text="Oops Somthing went wrong!" Visible="false" ForeColor="Red"></asp:Label>
                                         <div class="row">
                                             <div class="col-md-6 mb-4">

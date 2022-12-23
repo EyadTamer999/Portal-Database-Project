@@ -68,127 +68,78 @@
 
             <br />
             <!--Show my profile-->
-            <div class="my-3 p-3 bg-white justify-content-center align-content-lg-center rounded box-shadow border-gray" style="margin-top: 5rem!important;">
+            <div class="my-3 p-3 bg-white justify-content-center align-content-lg-center rounded box-shadow border-gray" style="margin-top: 5rem!important; width: fit-content; height: fit-content;" runat="server" visible="false" id="ShowMyProfileDiv">
 
-                <small class="d-block text-right mt-3">
-                    <br />
-                    <asp:Label runat="server" class="form-label justify-content-end align-content-end" Text="My Profile"></asp:Label>
-                </small>
-                <div class="col" runat="server" visible="false" id="ShowMyProfileDiv">
-                    <br />
-                    <asp:Label runat="server" ID="MyCompanyID" Visible="true" class="form-label" Text="My Company ID: " for="form3Example1m1"></asp:Label>
-                    <br />
-                    <asp:Label runat="server" ID="MyUserName" Visible="true" class="form-label" Text="My User Name: " for="form3Example1m1"></asp:Label>
-                    <br />
-                    <asp:Label runat="server" ID="MyPassword" Visible="true" class="form-label" Text="My Password: " for="form3Example1m1"></asp:Label>
-                    <br />
-                    <asp:Label runat="server" ID="MyName" Visible="true" class="form-label" Text="My Name: " for="form3Example1m1"></asp:Label>
-                    <br />
-                    <asp:Label runat="server" ID="MyEmail" Visible="true" class="form-label" Text="My Email: " for="form3Example1m1"></asp:Label>
-                    <br />
-                    <asp:Label runat="server" ID="MyPhone" Visible="true" class="form-label" Text="My Phone Number: " for="form3Example1m1"></asp:Label>
-                    <br />
-                    <asp:Label runat="server" ID="MyLocation" Visible="true" class="form-label" Text="My Location: " for="form3Example1m1"></asp:Label>
-                    <br />
-                    <asp:Label runat="server" ID="MyRepEmail" Visible="true" class="form-label" Text="My Representative Email: " for="form3Example1m1"></asp:Label>
-                    <br />
-                    <asp:Label runat="server" ID="MyRepName" Visible="true" class="form-label" Text="My Representative Name: " for="form3Example1m1"></asp:Label>
-                    <br />
+                <div class="col" style="background: darkslategrey;">
+
+                    <div class="card" style="width: fit-content; height: fit-content; background-color: burlywood;">
+                        <div class="card-header form-label justify-content-end align-content-end" style="background: darkgray; color: darkslategray; font-family: fantasy; text-align: center;">
+                            My Profile
+                        </div>
+                        <div class="card-body">
+
+                            <div class="card-text">
+                                <br />
+                                <asp:Label runat="server" ID="MyCompanyID" Visible="true" class="form-label" Text="My Company ID: " for="form3Example1m1"></asp:Label>
+                            </div>
+                            <div class="card-text">
+                                <br />
+                                <asp:Label runat="server" ID="MyUserName" Visible="true" class="form-label" Text="My User Name: " for="form3Example1m1"></asp:Label>
+                            </div>
+                            <div class="card-text">
+                                <br />
+                                <asp:Label runat="server" ID="MyPassword" Visible="true" class="form-label" Text="My Password: " for="form3Example1m1"></asp:Label>
+                            </div>
+                            <div class="card-text">
+                                <br />
+                                <asp:Label runat="server" ID="MyName" Visible="true" class="form-label" Text="My Name: " for="form3Example1m1"></asp:Label>
+                            </div>
+                            <div class="card-text">
+                                <br />
+                                <asp:Label runat="server" ID="MyEmail" Visible="true" class="form-label" Text="My Email: " for="form3Example1m1"></asp:Label>
+                            </div>
+                            <div class="card-text">
+                                <br />
+                                <asp:Label runat="server" ID="MyPhone" Visible="true" class="form-label" Text="My Phone Number: " for="form3Example1m1"></asp:Label>
+                            </div>
+                            <div class="card-text">
+                                <br />
+                                <asp:Label runat="server" ID="MyLocation" Visible="true" class="form-label" Text="My Location: " for="form3Example1m1"></asp:Label>
+                            </div>
+                            <div class="card-text">
+                                <br />
+                                <asp:Label runat="server" ID="MyRepEmail" Visible="true" class="form-label" Text="My Representative Email: " for="form3Example1m1"></asp:Label>
+                            </div>
+                            <div class="card-text">
+                                <br />
+                                <asp:Label runat="server" ID="MyRepName" Visible="true" class="form-label" Text="My Representative Name: " for="form3Example1m1"></asp:Label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-
-                <!----------------
+            </div>
+            <!----------------
                                 b) Create projects on the system.
                                 c) Assign Employees to supervise local industrial projects that belongs to them.
                                 d) Grade thesis of a specific student.
                                 e) Grade defense of a specific student.
                                 f) Grade progress report for a specific student.
                                                                                                                     ---------------->
-                <!--Show my Employees-->
-                <div class="my-3 p-3 bg-white justify-content-center align-content-center rounded box-shadow"style="margin-top: 15rem!important; height: 56rem;">
-                    <h6 class="border-bottom border-gray pb-2 mb-0">Employees</h6>
+            <!--Show my Employees-->
+            <div class="my-3 p-3 bg-white justify-content-center align-content-center rounded box-shadow" style="margin-top: 15rem!important; height: 56rem;">
+                <h6 class="border-bottom border-gray pb-2 mb-0">Employees</h6>
 
-                    <div class="media text-muted pt-3 " style="margin-top: -5rem; padding-top: 7rem!important;">
-                        <div class="row justify-content-center align-baseline">
-                            <div runat="server" visible="false" id="EmployeesLabelHeading">
-                                <small class="d-block text-right mt-3 justify-content-center align-content-center">
-                                    <asp:Button runat="server" ID="AddEmployeeButton" OnClick="AddNewEmployee" Text="Add Employee" class="alert-info" />                                    
-                                </small>
-                                <div class="row">
-                                    <div class="col-md-6 mb-4">
-                                        <div class="form-outline">
-                                            <asp:TextBox runat="server" Visible="false" type="text" ID="Username" class="form-control form-control-lg" />
-                                            <asp:Label runat="server" ID="UsernameLabel" Visible="false" class="form-label" for="form3Example1m1">Username</asp:Label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6 mb-4">
-                                        <div class="form-outline">
-                                            <asp:TextBox runat="server" type="text" Visible="false" ID="Email" class="form-control form-control-lg" />
-                                            <asp:Label runat="server" ID="EmailLabel" Visible="false" class="form-label" for="form3Example1m1">Email</asp:Label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 mb-4">
-                                        <div class="form-outline">
-                                            <asp:TextBox runat="server" Visible="false" type="text" ID="Field" class="form-control form-control-lg" />
-                                            <asp:Label runat="server" ID="FieldLabel" Visible="false" class="form-label" for="form3Example1n1">Field</asp:Label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6 mb-4">
-                                        <div class="form-outline">
-                                            <asp:TextBox runat="server" type="text" Visible="false" ID="Phone" class="form-control form-control-lg" />
-                                            <asp:Label runat="server" ID="PhoneLabel" Visible="false" class="form-label" for="form3Example1m1">Phone</asp:Label>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                            <div class="media text-muted pt-3">
-                                <asp:GridView ID="EmployeeTable" Visible="False" class="table table-bordered table-condensed table-responsive table-hover " runat="server" AutoGenerateColumns="False" DataSourceID="EmployeeSQL" style="overflow-y:scroll">
-                                    <Columns>
-                                        <asp:BoundField DataField="Staff_id" HeaderText="Staff_id" InsertVisible="False" ReadOnly="True" SortExpression="Staff_id" />
-                                        <asp:BoundField DataField="Username" HeaderText="Username" SortExpression="Username" />
-                                        <asp:BoundField DataField="Password" HeaderText="Password" SortExpression="Password" />
-                                        <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
-                                        <asp:BoundField DataField="Field" HeaderText="Field" SortExpression="Field" />
-                                        <asp:BoundField DataField="Phone" HeaderText="Phone" SortExpression="Phone" />
-                                    </Columns>
-                                </asp:GridView>
-                                <asp:SqlDataSource ID="EmployeeSQL" runat="server" ConnectionString="<%$ ConnectionStrings:PortalConnectionString %>" SelectCommand="SELECT [Staff_id], [Username], [Password], [Email], [Field], [Phone] FROM [Employee] WHERE ([Company_id] = @Company_id) ORDER BY [Staff_id]">
-                                    <SelectParameters>
-                                        <asp:QueryStringParameter Name="Company_id" QueryStringField="UserID" Direction="Input" Type="Int32" />
-                                    </SelectParameters>
-                                </asp:SqlDataSource>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!--Show my Students-->
-                <div runat="server" visible="false" class="my-3 p-3 bg-white rounded box-shadow" id="StudentsLabelHeading">
-                    <h6 class="border-bottom border-gray pb-2 mb-0">Employees</h6>
-                    <small class="d-block text-right mt-3">
-                        <asp:Button runat="server" ID="Button1" OnClick="AddNewEmployee" Text="Add Employee" class="alert-info" />
-                    </small>
-                    <div class="media text-muted pt-3">
-                        <div>
+                <div class="media text-muted pt-3 " style="margin-top: -5rem; padding-top: 7rem!important;">
+                    <div class="row justify-content-center align-baseline">
+                        <div runat="server" visible="false" id="EmployeesLabelHeading">
+                            <small class="d-block text-right mt-3 justify-content-center align-content-center">
+                                <asp:Button runat="server" ID="AddEmployeeButton" OnClick="AddNewEmployee" Text="Add Employee" class="alert-info" />
+                            </small>
                             <div class="row">
                                 <div class="col-md-6 mb-4">
                                     <div class="form-outline">
-                                        <asp:TextBox runat="server" Visible="false" type="text" ID="TextBox1" class="form-control form-control-lg" />
-                                        <asp:Label runat="server" ID="Label1" Visible="false" class="form-label" for="form3Example1m1">Username</asp:Label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 mb-4">
-                                    <div class="form-outline">
-                                        <asp:TextBox runat="server" type="text" Visible="false" ID="TextBox2" class="form-control form-control-lg" />
-                                        <asp:Label runat="server" ID="Label2" Visible="false" class="form-label" for="form3Example1n1">Password</asp:Label>
+                                        <asp:TextBox runat="server" Visible="false" type="text" ID="Username" class="form-control form-control-lg" />
+                                        <asp:Label runat="server" ID="UsernameLabel" Visible="false" class="form-label" for="form3Example1m1">Username</asp:Label>
                                     </div>
                                 </div>
                             </div>
@@ -196,14 +147,14 @@
                             <div class="row">
                                 <div class="col-md-6 mb-4">
                                     <div class="form-outline">
-                                        <asp:TextBox runat="server" type="text" Visible="false" ID="TextBox3" class="form-control form-control-lg" />
-                                        <asp:Label runat="server" ID="Label3" Visible="false" class="form-label" for="form3Example1m1">Email</asp:Label>
+                                        <asp:TextBox runat="server" type="text" Visible="false" ID="Email" class="form-control form-control-lg" />
+                                        <asp:Label runat="server" ID="EmailLabel" Visible="false" class="form-label" for="form3Example1m1">Email</asp:Label>
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-4">
                                     <div class="form-outline">
-                                        <asp:TextBox runat="server" Visible="false" type="password" ID="TextBox4" class="form-control form-control-lg" />
-                                        <asp:Label runat="server" ID="Label4" Visible="false" class="form-label" for="form3Example1n1">Field</asp:Label>
+                                        <asp:TextBox runat="server" Visible="false" type="text" ID="Field" class="form-control form-control-lg" />
+                                        <asp:Label runat="server" ID="FieldLabel" Visible="false" class="form-label" for="form3Example1n1">Field</asp:Label>
                                     </div>
                                 </div>
                             </div>
@@ -211,15 +162,16 @@
                             <div class="row">
                                 <div class="col-md-6 mb-4">
                                     <div class="form-outline">
-                                        <asp:TextBox runat="server" type="text" Visible="false" ID="TextBox5" class="form-control form-control-lg" />
-                                        <asp:Label runat="server" ID="Label5" Visible="false" class="form-label" for="form3Example1m1">Phone</asp:Label>
+                                        <asp:TextBox runat="server" type="text" Visible="false" ID="Phone" class="form-control form-control-lg" />
+                                        <asp:Label runat="server" ID="PhoneLabel" Visible="false" class="form-label" for="form3Example1m1">Phone</asp:Label>
                                     </div>
                                 </div>
+
                             </div>
 
                         </div>
                         <div class="media text-muted pt-3">
-                            <asp:GridView ID="GridView2" class="table table-bordered table-condensed table-responsive table-hover " runat="server" AutoGenerateColumns="False">
+                            <asp:GridView ID="EmployeeTable" Visible="False" class="table table-bordered table-condensed table-responsive table-hover " runat="server" AutoGenerateColumns="False" Style="overflow-y: scroll">
                                 <Columns>
                                     <asp:BoundField DataField="Staff_id" HeaderText="Staff_id" InsertVisible="False" ReadOnly="True" SortExpression="Staff_id" />
                                     <asp:BoundField DataField="Username" HeaderText="Username" SortExpression="Username" />
@@ -229,7 +181,31 @@
                                     <asp:BoundField DataField="Phone" HeaderText="Phone" SortExpression="Phone" />
                                 </Columns>
                             </asp:GridView>
+                            <asp:SqlDataSource ID="EmployeeSQL" runat="server" ConnectionString="<%$ ConnectionStrings:PortalConnectionString %>" SelectCommand="SELECT [Staff_id], [Username], [Password], [Email], [Field], [Phone] FROM [Employee] WHERE ([Company_id] = @Company_id) ORDER BY [Staff_id]">
+                                <SelectParameters>
+                                    <asp:QueryStringParameter Name="Company_id" QueryStringField="UserID" Direction="Input" Type="Int32" />
+                                </SelectParameters>
+                            </asp:SqlDataSource>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Show my Students-->
+            <div runat="server" visible="false" class="my-3 p-3 bg-white rounded box-shadow" id="StudentsLabelHeading">
+                <h6 class="border-bottom border-gray pb-2 mb-0">Students</h6>
+                <div class="media text-muted pt-3">   
+                    <div class="media text-muted pt-3">
+                        <asp:GridView ID="StudentTable" class="table table-bordered table-condensed table-responsive table-hover " runat="server" AutoGenerateColumns="False">
+                            <Columns>
+                                <asp:BoundField DataField="Staff_id" HeaderText="Staff_id" InsertVisible="False" ReadOnly="True" SortExpression="Staff_id" />
+                                <asp:BoundField DataField="Username" HeaderText="Username" SortExpression="Username" />
+                                <asp:BoundField DataField="Password" HeaderText="Password" SortExpression="Password" />
+                                <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
+                                <asp:BoundField DataField="Field" HeaderText="Field" SortExpression="Field" />
+                                <asp:BoundField DataField="Phone" HeaderText="Phone" SortExpression="Phone" />
+                            </Columns>
+                        </asp:GridView>
                     </div>
                 </div>
             </div>

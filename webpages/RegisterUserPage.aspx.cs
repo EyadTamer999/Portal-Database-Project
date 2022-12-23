@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Web;
 using System.Web.Configuration;
 using System.Web.UI;
@@ -68,11 +69,6 @@ namespace WebApplication3.webpages
             SqlParameter PasswordIn = RegisterUser.Parameters.Add(new SqlParameter("@password", SqlDbType.VarChar, 10));
             PasswordIn.Value = Password.Text;
 
-
-            //output
-            SqlParameter UserIdOut = RegisterUser.Parameters.Add(new SqlParameter("@user_id", SqlDbType.Int));
-            UserIdOut.Direction = ParameterDirection.Output;
-
             //student stuff
             SqlParameter FNameIn = RegisterUser.Parameters.Add(new SqlParameter("@first_name", SqlDbType.VarChar, 20));
             FNameIn.Value = FirstName.Text;
@@ -82,14 +78,29 @@ namespace WebApplication3.webpages
             MCodeIn.Value = MajorCode.Text;
             SqlParameter FCodeIn = RegisterUser.Parameters.Add(new SqlParameter("@faculty_code", SqlDbType.VarChar, 10));
             FCodeIn.Value = FacultyCode.Text;
-            SqlParameter dobIn = RegisterUser.Parameters.Add(new SqlParameter("@birth_date", SqlDbType.DateTime));
-            dobIn.Value = BirthDate.Text;
+
+            if (BirthDate.Text == "")
+            {
+                SqlParameter dobIn = RegisterUser.Parameters.Add(new SqlParameter("@birth_date", SqlDbType.DateTime));
+                dobIn.Value = "1-1-2000";
+                SqlParameter semesterIn = RegisterUser.Parameters.Add(new SqlParameter("@semester", SqlDbType.Int));
+                semesterIn.Value = "0";
+                SqlParameter gpaIn = RegisterUser.Parameters.Add(new SqlParameter("@GPA", SqlDbType.Decimal));
+                gpaIn.Value = 0.0;
+
+            }
+            else
+            {
+                SqlParameter dobIn = RegisterUser.Parameters.Add(new SqlParameter("@birth_date", SqlDbType.DateTime));
+                dobIn.Value = BirthDate.Text;
+                SqlParameter semesterIn = RegisterUser.Parameters.Add(new SqlParameter("@semester", SqlDbType.Int));
+                semesterIn.Value = Semester.Text;
+                SqlParameter gpaIn = RegisterUser.Parameters.Add(new SqlParameter("@GPA", SqlDbType.Decimal));
+                gpaIn.Value = Convert.ToDecimal(GPA.Text.ToString()); //fix this... needs to parse
+            }
             SqlParameter AddressIn = RegisterUser.Parameters.Add(new SqlParameter("@address", SqlDbType.VarChar, 100));
             AddressIn.Value = Address.Text;
-            SqlParameter semesterIn = RegisterUser.Parameters.Add(new SqlParameter("@semester", SqlDbType.Int));
-            semesterIn.Value = Semester.Text;
-            SqlParameter gpaIn = RegisterUser.Parameters.Add(new SqlParameter("@GPA", SqlDbType.Decimal));
-            gpaIn.Value =  decimal.Parse(GPA.Text.ToString());
+
 
             //company stuff
             SqlParameter CompanyNameIn = RegisterUser.Parameters.Add(new SqlParameter("@company_name", SqlDbType.VarChar, 20));
@@ -101,8 +112,16 @@ namespace WebApplication3.webpages
             SqlParameter RepNameIn = RegisterUser.Parameters.Add(new SqlParameter("@representative_name", SqlDbType.VarChar, 20));
             RepNameIn.Value = RepName.Text;
 
-            RegisterUser.ExecuteNonQuery();
 
+
+            //output
+            SqlParameter UserIdOut = RegisterUser.Parameters.Add(new SqlParameter("@user_id", SqlDbType.Int));
+            UserIdOut.Direction = ParameterDirection.Output;
+
+
+            RegisterUser.ExecuteNonQuery();
+            clearTextBoxes();
+            Success.Visible = true;
         }
 
 
@@ -152,6 +171,7 @@ namespace WebApplication3.webpages
                 case "Employee": showEmployeeRelated(); break;
             }
         }
+
 
         public void showUserRelated()
         {
@@ -265,6 +285,26 @@ namespace WebApplication3.webpages
                 FacultyCode.Visible = false;
                 FacultyCodeLabel.Visible = false;
             }
+        }
+
+        protected void clearTextBoxes()
+        {
+            Username.Text = string.Empty;
+            Password.Text = string.Empty;   
+            Usertype.SelectedIndex= 0;
+            PhoneNumber.Text = string.Empty;
+            Email.Text = string.Empty;
+            RepName.Text = string.Empty;
+            RepEmail.Text = string.Empty;
+            FirstName.Text = string.Empty;
+            LastName.Text = string.Empty;
+            MajorCode.Text = string.Empty;
+            BirthDate.Text = string.Empty;
+            Address.Text = string.Empty;    
+            Semester.Text = string.Empty;
+            GPA.Text = string.Empty;
+            FacultyCode.Text = string.Empty;
+            
         }
     }
 }
