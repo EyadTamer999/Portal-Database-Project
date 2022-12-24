@@ -20,10 +20,45 @@ namespace WebApplication3.webpages
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(Session["user"] == null)
+            if (Session["user"] == null)
             {
                 Response.Redirect("LoginPage.aspx");
             }
+        }
+
+        protected void ShowCreateProject(object sender, EventArgs e)
+        {
+            //show fields for creating project
+            if (!ShowCreateProjectDiv.Visible)
+            {
+                ShowCreateProjectDiv.Visible = true;
+            }
+            else
+            {
+                ShowCreateProjectDiv.Visible = false;
+            }
+        }
+
+        protected void CreateProjectClicked(object sender, EventArgs e)
+        {
+            //create and call stored procedure
+            conn.Open();
+            SqlCommand CreateProject = new SqlCommand("CompanyCreateLocalProject", conn);
+            CreateProject.CommandType = CommandType.StoredProcedure;
+            SqlParameter userIdEntered = CreateProject.Parameters.Add(new SqlParameter("@company_id", SqlDbType.Int));
+            userIdEntered.Value = Int32.Parse(Request.QueryString["UserID"]);
+            SqlParameter title = CreateProject.Parameters.Add(new SqlParameter("@title", SqlDbType.VarChar, 50));
+            title.Value = ProjTitleTextBox.Text;
+            SqlParameter description = CreateProject.Parameters.Add(new SqlParameter("@description", SqlDbType.VarChar, 200));
+            description.Value = DescriptionTextBox.Text;
+            SqlParameter majorcode = CreateProject.Parameters.Add(new SqlParameter("@major_code", SqlDbType.VarChar, 10));
+            majorcode.Value = MajorCodeTextBox.Text;
+
+            SqlParameter projCode = CreateProject.Parameters.Add(new SqlParameter("@proj_code", SqlDbType.Int));
+            projCode.Direction = ParameterDirection.Output;
+
+            CreateProject.ExecuteNonQuery();
+            conn.Close();
         }
 
         protected void ShowMyProfile(object sender, EventArgs e)
@@ -63,7 +98,7 @@ namespace WebApplication3.webpages
 
 
                 }
-
+                conn.Close();
             }
 
 
@@ -80,7 +115,7 @@ namespace WebApplication3.webpages
                 EmployeeTable.Visible = false;
             }
 
-            
+
             string cmd = "SELECT [Staff_id], [Username], [Password], [Email], [Field], [Phone] FROM [Employee] WHERE ([Company_id] = '3') ORDER BY [Staff_id]";
             conn.Open();
             SqlDataAdapter getEmployees = new SqlDataAdapter(cmd, conn);
@@ -92,7 +127,7 @@ namespace WebApplication3.webpages
             EmployeeTable.DataSource = DT;
             EmployeeTable.DataBind();
             conn.Close();
-            
+
 
             if (!EmployeesLabelHeading.Visible)
             {
@@ -100,7 +135,7 @@ namespace WebApplication3.webpages
             }
             else
             {
-                EmployeesLabelHeading.Visible = false;  
+                EmployeesLabelHeading.Visible = false;
             }
 
         }

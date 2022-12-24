@@ -552,16 +552,25 @@ VALUES
     (@CompanyID, @email, @name, @phone_number, @field, @pass)
 GO
 --(B)
+
+
+--(B)
 CREATE PROCEDURE CompanyCreateLocalProject
     @company_id int,
-    @proj_code varchar(10),
+    @proj_code varchar(10) OUTPUT,
     @title varchar(50),
     @description varchar(200),
     @major_code varchar(10)
 AS
 INSERT INTO Bachelor_Project
-    (Code, Description, Name)
-VALUES(@proj_code, @description, @title)
+    (Description, Name)
+VALUES(@description, @title)
+
+    select @proj_code = B.Code
+    from Bachelor_Project B
+    where B.Name = @title
+
+
 INSERT INTO MajorHasBachelorProject
     (Major_code, Code)
 VALUES
@@ -569,21 +578,8 @@ VALUES
 INSERT INTO Industrial
     (Industrial_code, Company_id)
 VALUES
-    (@proj_code, @company_id)
-GO
-
---(C)
-CREATE PROCEDURE AssignEmploye
-    @bachelor_code varchar(10),
-    @staff_id int,
-    @Company_id int
-AS
-UPDATE Industrial SET
-Staff_id = @staff_id
-WHERE Company_id = @Company_id AND Industrial_code = @bachelor_code
-SELECT e.staff_id, b.Name, b.Submitted_Materials, b.Description, b.Code
-FROM Employee e INNER JOIN Industrial l on l.Staff_id = e.Staff_id INNER JOIN Bachelor_Project b on b.Code= l.Industrial_code
-GO
+    (CAST(@proj_code AS INT), @company_id)
+GO    
 --(D)
 CREATE PROCEDURE CompanyGradeThesis
     @Company_id int,

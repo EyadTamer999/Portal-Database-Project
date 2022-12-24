@@ -113,7 +113,7 @@ CREATE TABLE Major
 
 CREATE TABLE Bachelor_Project
 (
-    Code INT PRIMARY KEY,
+    [Code] INT IDENTITY NOT NULL,
     -- primary key column
     Name VARCHAR(20),
     Submitted_Materials VARCHAR(20),
@@ -182,6 +182,7 @@ CREATE TABLE Industrial
     Company_id INT,
     Lecturer_id INT,
     Staff_id INT,
+	FOREIGN KEY ([Industrial_code]) REFERENCES [dbo].[Bachelor_Project] ([Code]) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY(Company_id) REFERENCES Company  ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY(Lecturer_id) REFERENCES Lecturer  ON DELETE NO ACTION ON UPDATE NO ACTION,
     FOREIGN KEY(Staff_id , Company_id) REFERENCES Employee  ON DELETE NO ACTION ON UPDATE NO ACTION
