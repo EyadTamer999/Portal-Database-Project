@@ -145,7 +145,6 @@
                 </div>
             </div>
             <!----------------
-                                b) Create projects on the system.
                                 c) Assign Employees to supervise local industrial projects that belongs to them.
                                 d) Grade thesis of a specific student.
                                 e) Grade defense of a specific student.
@@ -156,10 +155,10 @@
                 <h6 class="border-bottom border-gray pb-2 mb-0">Employees</h6>
 
                 <div class="media text-muted pt-3 " style="margin-top: -5rem; padding-top: 7rem!important;">
-                    <div class="row justify-content-center align-baseline">
+                    <div class="row justify-content-center align-baseline" style="width: 960px; height: 100px;">
                         <div>
                             <small class="d-block text-right mt-3 justify-content-center align-content-center">
-                                <asp:Button runat="server" ID="AddEmployeeButton" OnClick="AddNewEmployee" Text="Add Employee" class="alert-info" />
+                                <asp:Button runat="server" ID="AddEmployeeButton" OnClick="AddNewEmployee" Text="Add Employee" class="btn-info" />
                             </small>
                             <div class="row">
                                 <div class="col-md-6 mb-4">
@@ -212,7 +211,6 @@
                                         <asp:BoundField DataField="Field" HeaderText="Field" SortExpression="Field" />
                                         <asp:BoundField DataField="Phone" HeaderText="Phone" SortExpression="Phone" />
                                         <asp:ButtonField ButtonType="Button" CommandName="ShowProjectText" HeaderText="Projects" Text="Assign Project" />
-
                                     </Columns>
                                 </asp:GridView>
                                 <asp:SqlDataSource ID="EmployeeSQL" runat="server" ConnectionString="<%$ ConnectionStrings:PortalConnectionString %>" SelectCommand="SELECT [Staff_id], [Username], [Password], [Email], [Field], [Phone] FROM [Employee] WHERE ([Company_id] = @Company_id) ORDER BY [Staff_id]">
@@ -220,6 +218,15 @@
                                         <asp:QueryStringParameter Name="Company_id" QueryStringField="UserID" Direction="Input" Type="Int32" />
                                     </SelectParameters>
                                 </asp:SqlDataSource>
+                            </div>
+                            <div runat="server" id="AssignProjectDiv" visible="false" class="row">
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-outline">
+                                         <asp:Label runat="server" ID="Label1" class="form-label" for="form3Example1m1">Project Code:</asp:Label>
+                                        <asp:TextBox runat="server" placeholder="Bachelor Code" type="text" ID="BachelorCodeAssign" class="form-control form-control-lg" />
+                                    </div>
+                                    <asp:Button runat="server" ID="AssignProjectToEmployeeButton" OnClick="AssignProjectToEmployee" Text="Confirm" class="btn-danger" />
+                                </div>
                             </div>
                         </div>
                     </div>

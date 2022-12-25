@@ -115,7 +115,6 @@ namespace WebApplication3.webpages
                 EmployeeTable.Visible = false;
             }
 
-
             string cmd = "SELECT [Staff_id], [Username], [Password], [Email], [Field], [Phone] FROM [Employee] WHERE ([Company_id] = '3') ORDER BY [Staff_id]";
             conn.Open();
             SqlDataAdapter getEmployees = new SqlDataAdapter(cmd, conn);
@@ -143,6 +142,17 @@ namespace WebApplication3.webpages
         {
 
         }
+
+        protected void ShowProjectText(object sender, EventArgs e)
+        {
+            AssignProjectDiv.Visible = true;
+        }
+
+        protected void AssignProjectToEmployee(object sender, EventArgs e)
+        {
+
+        }
+
 
         protected void AddNewEmployee(object sender, EventArgs e)
         {
