@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Xml.Linq;
 
 namespace WebApplication3.webpages
 {
@@ -148,8 +149,38 @@ namespace WebApplication3.webpages
             AssignProjectDiv.Visible = true;
         }
 
+        protected void TableGetRow(object sender, GridViewCommandEventArgs e)
+        {
+
+            if (e.CommandName == "Select")
+            {
+                //Determine the RowIndex of the Row whose Button was clicked.
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+
+                //Reference the GridView Row.
+                GridViewRow row = EmployeeTable.Rows[rowIndex];
+
+                //Fetch value of Staff ID.
+                StaffIDTextProject.ReadOnly= false;
+                StaffIDTextProject.Text += row.Cells[1].Text;
+            }
+        }
+
         protected void AssignProjectToEmployee(object sender, EventArgs e)
         {
+            //Open Connection 
+            conn.Open();
+
+            SqlCommand AssignEmploye = new SqlCommand("AssignEmploye", conn);
+            AssignEmploye.CommandType = CommandType.StoredProcedure;
+
+            //inputs for proc
+            SqlParameter bachelorCode = AssignEmploye.Parameters.Add(new SqlParameter("@bachelor_code", SqlDbType.VarChar, 10));
+            bachelorCode.Value = BachelorCodeAssign.Text;
+            SqlParameter staffID = AssignEmploye.Parameters.Add(new SqlParameter("@staff_id", SqlDbType.Int));
+            staffID.Value = StaffIDTextProject.Text;
+            SqlParameter CompanyID = AssignEmploye.Parameters.Add(new SqlParameter("@Company_id", SqlDbType.Int));
+            CompanyID.Value = Int32.Parse(Request.QueryString["UserID"].ToString());
 
         }
 

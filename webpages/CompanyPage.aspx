@@ -210,7 +210,11 @@
                                         <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
                                         <asp:BoundField DataField="Field" HeaderText="Field" SortExpression="Field" />
                                         <asp:BoundField DataField="Phone" HeaderText="Phone" SortExpression="Phone" />
-                                        <asp:ButtonField ButtonType="Button" CommandName="ShowProjectText" HeaderText="Projects" Text="Assign Project" />
+                                        <asp:TemplateField>
+                                            <ItemTemplate>
+                                                <asp:Button runat="server" OnClick="ShowProjectText" CommandName="Select" CommandArgument="<%# Container.DataItemIndex %>" Text="Assign Project" class="btn-danger" />
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
                                     </Columns>
                                 </asp:GridView>
                                 <asp:SqlDataSource ID="EmployeeSQL" runat="server" ConnectionString="<%$ ConnectionStrings:PortalConnectionString %>" SelectCommand="SELECT [Staff_id], [Username], [Password], [Email], [Field], [Phone] FROM [Employee] WHERE ([Company_id] = @Company_id) ORDER BY [Staff_id]">
@@ -219,16 +223,20 @@
                                     </SelectParameters>
                                 </asp:SqlDataSource>
                             </div>
-                            <div runat="server" id="AssignProjectDiv" visible="false" class="row">
-                                <div class="col-md-6 mb-4">
-                                    <div class="form-outline">
-                                         <asp:Label runat="server" ID="Label1" class="form-label" for="form3Example1m1">Project Code:</asp:Label>
-                                        <asp:TextBox runat="server" placeholder="Bachelor Code" type="text" ID="BachelorCodeAssign" class="form-control form-control-lg" />
-                                    </div>
-                                    <asp:Button runat="server" ID="AssignProjectToEmployeeButton" OnClick="AssignProjectToEmployee" Text="Confirm" class="btn-danger" />
-                                </div>
-                            </div>
+
                         </div>
+                    </div>
+                </div>
+                <div runat="server" id="AssignProjectDiv" visible="false" class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                            <asp:Label runat="server" ID="StaffIDLabelProject" class="form-label" for="form3Example1m1">Staff ID:</asp:Label>
+                            <asp:TextBox runat="server" type="text" ID="StaffIDTextProject" class="form-control form-control-lg" />
+                            <br />
+                            <asp:Label runat="server" ID="Label1" class="form-label" for="form3Example1m1">Project Code:</asp:Label>
+                            <asp:TextBox runat="server" placeholder="Bachelor Code" type="text" ID="BachelorCodeAssign" class="form-control form-control-lg" />
+                        </div>
+                        <asp:Button runat="server" ID="AssignProjectToEmployeeButton" OnClick="AssignProjectToEmployee" Text="Confirm" class="btn-danger" />
                     </div>
                 </div>
             </div>
@@ -239,7 +247,7 @@
                     <div class="media text-muted pt-3">
                         <asp:GridView ID="StudentTable" class="table table-bordered table-condensed table-responsive table-hover " runat="server" AutoGenerateColumns="False">
                             <Columns>
-                                <asp:BoundField DataField="Staff_id" HeaderText="Staff_id" InsertVisible="False" ReadOnly="True" SortExpression="Staff_id" />
+                                <asp:BoundField DataField="Staff_id" HeaderText="Staff ID" InsertVisible="False" ReadOnly="True" SortExpression="Staff_id" />
                                 <asp:BoundField DataField="Username" HeaderText="Username" SortExpression="Username" />
                                 <asp:BoundField DataField="Password" HeaderText="Password" SortExpression="Password" />
                                 <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />

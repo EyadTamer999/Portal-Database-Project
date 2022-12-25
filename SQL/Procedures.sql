@@ -580,6 +580,20 @@ INSERT INTO Industrial
 VALUES
     (CAST(@proj_code AS INT), @company_id)
 GO    
+
+--(C)
+CREATE PROCEDURE AssignEmploye
+    @bachelor_code varchar(10),
+    @staff_id int,
+    @Company_id int
+AS
+UPDATE Industrial SET
+Staff_id = @staff_id
+WHERE Company_id = @Company_id AND Industrial_code = cast(@bachelor_code as int)
+SELECT e.staff_id, b.Name, b.Submitted_Materials, b.Description, b.Code
+FROM Employee e INNER JOIN Industrial l on l.Staff_id = e.Staff_id INNER JOIN Bachelor_Project b on b.Code= l.Industrial_code
+go
+
 --(D)
 CREATE PROCEDURE CompanyGradeThesis
     @Company_id int,
