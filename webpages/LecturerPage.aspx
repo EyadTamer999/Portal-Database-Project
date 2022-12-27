@@ -5,6 +5,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <style type="text/css">
+        .auto-style1 {
+            direction: ltr;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -13,22 +18,32 @@
             <br />
             <br />
         </div>
+        <p class="auto-style1">
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <p>
         <asp:Label ID="Label2" runat="server" Text="Create local project"></asp:Label>
             <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Create Project" />
+        </p>
         <p>
             <asp:Label ID="Label3" runat="server" Text="Lecturer ID"></asp:Label>
             <asp:TextBox ID="TextBox1" runat="server" Width="173px"></asp:TextBox>
         </p>
         <p>
             <asp:Label ID="Label4" runat="server" Text="Project code"></asp:Label>
-            <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
-            <asp:Label ID="Label5" runat="server" Text="Major Code"></asp:Label>
-            <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
+            &nbsp;<asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+            &nbsp;<asp:Label ID="Label5" runat="server" Text="Major Code"></asp:Label>
+            &nbsp;<asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
         </p>
+        <p>
         <asp:Label ID="Label6" runat="server" Text="Title"></asp:Label>
         <asp:TextBox ID="TextBox4" runat="server"></asp:TextBox>
-        <asp:Label ID="Label7" runat="server" Text="Description"></asp:Label>
-        <asp:TextBox ID="TextBox5" runat="server"></asp:TextBox>
+        &nbsp;<asp:Label ID="Label7" runat="server" Text="Description"></asp:Label>
+        &nbsp;<asp:TextBox ID="TextBox5" runat="server"></asp:TextBox>
+        </p>
         <p>
             &nbsp;</p>
         <p>
