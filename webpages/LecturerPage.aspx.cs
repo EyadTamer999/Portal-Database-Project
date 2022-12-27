@@ -23,18 +23,6 @@ namespace WebApplication3.webpages
 
         }
 
-        protected void ShowCreateProject(object sender, EventArgs e)
-        {
-            if (!Label1.Visible)
-            {
-                Label1.Visible = true;
-            }
-            else
-            {
-                Label1.Visible = false;
-            }
-        }
-
         protected void CreateProjectClicked(object sender, EventArgs e)
         {
             conn.Open();
