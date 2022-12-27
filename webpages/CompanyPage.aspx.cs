@@ -144,26 +144,17 @@ namespace WebApplication3.webpages
 
         }
 
-        protected void ShowProjectText(object sender, EventArgs e)
+        protected void ShowAssignEmployee(object sender, EventArgs e)
         {
-            AssignProjectDiv.Visible = true;
-        }
-
-        protected void TableGetRow(object sender, GridViewCommandEventArgs e)
-        {
-
-            if (e.CommandName == "Select")
+            if (AssignProjectDiv.Visible)
             {
-                //Determine the RowIndex of the Row whose Button was clicked.
-                int rowIndex = Convert.ToInt32(e.CommandArgument);
-
-                //Reference the GridView Row.
-                GridViewRow row = EmployeeTable.Rows[rowIndex];
-
-                //Fetch value of Staff ID.
-                StaffIDTextProject.ReadOnly= false;
-                StaffIDTextProject.Text += row.Cells[1].Text;
+                AssignProjectDiv.Visible = false;
             }
+            else
+            {
+                AssignProjectDiv.Visible = true;
+            }
+
         }
 
         protected void AssignProjectToEmployee(object sender, EventArgs e)
@@ -181,7 +172,15 @@ namespace WebApplication3.webpages
             staffID.Value = StaffIDTextProject.Text;
             SqlParameter CompanyID = AssignEmploye.Parameters.Add(new SqlParameter("@Company_id", SqlDbType.Int));
             CompanyID.Value = Int32.Parse(Request.QueryString["UserID"].ToString());
+            
+            //exec query
+            AssignEmploye.ExecuteNonQuery();
+            
+            //close connection
+            conn.Close();
 
+            BachelorCodeAssign.Text = null;
+            StaffIDTextProject.Text = null;
         }
 
 

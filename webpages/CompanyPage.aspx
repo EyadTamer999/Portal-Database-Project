@@ -145,20 +145,33 @@
                 </div>
             </div>
             <!----------------
-                                c) Assign Employees to supervise local industrial projects that belongs to them.
                                 d) Grade thesis of a specific student.
                                 e) Grade defense of a specific student.
                                 f) Grade progress report for a specific student.
-                                                                                                                    ---------------->
+                                                                                   ---------------->
             <!--Show my Employees-->
             <div runat="server" class="my-3 p-3 bg-white justify-content-center align-content-center rounded box-shadow" style="margin-top: 15rem!important; height: 56rem;" visible="false" id="EmployeesLabelHeading">
                 <h6 class="border-bottom border-gray pb-2 mb-0">Employees</h6>
+                <div runat="server" id="AssignProjectDiv" visible="false" class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                            <asp:Label runat="server" ID="StaffIDLabelProject" class="form-label" for="form3Example1m1">Staff ID:</asp:Label>
+                            <asp:TextBox runat="server" type="text" ID="StaffIDTextProject" class="form-control form-control-lg" />
+                            <br />
+                            <asp:Label runat="server" ID="Label1" class="form-label" for="form3Example1m1">Project Code:</asp:Label>
+                            <asp:TextBox runat="server" placeholder="Bachelor Code" type="text" ID="BachelorCodeAssign" class="form-control form-control-lg" />
+                        </div>
+                        <asp:Button runat="server" ID="AssignProjectToEmployeeButton" OnClick="AssignProjectToEmployee" Text="Confirm" class="btn-danger" />
+                    </div>
+                </div>
+                <br />
 
                 <div class="media text-muted pt-3 " style="margin-top: -5rem; padding-top: 7rem!important;">
                     <div class="row justify-content-center align-baseline" style="width: 960px; height: 100px;">
                         <div>
                             <small class="d-block text-right mt-3 justify-content-center align-content-center">
-                                <asp:Button runat="server" ID="AddEmployeeButton" OnClick="AddNewEmployee" Text="Add Employee" class="btn-info" />
+                                <asp:Button runat="server" ID="AddEmployeeButton" OnClick="AddNewEmployee" Text="Add Employee" CssClass="btn-info" />
+                                <asp:Button runat="server" ID="AssignEmployeeDropDown" CssClass="btn-danger" OnClick="ShowAssignEmployee" Text="Assign Employee"></asp:Button>
                             </small>
                             <div class="row">
                                 <div class="col-md-6 mb-4">
@@ -210,11 +223,6 @@
                                         <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
                                         <asp:BoundField DataField="Field" HeaderText="Field" SortExpression="Field" />
                                         <asp:BoundField DataField="Phone" HeaderText="Phone" SortExpression="Phone" />
-                                        <asp:TemplateField>
-                                            <ItemTemplate>
-                                                <asp:Button runat="server" OnClick="ShowProjectText" CommandName="Select" CommandArgument="<%# Container.DataItemIndex %>" Text="Assign Project" class="btn-danger" />
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
                                     </Columns>
                                 </asp:GridView>
                                 <asp:SqlDataSource ID="EmployeeSQL" runat="server" ConnectionString="<%$ ConnectionStrings:PortalConnectionString %>" SelectCommand="SELECT [Staff_id], [Username], [Password], [Email], [Field], [Phone] FROM [Employee] WHERE ([Company_id] = @Company_id) ORDER BY [Staff_id]">
@@ -223,39 +231,23 @@
                                     </SelectParameters>
                                 </asp:SqlDataSource>
                             </div>
-
                         </div>
-                    </div>
-                </div>
-                <div runat="server" id="AssignProjectDiv" visible="false" class="row">
-                    <div class="col-md-6 mb-4">
-                        <div class="form-outline">
-                            <asp:Label runat="server" ID="StaffIDLabelProject" class="form-label" for="form3Example1m1">Staff ID:</asp:Label>
-                            <asp:TextBox runat="server" type="text" ID="StaffIDTextProject" class="form-control form-control-lg" />
-                            <br />
-                            <asp:Label runat="server" ID="Label1" class="form-label" for="form3Example1m1">Project Code:</asp:Label>
-                            <asp:TextBox runat="server" placeholder="Bachelor Code" type="text" ID="BachelorCodeAssign" class="form-control form-control-lg" />
-                        </div>
-                        <asp:Button runat="server" ID="AssignProjectToEmployeeButton" OnClick="AssignProjectToEmployee" Text="Confirm" class="btn-danger" />
                     </div>
                 </div>
             </div>
+
             <!--Show my Students-->
             <div runat="server" visible="false" class="my-3 p-3 bg-white rounded box-shadow" id="StudentsLabelHeading">
                 <h6 class="border-bottom border-gray pb-2 mb-0">Students</h6>
                 <div class="media text-muted pt-3">
-                    <div class="media text-muted pt-3">
-                        <asp:GridView ID="StudentTable" class="table table-bordered table-condensed table-responsive table-hover " runat="server" AutoGenerateColumns="False">
-                            <Columns>
-                                <asp:BoundField DataField="Staff_id" HeaderText="Staff ID" InsertVisible="False" ReadOnly="True" SortExpression="Staff_id" />
-                                <asp:BoundField DataField="Username" HeaderText="Username" SortExpression="Username" />
-                                <asp:BoundField DataField="Password" HeaderText="Password" SortExpression="Password" />
-                                <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
-                                <asp:BoundField DataField="Field" HeaderText="Field" SortExpression="Field" />
-                                <asp:BoundField DataField="Phone" HeaderText="Phone" SortExpression="Phone" />
-                            </Columns>
-                        </asp:GridView>
-                    </div>
+                    <asp:GridView ID="StudentTable" Visible="False" class="table table-bordered table-condensed table-responsive table-hover " runat="server" AutoGenerateColumns="False" Style="overflow-y: scroll">
+                        <Columns>
+                            <asp:BoundField DataField="sid" HeaderText="Student ID" InsertVisible="False" ReadOnly="True" SortExpression="sid" />
+                            <asp:BoundField DataField="Username" HeaderText="Username" SortExpression="Username" />
+                        </Columns>
+                    </asp:GridView>
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PortalConnectionString %>" SelectCommand="SELECT * FROM [Student]">
+                    </asp:SqlDataSource>
                 </div>
             </div>
         </main>
