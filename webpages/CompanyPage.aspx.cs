@@ -141,7 +141,14 @@ namespace WebApplication3.webpages
         }
         protected void ShowStudents(object sender, EventArgs e)
         {
-
+            if (!StudentsLabelHeading.Visible)
+            {
+                StudentsLabelHeading.Visible = true;
+            }
+            else
+            {
+                StudentsLabelHeading.Visible = false;
+            }
         }
 
         protected void ShowAssignEmployee(object sender, EventArgs e)

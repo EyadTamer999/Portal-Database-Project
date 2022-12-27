@@ -235,19 +235,17 @@
                     </div>
                 </div>
             </div>
-
             <!--Show my Students-->
             <div runat="server" visible="false" class="my-3 p-3 bg-white rounded box-shadow" id="StudentsLabelHeading">
                 <h6 class="border-bottom border-gray pb-2 mb-0">Students</h6>
                 <div class="media text-muted pt-3">
-                    <asp:GridView ID="StudentTable" Visible="False" class="table table-bordered table-condensed table-responsive table-hover " runat="server" AutoGenerateColumns="False" Style="overflow-y: scroll">
+                    <asp:GridView ID="StudentTable" Visible="true" class="table table-bordered table-condensed table-responsive table-hover " runat="server" AutoGenerateColumns="False" Style="overflow-y: scroll">
                         <Columns>
                             <asp:BoundField DataField="sid" HeaderText="Student ID" InsertVisible="False" ReadOnly="True" SortExpression="sid" />
                             <asp:BoundField DataField="Username" HeaderText="Username" SortExpression="Username" />
                         </Columns>
                     </asp:GridView>
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PortalConnectionString %>" SelectCommand="SELECT * FROM [Student]">
-                    </asp:SqlDataSource>
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PortalConnectionString %>" SelectCommand="SELECT * FROM [Student]"></asp:SqlDataSource>
                 </div>
             </div>
         </main>
