@@ -113,7 +113,7 @@ CREATE TABLE Major
 
 CREATE TABLE Bachelor_Project
 (
-    [Code] INT IDENTITY NOT NULL,
+    Code INT Primary KEY IDENTITY NOT NULL,
     -- primary key column
     Name VARCHAR(20),
     Submitted_Materials VARCHAR(20),
