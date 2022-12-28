@@ -6,6 +6,12 @@
     <meta charset="utf-8" />
     <title>GIU Portal</title>
 
+    <style>
+        body {
+            background: linear-gradient(45deg, transparent 0%, transparent 57%, #ffd800 100%), linear-gradient(-45deg, #8b1818 0%, #807b09 0.3%, #940f0f 112%,transparent 11%), linear-gradient(90deg, #141212 100%, #940f0f 65%,transparent 20%)
+        }
+    </style>
+
     <!--Bootstrap CSS-->
     <link href="../Bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
@@ -36,7 +42,7 @@
         </nav>
 
         <div style="text-align: center">
-            <div class="p-3 mb-2 bg-light text-dark">
+            <div class="p-3 mb-2 text-white">
                 <asp:Image ID="LoginImg" runat="server" ImageUrl="../img/user-icon.png" Height="60px" Width="60px" />
                 <br />
                 <asp:Label ID="Text1" runat="server" Text="Login"></asp:Label>
@@ -51,16 +57,14 @@
                 <asp:Button ID="RegisterButton" class="btn btn-danger" runat="server" Text="No Account? Register..." OnClick="Register" Height="50px" Width="342px" />
             </div>
         </div>
-        <div class="fixed-bottom">
-            <footer class="bg-light text-center text-lg-start">
-                <!-- Copyright -->
-                <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-                    &copy All Rights Reserved.
-                </div>
-                <!-- Copyright -->
-            </footer>
-        </div>
 
     </form>
+    <div class="text-lg-start bottom">
+        <!-- Copyright -->
+        <footer class="text-center" style="height: 15rem;">
+            &copy All Rights Reserved.
+        </footer>
+        <!-- Copyright -->
+    </div>
 </body>
 </html>

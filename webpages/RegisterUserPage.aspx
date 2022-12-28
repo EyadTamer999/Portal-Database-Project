@@ -8,6 +8,14 @@
     <meta charset="utf-8" />
 
 
+    <style>
+        body {
+            background: linear-gradient(45deg, transparent 0%, transparent 57%, #ffd800 100%), linear-gradient(-45deg, #8b1818 0%, #807b09 0.3%, #940f0f 112%,transparent 11%), linear-gradient(90deg, #141212 100%, #940f0f 65%,transparent 20%)
+        }
+    </style>
+
+
+
     <!--Bootstrap CSS-->
     <link href="../Bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
@@ -50,7 +58,7 @@
 
 <body>
     <form runat="server">
-        <section class="h-100 bg-dark">
+        <section class="h-100">
 
             <div class="row d-flex justify-content-center align-items-center h-100">
 
@@ -67,8 +75,8 @@
                                     <div class="card-body p-md-5 text-black">
                                         <h3 class="mb-5 text-uppercase">User registration form</h3>
                                         <br />
-                                        <h2 runat="server" class="mb-5 text-uppercase" style="color:red" visible="false" id="Success">User Registered!</h2>
-                                         <asp:Label ID="Error" runat="server" Text="Oops Somthing went wrong!" Visible="false" ForeColor="Red"></asp:Label>
+                                        <h2 runat="server" class="mb-5 text-uppercase" style="color: red" visible="false" id="Success">User Registered!</h2>
+                                        <asp:Label ID="Error" runat="server" Text="Oops Somthing went wrong!" Visible="false" ForeColor="Red"></asp:Label>
                                         <div class="row">
                                             <div class="col-md-6 mb-4">
                                                 <div class="form-outline">
@@ -194,14 +202,13 @@
                 </div>
             </div>
         </section>
-        <div class="bottom">
-            <footer class="bg-light text-center text-lg-start">
-                <!-- Copyright -->
-                <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-                    &copy All Rights Reserved.
-                </div>
-                <!-- Copyright -->
+
+        <div class="text-lg-start bottom">
+            <!-- Copyright -->
+            <footer class="text-center" style="height: 15rem;">
+                &copy All Rights Reserved.
             </footer>
+            <!-- Copyright -->
         </div>
     </form>
 </body>

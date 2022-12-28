@@ -6,6 +6,12 @@
 <head runat="server">
     <title>Company Page</title>
 
+    <style>
+        body {
+            background: linear-gradient(45deg, transparent 0%, transparent 57%, #ffd800 100%), linear-gradient(-45deg, #8b1818 0%, #807b09 0.3%, #940f0f 112%,transparent 11%), linear-gradient(90deg, #141212 100%, #940f0f 65%,transparent 20%)
+        }
+    </style>
+
     <!--Bootstrap CSS-->
     <link href="../Bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
@@ -27,7 +33,7 @@
 
     <link href="offcanvas.css" rel="stylesheet" />
 </head>
-<body class="home bg-info">
+<body class="home">
     <form id="form1" runat="server">
         <main role="main" class="container">
             <div class="container">
@@ -228,11 +234,6 @@
                     </div>
                 </div>
             </div>
-            <!----------------
-                                d) Grade thesis of a specific student.
-                                e) Grade defense of a specific student.
-                                f) Grade progress report for a specific student.
-                                                                                   ---------------->
             <!--Show my Students-->
             <div runat="server" visible="false" class="my-3 p-3 bg-white justify-content-center align-content-center rounded box-shadow" id="StudentsLabelHeading" style="margin-top: 5rem!important; height: 34rem!important;">
                 <h6 class="border-bottom border-gray pb-2 mb-0">Students</h6>
@@ -284,8 +285,6 @@
                 </div>
             </div>
         </main>
-        <defs>
-        </defs>
     </form>
 </body>
 </html>

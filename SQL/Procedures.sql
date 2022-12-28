@@ -132,7 +132,7 @@ from Employee
 where Employee.Email = @email and Employee.Password = @password)
 set @success = 1
 else
-set @success = 0
+set @success = -1
 
 if exists(select Userr.Userr_id
 from Userr
@@ -141,9 +141,15 @@ select @user_id = Userr.Userr_id
 from Userr
 where Userr.email = @email and Userr.Password = @password
 else
+if exists(select Employee.Staff_id
+from Employee
+where Employee.email = @email and Employee.Password = @password)
+select @user_id = Employee.Staff_id
+from Employee
+where Employee.email = @email and Employee.Password = @password
+else
 set @user_id = -1
 Select @success, @user_id
-
 ------------b
 GO
 CREATE PROCEDURE ViewProfile
