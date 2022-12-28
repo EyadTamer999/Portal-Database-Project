@@ -115,8 +115,8 @@ namespace WebApplication3.webpages
             {
                 EmployeeTable.Visible = false;
             }
-
-            string cmd = "SELECT [Staff_id], [Username], [Password], [Email], [Field], [Phone] FROM [Employee] WHERE ([Company_id] = '3') ORDER BY [Staff_id]";
+            
+            string cmd = "SELECT [Staff_id], [Username], [Password], [Email], [Field], [Phone] FROM [Employee] WHERE ([Company_id] =" + Int32.Parse(Request.QueryString["UserID"]).ToString() + ") ORDER BY [Staff_id]";
             conn.Open();
             SqlDataAdapter getEmployees = new SqlDataAdapter(cmd, conn);
 
@@ -141,6 +141,18 @@ namespace WebApplication3.webpages
         }
         protected void ShowStudents(object sender, EventArgs e)
         {
+            string cmd = "SELECT * FROM [Student]";
+            conn.Open();
+            SqlDataAdapter getStudets = new SqlDataAdapter(cmd, conn);
+
+            DataTable DT = new DataTable();
+
+            getStudets.Fill(DT);
+
+            StudentTable.DataSource = DT;
+            StudentTable.DataBind();
+            conn.Close();
+
             if (!StudentsLabelHeading.Visible)
             {
                 StudentsLabelHeading.Visible = true;
@@ -149,6 +161,7 @@ namespace WebApplication3.webpages
             {
                 StudentsLabelHeading.Visible = false;
             }
+
         }
 
         protected void ShowAssignEmployee(object sender, EventArgs e)
@@ -179,10 +192,10 @@ namespace WebApplication3.webpages
             staffID.Value = StaffIDTextProject.Text;
             SqlParameter CompanyID = AssignEmploye.Parameters.Add(new SqlParameter("@Company_id", SqlDbType.Int));
             CompanyID.Value = Int32.Parse(Request.QueryString["UserID"].ToString());
-            
+
             //exec query
             AssignEmploye.ExecuteNonQuery();
-            
+
             //close connection
             conn.Close();
 
@@ -224,11 +237,29 @@ namespace WebApplication3.webpages
 
 
                 AddEmployee.ExecuteNonQuery();
+
+                Response.Redirect(Page.Request.Url.ToString());
+
             }
 
 
             //close connection
             conn.Close();
+
+        }
+
+        protected void GradeThesis(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void GradeDefense(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void GradePR(object sender, EventArgs e)
+        {
 
         }
 
@@ -256,6 +287,65 @@ namespace WebApplication3.webpages
                 Phone.Visible = false;
                 PhoneLabel.Visible = false;
             }
+
+        }
+
+        protected void ShowGradeStudents(object sender, EventArgs e)
+        {
+            if (!GradeStudentDiv.Visible)
+            {
+                GradeStudentDiv.Visible = true;
+            }
+            else
+            {
+                GradeStudentDiv.Visible = false;
+            }
+        }
+
+        protected void ShowThesisRelated(object sender, EventArgs e)
+        {
+            //if thesis related is not visible make it visible 
+            //else make it invisible
+            if (!SubmitGradeThesis.Visible)
+            {
+                SubmitGradeThesis.Visible = true;
+                ThesisTitle.Visible = true;
+
+                SubmitGradeDefense.Visible = false;
+                ShowGradeDefense.Visible = false;
+
+
+                SubmitGradePR.Visible = false;
+                ShowGradePR.Visible = false;
+            }
+            else
+            {
+                SubmitGradeThesis.Visible = false;
+                ThesisTitle.Visible = true;
+
+
+            }
+
+            
+
+          
+
+        }
+
+        protected void ShowDefenseRelated(object sender, EventArgs e)
+        {
+            ShowGradeThesis.Visible = false;
+            ShowGradePR.Visible = false;
+        }
+
+        protected void ShowPRRelated(object sender, EventArgs e)
+        {
+          
+            ShowGradeThesis.Visible = false;
+            ShowGradeDefense.Visible = false;
+            SubmitGradeDefense.Visible = false;
+            SubmitGradeThesis.Visible = false;
+
 
         }
 

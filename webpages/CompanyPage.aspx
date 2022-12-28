@@ -37,7 +37,6 @@
                     <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-
                     <div>
                         <asp:Label runat="server" Text="Welcome" CssClass="text-white"></asp:Label>
                     </div>
@@ -50,24 +49,23 @@
                             <li class="nav-item">
                                 <asp:LinkButton runat="server" class="nav-link" OnClick="ShowCreateProject" Text="Create Project"></asp:LinkButton>
                             </li>
-                            <li class="nav-item">
-                                <asp:LinkButton runat="server" OnClick="LogOut" class="nav-link">Logout</asp:LinkButton>
-                            </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">View</a>
                                 <div class="dropdown-menu" aria-labelledby="dropdown01">
                                     <asp:Button runat="server" ID="ViewMyProfile" class="dropdown-item" OnClick="ShowMyProfile" Text="My Profile"></asp:Button>
                                     <asp:Button runat="server" ID="EmployeesDropDown" class="dropdown-item" OnClick="ShowEmployees" Text="Employees"></asp:Button>
                                     <asp:Button runat="server" ID="StudentsDropDown" class="dropdown-item" OnClick="ShowStudents" Text="Students"></asp:Button>
+                                    <asp:Button runat="server" ID="GradeStudentsDropDown" class="dropdown-item" OnClick="ShowGradeStudents" Text="Grade Students"></asp:Button>
                                 </div>
+                            </li>
+                            <li class="nav-item">
+                                <asp:LinkButton runat="server" OnClick="LogOut" class="nav-link">Logout</asp:LinkButton>
                             </li>
                         </ul>
                     </div>
                 </nav>
             </div>
-
             <br />
-
             <!---Create Project--->
             <div class="my-3 p-3 bg-white justify-content-center rounded box-shadow border-gray" style="margin-top: 5rem!important; width: fit-content; height: fit-content;" runat="server" visible="false" id="ShowCreateProjectDiv">
                 <div class="row">
@@ -144,11 +142,6 @@
                     </div>
                 </div>
             </div>
-            <!----------------
-                                d) Grade thesis of a specific student.
-                                e) Grade defense of a specific student.
-                                f) Grade progress report for a specific student.
-                                                                                   ---------------->
             <!--Show my Employees-->
             <div runat="server" class="my-3 p-3 bg-white justify-content-center align-content-center rounded box-shadow" style="margin-top: 15rem!important; height: 56rem;" visible="false" id="EmployeesLabelHeading">
                 <h6 class="border-bottom border-gray pb-2 mb-0">Employees</h6>
@@ -235,17 +228,59 @@
                     </div>
                 </div>
             </div>
+            <!----------------
+                                d) Grade thesis of a specific student.
+                                e) Grade defense of a specific student.
+                                f) Grade progress report for a specific student.
+                                                                                   ---------------->
             <!--Show my Students-->
-            <div runat="server" visible="false" class="my-3 p-3 bg-white rounded box-shadow" id="StudentsLabelHeading">
+            <div runat="server" visible="false" class="my-3 p-3 bg-white justify-content-center align-content-center rounded box-shadow" id="StudentsLabelHeading" style="margin-top: 5rem!important; height: 34rem!important;">
                 <h6 class="border-bottom border-gray pb-2 mb-0">Students</h6>
                 <div class="media text-muted pt-3">
-                    <asp:GridView ID="StudentTable" Visible="true" class="table table-bordered table-condensed table-responsive table-hover " runat="server" AutoGenerateColumns="False" Style="overflow-y: scroll">
+                    <asp:GridView ID="StudentTable" class="table table-bordered table-condensed table-responsive table-hover " runat="server" AutoGenerateColumns="False" Style="overflow-y: scroll">
                         <Columns>
                             <asp:BoundField DataField="sid" HeaderText="Student ID" InsertVisible="False" ReadOnly="True" SortExpression="sid" />
-                            <asp:BoundField DataField="Username" HeaderText="Username" SortExpression="Username" />
+                            <asp:BoundField DataField="first_name" HeaderText="first_name" SortExpression="first_name" />
+                            <asp:BoundField DataField="last_name" HeaderText="last_name" SortExpression="last_name" />
+                            <asp:BoundField DataField="Major_code" HeaderText="Major_code" SortExpression="Major_code" />
+                            <asp:BoundField DataField="Assigned_Project_code" HeaderText="Assigned_Project_code" SortExpression="Assigned_Project_code" />
+                            <asp:BoundField DataField="Date_Of_Birth" HeaderText="Date_Of_Birth" SortExpression="Date_Of_Birth" />
+                            <asp:BoundField DataField="Adress" HeaderText="Adress" SortExpression="Adress" />
+                            <asp:BoundField DataField="Age" HeaderText="Age" SortExpression="Age" />
+                            <asp:BoundField DataField="Semester" HeaderText="Semester" SortExpression="Semester" />
+                            <asp:BoundField DataField="GPA" HeaderText="GPA" SortExpression="GPA" />
                         </Columns>
                     </asp:GridView>
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PortalConnectionString %>" SelectCommand="SELECT * FROM [Student]"></asp:SqlDataSource>
+                    <asp:SqlDataSource ID="StudentSQL" runat="server" ConnectionString="<%$ ConnectionStrings:PortalConnectionString %>" SelectCommand="SELECT * FROM [Student]">
+                        <SelectParameters>
+                            <asp:QueryStringParameter Name="Company_id" QueryStringField="UserID" Direction="Input" Type="Int32" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                </div>
+            </div>
+
+            <div runat="server" visible="false" class="my-3 p-3 bg-white justify-content-center align-content-center rounded box-shadow" id="GradeStudentDiv" style="margin-top: 5rem!important; height: 34rem!important;">
+                <h6 class="border-bottom border-gray pb-2 mb-0">Grade Student</h6>
+                <div class="col-md-6 mb-4 align-content-center">
+                    <div class="row">
+                        <div class="col">
+                            <asp:Button runat="server" ID="ShowGradeThesis" Text="Grade Thesis" OnClick="ShowThesisRelated" class="btn-danger" Visible="true" />
+                            <asp:Button runat="server" ID="ShowGradeDefense" Text="Grade Defense" OnClick="ShowDefenseRelated" class="btn-info" Visible="true" />
+                            <asp:Button runat="server" ID="ShowGradePR" Text="Grade Progress Report" OnClick="ShowPRRelated" class="btn-outline-dark" Visible="true" />
+
+
+                            <asp:TextBox runat="server" ID="GradeSid" Placeholder="Student ID" CssClass="form-control form-control-lg" Visible="false"></asp:TextBox>
+                            <asp:TextBox runat="server" ID="ThesisTitle" Placeholder="Thesis Title" CssClass="form-control form-control-lg" Visible="false"></asp:TextBox>
+                            <asp:TextBox runat="server" ID="DefenseLocation" Placeholder="Defense Location" CssClass="form-control form-control-lg" Visible="false"></asp:TextBox>
+                            <asp:TextBox runat="server" ID="PRDate" type="date" CssClass="form-control form-control-lg" Visible="false"></asp:TextBox>
+                            <asp:TextBox runat="server" ID="CompanyGrade" Placeholder="Grade" CssClass="form-control form-control-lg" Visible="false"></asp:TextBox>
+
+
+                            <asp:Button runat="server" ID="SubmitGradeThesis" Text="Submit" OnClick="GradeThesis" class="btn-danger" Visible="false" />
+                            <asp:Button runat="server" ID="SubmitGradeDefense" Text="Submit" OnClick="GradeDefense" class="btn-info" Visible="false" />
+                            <asp:Button runat="server" ID="SubmitGradePR" Text="Submit" OnClick="GradePR" class="btn-outline-dark" Visible="false" />
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
