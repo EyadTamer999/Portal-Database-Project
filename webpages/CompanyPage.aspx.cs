@@ -115,7 +115,7 @@ namespace WebApplication3.webpages
             {
                 EmployeeTable.Visible = false;
             }
-            
+
             string cmd = "SELECT [Staff_id], [Username], [Password], [Email], [Field], [Phone] FROM [Employee] WHERE ([Company_id] =" + Int32.Parse(Request.QueryString["UserID"]).ToString() + ") ORDER BY [Staff_id]";
             conn.Open();
             SqlDataAdapter getEmployees = new SqlDataAdapter(cmd, conn);
@@ -250,18 +250,63 @@ namespace WebApplication3.webpages
 
         protected void GradeThesis(object sender, EventArgs e)
         {
+            SqlCommand GradeThesis = new SqlCommand("CompanyGradeThesis", conn);
+            GradeThesis.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter companyID = GradeThesis.Parameters.Add(new SqlParameter("@Company_id", SqlDbType.Int));
+            companyID.Value = Int32.Parse(Request.QueryString["UserID"].ToString());
+            SqlParameter SID = GradeThesis.Parameters.Add(new SqlParameter("@sid", SqlDbType.Int));
+            SID.Value = GradeSid.Text;
+            SqlParameter thesisTitle = GradeThesis.Parameters.Add(new SqlParameter("@thesis_title", SqlDbType.VarChar,50));
+            thesisTitle.Value = ThesisTitle.Text;
+            SqlParameter companyGrade = GradeThesis.Parameters.Add(new SqlParameter("@Company_grade", SqlDbType.Decimal));
+            companyGrade.Value = CompanyGrade.Text;
+
+            conn.Open();
+            GradeThesis.ExecuteNonQuery();
+            conn.Close();
+
 
         }
 
         protected void GradeDefense(object sender, EventArgs e)
         {
+            SqlCommand GradeDefense = new SqlCommand("CompanyGradeThesis", conn);
+            GradeDefense.CommandType = CommandType.StoredProcedure;
 
+            SqlParameter companyID = GradeDefense.Parameters.Add(new SqlParameter("@Company_id", SqlDbType.Int));
+            companyID.Value = Int32.Parse(Request.QueryString["UserID"].ToString());
+            SqlParameter SID = GradeDefense.Parameters.Add(new SqlParameter("@sid", SqlDbType.Int));
+            SID.Value = GradeSid.Text;
+            SqlParameter DefLoc = GradeDefense.Parameters.Add(new SqlParameter("@defense_location", SqlDbType.VarChar, 50));
+            DefLoc.Value = DefenseLocation.Text;
+            SqlParameter companyGrade = GradeDefense.Parameters.Add(new SqlParameter("@Company_grade", SqlDbType.Decimal));
+            companyGrade.Value = CompanyGrade.Text;
+
+            conn.Open();
+            GradeDefense.ExecuteNonQuery();
+            conn.Close();
         }
 
         protected void GradePR(object sender, EventArgs e)
         {
+            SqlCommand GradePR = new SqlCommand("CompanyGradeThesis", conn);
+            GradePR.CommandType = CommandType.StoredProcedure;
 
+            SqlParameter companyID = GradePR.Parameters.Add(new SqlParameter("@Company_id", SqlDbType.Int));
+            companyID.Value = Int32.Parse(Request.QueryString["UserID"].ToString());
+            SqlParameter SID = GradePR.Parameters.Add(new SqlParameter("@sid", SqlDbType.Int));
+            SID.Value = GradeSid.Text;
+            SqlParameter prDate = GradePR.Parameters.Add(new SqlParameter("@date", SqlDbType.DateTime));
+            prDate.Value = PRDate.Text;
+            SqlParameter companyGrade = GradePR.Parameters.Add(new SqlParameter("@Company_grade", SqlDbType.Decimal));
+            companyGrade.Value = CompanyGrade.Text;
+
+            conn.Open();
+            GradePR.ExecuteNonQuery();
+            conn.Close();
         }
+
 
         protected void ShowEmployeeFields()
         {
@@ -308,43 +353,124 @@ namespace WebApplication3.webpages
             //else make it invisible
             if (!SubmitGradeThesis.Visible)
             {
+                GradeSid.Visible = true;
+                GradeSid.Text = string.Empty;
+                CompanyGrade.Visible = true;
+                CompanyGrade.Text = string.Empty;
+
                 SubmitGradeThesis.Visible = true;
                 ThesisTitle.Visible = true;
+                ShowGradeThesis.Visible = true;
+                ThesisTitle.Text = string.Empty;
 
                 SubmitGradeDefense.Visible = false;
                 ShowGradeDefense.Visible = false;
-
+                DefenseLocation.Visible = false;
+                DefenseLocation.Text = string.Empty;
 
                 SubmitGradePR.Visible = false;
                 ShowGradePR.Visible = false;
+                PRDate.Visible = false;
+                PRDate.Text = string.Empty;
             }
             else
             {
+                GradeSid.Visible = false;
+                CompanyGrade.Visible = false;
+
+                ShowGradeDefense.Visible = true;
+                ShowGradePR.Visible = true;
+
                 SubmitGradeThesis.Visible = false;
-                ThesisTitle.Visible = true;
-
-
+                ThesisTitle.Visible = false;
             }
 
-            
 
-          
+
+
 
         }
 
         protected void ShowDefenseRelated(object sender, EventArgs e)
         {
-            ShowGradeThesis.Visible = false;
-            ShowGradePR.Visible = false;
+            //if thesis related is not visible make it visible 
+            //else make it invisible
+            if (!SubmitGradeDefense.Visible)
+            {
+                GradeSid.Visible = true;
+                GradeSid.Text = string.Empty;
+                CompanyGrade.Visible = true;
+                CompanyGrade.Text = string.Empty;
+
+                SubmitGradeThesis.Visible = false;
+                ShowGradeThesis.Visible = false;
+                ThesisTitle.Visible = false;
+                ThesisTitle.Text = string.Empty;
+
+                SubmitGradeDefense.Visible = true;
+                ShowGradeDefense.Visible = true;
+                DefenseLocation.Visible = true;
+                DefenseLocation.Text = string.Empty;
+
+                SubmitGradePR.Visible = false;
+                ShowGradePR.Visible = false;
+                PRDate.Visible = false;
+                PRDate.Text = string.Empty;
+            }
+            else
+            {
+                GradeSid.Visible = false;
+                CompanyGrade.Visible = false;
+
+                ShowGradeThesis.Visible = true;
+                ShowGradePR.Visible = true;
+
+                SubmitGradeDefense.Visible = false;
+                DefenseLocation.Visible = false;
+            }
+
+
         }
 
         protected void ShowPRRelated(object sender, EventArgs e)
         {
-          
-            ShowGradeThesis.Visible = false;
-            ShowGradeDefense.Visible = false;
-            SubmitGradeDefense.Visible = false;
-            SubmitGradeThesis.Visible = false;
+            //if thesis related is not visible make it visible 
+            //else make it invisible
+            if (!SubmitGradePR.Visible)
+            {
+                GradeSid.Visible = true;
+                GradeSid.Text = string.Empty;
+                CompanyGrade.Visible = true;
+                CompanyGrade.Text = string.Empty;
+
+                SubmitGradeThesis.Visible = false;
+                ThesisTitle.Visible = false;
+                ShowGradeThesis.Visible = false;
+                ThesisTitle.Text = string.Empty;
+
+                SubmitGradeDefense.Visible = false;
+                ShowGradeDefense.Visible = false;
+                DefenseLocation.Visible = false;
+                DefenseLocation.Text = string.Empty;
+
+                SubmitGradePR.Visible = true;
+                ShowGradePR.Visible = true;
+                PRDate.Visible = true;
+                PRDate.Text = string.Empty;
+            }
+            else
+            {
+                GradeSid.Visible = false;
+                CompanyGrade.Visible = false;
+
+                ShowGradeDefense.Visible = true;
+                ShowGradeThesis.Visible = true;
+
+                SubmitGradePR.Visible = false;
+                PRDate.Visible = false;
+            }
+
+
 
 
         }

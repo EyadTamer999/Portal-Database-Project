@@ -610,7 +610,7 @@ UPDATE GradeIndustrialThesis SET
 CREATE PROCEDURE  CompanyGradedefense
     @Company_id int,
     @sid int,
-    @defense_location varchar(5),
+    @defense_location varchar(50),
     @Company_grade Decimal(4,2)
 AS
 UPDATE GradeIndustrialDefense SET
