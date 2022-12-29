@@ -260,18 +260,19 @@ namespace WebApplication3.webpages
             SqlParameter thesisTitle = GradeThesis.Parameters.Add(new SqlParameter("@thesis_title", SqlDbType.VarChar,50));
             thesisTitle.Value = ThesisTitle.Text;
             SqlParameter companyGrade = GradeThesis.Parameters.Add(new SqlParameter("@Company_grade", SqlDbType.Decimal));
-            companyGrade.Value = CompanyGrade.Text;
+            companyGrade.Value = Convert.ToDecimal(CompanyGrade.Text.ToString());
 
             conn.Open();
             GradeThesis.ExecuteNonQuery();
             conn.Close();
 
+            SubmittedLabel.Visible = true;
 
         }
 
         protected void GradeDefense(object sender, EventArgs e)
         {
-            SqlCommand GradeDefense = new SqlCommand("CompanyGradeThesis", conn);
+            SqlCommand GradeDefense = new SqlCommand("CompanyGradedefense", conn);
             GradeDefense.CommandType = CommandType.StoredProcedure;
 
             SqlParameter companyID = GradeDefense.Parameters.Add(new SqlParameter("@Company_id", SqlDbType.Int));
@@ -281,16 +282,18 @@ namespace WebApplication3.webpages
             SqlParameter DefLoc = GradeDefense.Parameters.Add(new SqlParameter("@defense_location", SqlDbType.VarChar, 50));
             DefLoc.Value = DefenseLocation.Text;
             SqlParameter companyGrade = GradeDefense.Parameters.Add(new SqlParameter("@Company_grade", SqlDbType.Decimal));
-            companyGrade.Value = CompanyGrade.Text;
+            companyGrade.Value = Convert.ToDecimal(CompanyGrade.Text.ToString());
 
             conn.Open();
             GradeDefense.ExecuteNonQuery();
             conn.Close();
+
+            SubmittedLabel.Visible = true;
         }
 
         protected void GradePR(object sender, EventArgs e)
         {
-            SqlCommand GradePR = new SqlCommand("CompanyGradeThesis", conn);
+            SqlCommand GradePR = new SqlCommand("CompanyGradePR", conn);
             GradePR.CommandType = CommandType.StoredProcedure;
 
             SqlParameter companyID = GradePR.Parameters.Add(new SqlParameter("@Company_id", SqlDbType.Int));
@@ -300,11 +303,13 @@ namespace WebApplication3.webpages
             SqlParameter prDate = GradePR.Parameters.Add(new SqlParameter("@date", SqlDbType.DateTime));
             prDate.Value = PRDate.Text;
             SqlParameter companyGrade = GradePR.Parameters.Add(new SqlParameter("@Company_grade", SqlDbType.Decimal));
-            companyGrade.Value = CompanyGrade.Text;
+            companyGrade.Value = Convert.ToDecimal(CompanyGrade.Text.ToString());
 
             conn.Open();
             GradePR.ExecuteNonQuery();
             conn.Close();
+
+            SubmittedLabel.Visible = true;
         }
 
 
@@ -353,6 +358,7 @@ namespace WebApplication3.webpages
             //else make it invisible
             if (!SubmitGradeThesis.Visible)
             {
+                SubmittedLabel.Visible = false;
                 GradeSid.Visible = true;
                 GradeSid.Text = string.Empty;
                 CompanyGrade.Visible = true;
@@ -397,6 +403,7 @@ namespace WebApplication3.webpages
             //else make it invisible
             if (!SubmitGradeDefense.Visible)
             {
+                SubmittedLabel.Visible = false;
                 GradeSid.Visible = true;
                 GradeSid.Text = string.Empty;
                 CompanyGrade.Visible = true;
@@ -438,6 +445,7 @@ namespace WebApplication3.webpages
             //else make it invisible
             if (!SubmitGradePR.Visible)
             {
+                SubmittedLabel.Visible = false;
                 GradeSid.Visible = true;
                 GradeSid.Text = string.Empty;
                 CompanyGrade.Visible = true;

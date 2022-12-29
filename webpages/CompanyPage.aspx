@@ -281,6 +281,7 @@
                             <asp:Button runat="server" ID="SubmitGradeDefense" Text="Submit" OnClick="GradeDefense" class="btn-info" Visible="false" />
                             <asp:Button runat="server" ID="SubmitGradePR" Text="Submit" OnClick="GradePR" class="btn-outline-dark" Visible="false" />
                         </div>
+                        <h2 runat="server" id="SubmittedLabel" visible="false" class="mb-5 text-uppercase" style="color: red">Student Graded!</h2>
                     </div>
                 </div>
             </div>

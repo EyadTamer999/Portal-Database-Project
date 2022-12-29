@@ -980,11 +980,10 @@ CREATE PROCEDURE EmployeeGradeDefense
     @Employee_grade Decimal(4,2)
 AS
 UPDATE GradeIndustrialDefense SET
- Location = @defense_location
+ Employee_grade = @Employee_grade
  WHERE 
  sid = @sid AND Staff_id = @Employee_id AND GradeIndustrialDefense.location = @defense_location
-GO
-
+ go
 ----------c	
 --
 CREATE PROCEDURE EmployeeCreatePR

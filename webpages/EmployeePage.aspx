@@ -56,9 +56,9 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">View</a>
                                 <div class="dropdown-menu" aria-labelledby="dropdown01">
-                                    <asp:Button runat="server" ID="ShowGradeThesis" OnClick="" class="dropdown-item" Text="Grade Thesis"></asp:Button>
-                                    <asp:Button runat="server" ID="ShowGradeDefense" OnClick="" class="dropdown-item" Text="Grade Defense"></asp:Button>
-                                    <asp:Button runat="server" ID="ShowCreatePR" OnClick="" class="dropdown-item" Text="Create PR"></asp:Button>
+                                    <asp:Button runat="server" ID="ShowGradeThesis" OnClick="ShowThesisRelated" class="dropdown-item" Text="Grade Thesis"></asp:Button>
+                                    <asp:Button runat="server" ID="ShowGradeDefense" OnClick="ShowDefenseRelated" class="dropdown-item" Text="Grade Defense"></asp:Button>
+                                    <asp:Button runat="server" ID="ShowCreatePR" OnClick="ShowPRRelated" class="dropdown-item" Text="Create PR"></asp:Button>
                                 </div>
                             </li>
                             <li class="nav-item">
@@ -67,6 +67,54 @@
                         </ul>
                     </div>
                 </nav>
+            </div>
+            <!--Show my Students-->
+            <div runat="server" visible="true" class="my-3 p-3 bg-white justify-content-center align-content-center rounded box-shadow" id="StudentsLabelHeading" style="margin-top: 8rem!important; height: 34rem!important;">
+                <h6 class="border-bottom border-gray pb-2 mb-0">Students</h6>
+                <div class="media text-muted pt-3">
+                    <asp:GridView ID="StudentTable" class="table table-bordered table-condensed table-responsive table-hover " runat="server" AutoGenerateColumns="False" Style="overflow-y: scroll">
+                        <Columns>
+                            <asp:BoundField DataField="sid" HeaderText="Student ID" InsertVisible="False" ReadOnly="True" SortExpression="sid" />
+                            <asp:BoundField DataField="first_name" HeaderText="first_name" SortExpression="first_name" />
+                            <asp:BoundField DataField="last_name" HeaderText="last_name" SortExpression="last_name" />
+                            <asp:BoundField DataField="Major_code" HeaderText="Major_code" SortExpression="Major_code" />
+                            <asp:BoundField DataField="Assigned_Project_code" HeaderText="Assigned_Project_code" SortExpression="Assigned_Project_code" />
+                            <asp:BoundField DataField="Date_Of_Birth" HeaderText="Date_Of_Birth" SortExpression="Date_Of_Birth" />
+                            <asp:BoundField DataField="Adress" HeaderText="Adress" SortExpression="Adress" />
+                            <asp:BoundField DataField="Age" HeaderText="Age" SortExpression="Age" />
+                            <asp:BoundField DataField="Semester" HeaderText="Semester" SortExpression="Semester" />
+                            <asp:BoundField DataField="GPA" HeaderText="GPA" SortExpression="GPA" />
+                        </Columns>
+                    </asp:GridView>
+                    <asp:SqlDataSource ID="StudentSQL" runat="server" ConnectionString="<%$ ConnectionStrings:PortalConnectionString %>" SelectCommand="SELECT * FROM [Student]">
+                        <SelectParameters>
+                            <asp:QueryStringParameter Name="Company_id" QueryStringField="UserID" Direction="Input" Type="Int32" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                </div>
+            </div>
+
+            <div runat="server" visible="true" class="my-3 p-3 bg-white justify-content-center align-content-center rounded box-shadow" id="GradeStudentDiv" style="margin-top: 5rem!important; height: 34rem!important;">
+                <h6 class="border-bottom border-gray pb-2 mb-0">Grade Student</h6>
+                <div class="col-md-6 mb-4 align-content-center">
+                    <div class="row">
+                        <div class="col">
+
+                            <asp:TextBox runat="server" ID="GradeSid" Placeholder="Student ID" CssClass="form-control form-control-lg" Visible="false"></asp:TextBox>
+                            <asp:TextBox runat="server" ID="ThesisTitle" Placeholder="Thesis Title" CssClass="form-control form-control-lg" Visible="false"></asp:TextBox>
+                            <asp:TextBox runat="server" ID="DefenseLocation" Placeholder="Defense Location" CssClass="form-control form-control-lg" Visible="false"></asp:TextBox>
+                            <asp:TextBox runat="server" ID="PRDate" type="date" CssClass="form-control form-control-lg" Visible="false"></asp:TextBox>
+                            <asp:TextBox runat="server" ID="PRContent" Placeholder="Content" CssClass="form-control form-control-lg" Visible="false"></asp:TextBox>
+                            <asp:TextBox runat="server" ID="EmployeeGrade" Placeholder="Grade" CssClass="form-control form-control-lg" Visible="false"></asp:TextBox>
+
+
+                            <asp:Button runat="server" ID="SubmitGradeThesis" Text="Submit" OnClick="GradeThesis" class="btn-danger" Visible="false" />
+                            <asp:Button runat="server" ID="SubmitGradeDefense" Text="Submit" OnClick="GradeDefense" class="btn-info" Visible="false" />
+                            <asp:Button runat="server" ID="SubmitGradePR" Text="Submit" OnClick="CreatePR" class="btn-outline-dark" Visible="false" />
+                        </div>
+                    </div>
+                    <h2 runat="server" ID="SubmittedLabel" Visible="false" class="mb-5 text-uppercase" Style="color: red">Student Graded!</h2>
+                </div>
             </div>
         </main>
     </form>
