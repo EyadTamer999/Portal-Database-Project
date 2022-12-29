@@ -44,7 +44,7 @@ namespace WebApplication3.webpages
             //exec the login proc
             loginProc.ExecuteNonQuery();
 
-            if (string.Equals(loginProc.Parameters["@success"].Value.ToString(), "1"))
+            if (string.Equals(loginProc.Parameters["@success"].Value.ToString(), "1") && !(string.Equals(loginProc.Parameters["@user_id"].Value.ToString(), "-1")))
             {
                 Session["user"] = user_id.Value;
                 InvalidLogin.Visible = false;
