@@ -42,6 +42,15 @@ namespace WebApplication3.webpages
         protected global::System.Web.UI.WebControls.Label Text1;
 
         /// <summary>
+        /// InvalidLogin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label InvalidLogin;
+
+        /// <summary>
         /// Email control.
         /// </summary>
         /// <remarks>
@@ -76,14 +85,5 @@ namespace WebApplication3.webpages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button RegisterButton;
-
-        /// <summary>
-        /// InvalidLogin control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label InvalidLogin;
     }
 }

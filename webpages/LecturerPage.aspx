@@ -29,7 +29,7 @@
         </p>
         <p>
             <asp:Label ID="Label2" runat="server" Text="Create local project"></asp:Label>
-            <asp:Button ID="Button1" runat="server" OnClick="LecturerCreateLocalProject" Text="Create Project" />
+            <asp:Button ID="Button1" runat="server" OnClick="CreateProjectClicked" Text="Create Project" />
         </p>
         <p>
             <asp:Label ID="Label3" runat="server" Text="Lecturer ID"></asp:Label>

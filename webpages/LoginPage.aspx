@@ -132,27 +132,30 @@
 
         <div style="text-align: center">
             <div class="p-3 mb-2 text-white">
-                <asp:Image style="margin: 1rem;" ID="LoginImg" runat="server" ImageUrl="../img/user-icon.png" Height="60px" Width="60px" />
+                <asp:Image Style="margin: 1rem;" ID="LoginImg" runat="server" ImageUrl="../img/user-icon.png" Height="60px" Width="60px" />
                 <br />
                 <asp:Label ID="Text1" runat="server" Text="Login"></asp:Label>
+                <br />
+                <asp:Label ID="InvalidLogin" runat="server" Font-Size="Large" Visible="false" Style="color: red">Invalid Email or Password</asp:Label>
+
                 <div style="height: 29px; margin: 3rem;">
                     <asp:TextBox ID="Email" runat="server" placeholder="Enter Email"></asp:TextBox>
-                    <asp:TextBox ID="Password" runat="server" type="password" placeholder="Enter Password" ></asp:TextBox>
+                    <asp:TextBox ID="Password" runat="server" type="password" placeholder="Enter Password"></asp:TextBox>
                 </div>
                 <div style="margin: 3rem;">
-                    <asp:Button ID="LoginButton" class="button" Style="min-width: 10rem; min-height: 2rem; background: linear-gradient(90deg, rgb(176 160 55) 0%, rgb(182 33 75) 100%); box-shadow: 12px 12px 24px rgb(174 166 44 / 64%);" runat="server" Text="Login" OnClick="Login" Width="342px" Height="50px" />
+                    <asp:Button runat="server" ID="LoginButton" OnClick="Login" class="button" Style="min-width: 10rem; min-height: 2rem; background: linear-gradient(90deg, rgb(176 160 55) 0%, rgb(182 33 75) 100%); box-shadow: 12px 12px 24px rgb(174 166 44 / 64%);" Text="Login" Width="342px" Height="50px" />
                     <br />
                 </div>
                 <div style="margin: 3rem;">
-                    <asp:Button ID="RegisterButton" class="button" Style="min-width: 10rem; min-height: 2rem; background: linear-gradient(90deg, rgb(181 45 73) 0%, rgb(177 151 57) 100%); box-shadow: 12px 12px 24px rgb(174 166 44 / 64%);" runat="server" Text="No Account? Register!" OnClick="Register" Height="50px" Width="342px" />
+                    <asp:Button runat="server" ID="RegisterButton" OnClick="Register" class="button" Style="min-width: 10rem; min-height: 2rem; background: linear-gradient(90deg, rgb(181 45 73) 0%, rgb(177 151 57) 100%); box-shadow: 12px 12px 24px rgb(174 166 44 / 64%);" Text="No Account? Register!" Height="50px" Width="342px" />
                 </div>
             </div>
 
-            <asp:Label ID="InvalidLogin" runat="server" Visible="false" Style="color: red">Invalid Email or Password</asp:Label>
             <br />
 
-        </div>
 
+
+        </div>
     </form>
     <div class="text-lg-start bottom">
         <!-- Copyright -->
