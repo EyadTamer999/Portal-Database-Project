@@ -111,9 +111,22 @@ CREATE TABLE Major
     -- specify more columns here
 );
 
+
+-- for company 
 CREATE TABLE Bachelor_Project
 (
     Code INT Primary KEY IDENTITY NOT NULL,
+    -- primary key column
+    Name VARCHAR(20),
+    Submitted_Materials VARCHAR(20),
+    Description VARCHAR(20),
+    -- specify more columns here
+);
+
+-- for lecturer 
+CREATE TABLE Bachelor_Project
+(
+    Code INT Primary KEY  ,
     -- primary key column
     Name VARCHAR(20),
     Submitted_Materials VARCHAR(20),
