@@ -315,30 +315,29 @@ CREATE TABLE GradeAcademicDefense
     Lecturer_id INT ,
     EE_id INT,
     sid INT,
-    Title varchar(20),
     Location varchar(20),
     EE_grade DECIMAL(3,2),
     Lecturer_grade DECIMAL(3,2),
-    PRIMARY KEY(sid,Title),
+    PRIMARY KEY(sid,Location),
     -- primary key columns
     FOREIGN KEY(Lecturer_id) REFERENCES Lecturer ON DELETE CASCADE ON UPDATE CASCADE ,
     FOREIGN KEY(EE_id) REFERENCES External_Examiner ON DELETE NO ACTION ON UPDATE NO ACTION ,
     FOREIGN KEY(sid, Location) REFERENCES Defense ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
-CREATE TABLE GradeIndustrialThesis
+CREATE TABLE GradeIndustrialDefense
 (
     Company_id INT ,
     Staff_id INT,
     sid INT,
-    Title varchar(20),
+    Location varchar(20),
     Company_grade DECIMAL(3,2),
     Employee_grade DECIMAL(3,2),
-    PRIMARY KEY(sid,Title),
+    PRIMARY KEY(sid,Location),
     -- primary key columns
     FOREIGN KEY(Company_id) REFERENCES Company ON DELETE NO ACTION ON UPDATE NO ACTION ,
-    FOREIGN KEY(Staff_id, Company_id) REFERENCES Employee ON DELETE CASCADE ON UPDATE CASCADE ,
-    FOREIGN KEY(sid,Title) REFERENCES Thesis(sid,Title)  ON DELETE NO ACTION ON UPDATE NO ACTION
+    FOREIGN KEY(Staff_id, Company_id) REFERENCES Employee ON DELETE NO ACTION ON UPDATE NO ACTION ,
+    FOREIGN KEY(sid, Location) REFERENCES Defense(sid,Location) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
 CREATE TABLE GradeIndustrialDefense

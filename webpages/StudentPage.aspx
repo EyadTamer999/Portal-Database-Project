@@ -145,8 +145,9 @@
     <form id="form1" runat="server">
         <nav>
             <div class="logo">
-                STUDENT PAGE
                 <img src="../img/giu-logo.jpg" alt="HHHHHHHHHHHHHHHHHH">
+                STUDENT PAGE
+               
             </div>
             <div class=" nav-items">
                 <a href="/">Home</a>
@@ -156,10 +157,9 @@
         </nav>
         <section class="hero">
             <div class="hero-container">
-                <div class="column-left">
+                <div class="column-left" style="justify-content: center; align-content: center">
                     <h1>Welcome to your home page</h1>
                     <p>There are currently no announcements from your faculty</p>
-                    <asp:Button ID="Button1" runat="server" Text="Bachelor Project Grade" OnClick="ViewProjectGrade_Click" Style="padding: 1rem 3rem; font-size: 1rem; border: none; color: #818181; background: azure; cursor: pointer; border-radius: 50px;" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="Label1" runat="server" Text=""></asp:Label>
                     <asp:Button ID="ViewThesis" runat="server" Text="Thesis" OnClick="ViewThesis_Click" Style="padding: 1rem 3rem; font-size: 1rem; border: none; color: #818181; background: azure; cursor: pointer; border-radius: 50px;" />
                     <div>
                         <asp:GridView ID="GridView1" runat="server" CssClass="Grid1" Visible=" true"></asp:GridView>
@@ -174,52 +174,54 @@
                         Day&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:TextBox ID="day" runat="server" Width="50px"></asp:TextBox><br />
                         Month&nbsp;<asp:TextBox ID="month" runat="server" Width="50px">&nbsp;&nbsp;&nbsp;</asp:TextBox><br />
                         Year&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:TextBox ID="year" runat="server" Width="50px">&nbsp;&nbsp;&nbsp;</asp:TextBox><br />
-
-
-                        <asp:GridView ID="GridView3" runat="server" CssClass="Grid1" Visible=" true"></asp:GridView>
                     </div>
-                    <asp:Button ID="ViewProjectGrade" runat="server" Text="Bachelor Project Grade" OnClick="ViewProjectGrade_Click" Style="padding: 1rem 3rem; font-size: 1rem; border: none; color: #818181; background: azure; cursor: pointer; border-radius: 50px;" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="projgrade" runat="server" Text=""></asp:Label>
-                    <asp:Button ID="ViewBookedMeeting" runat="server" Text="Booked Meetings" OnClick="ViewBookedMeeting_Click" Style="padding: 1rem 3rem; font-size: 1rem; border: none; color: #818181; background: azure; cursor: pointer; border-radius: 50px;" />
-                    <div>
-                        <asp:GridView ID="GridView4" runat="server" CssClass="Grid1" Visible=" true"></asp:GridView>
-                    </div>
-                    <asp:Button ID="ViewMeetings" runat="server" Text="Meetings Available" OnClick="ViewMeetings_Click" Style="padding: 1rem 3rem; font-size: 1rem; border: none; color: #818181; background: azure; cursor: pointer; border-radius: 50px;" />
-                    <div>
-                        <asp:GridView ID="GridView5" runat="server" CssClass="Grid1" Visible=" true"></asp:GridView>
-                    </div>
-                    <asp:Button ID="MakePreference" runat="server" Text="MakePreference" OnClick="MakePreference_Click" Style="padding: 1rem 3rem; font-size: 1rem; border: none; color: #818181; background: azure; cursor: pointer; border-radius: 50px;" />
-                    <asp:Label ID="Label4" runat="server" Text="Bachelor code"></asp:Label>
-                    &nbsp;<asp:TextBox ID="Bachid" runat="server"></asp:TextBox>
-                    &nbsp;<asp:Label ID="Label5" runat="server" Text="Preference Number"></asp:Label>
-                    &nbsp;<asp:TextBox ID="Pref" runat="server"></asp:TextBox>
+                </div>
 
-                    <asp:Button ID="SubmitThesis" runat="server" Text="Submit Thesis" OnClick="SubmitThesis_Click" Style="padding: 1rem 3rem; font-size: 1rem; border: none; color: #818181; background: azure; cursor: pointer; border-radius: 50px;" />
-                    <asp:Label runat="server" ID="Thesistitle" class="form-label" for="form3Example1m1">Project Title:</asp:Label>
-                    <asp:TextBox runat="server" type="text" ID="ProjTitle" />
-                    <div class="col-md-6 mb-4">
-                        <div class="form-outline">
-                            <asp:Label runat="server" ID="PDF" class="form-label" for="form3Example1m1">PDF Document:</asp:Label>
-                            <asp:TextBox runat="server" type="text" ID="DescriptionTextBox" Style="width: 45rem; height: 25rem; font-size: small; vertical-align: top !important;" class="form-control form-control-lg" />
-                        </div>
+                <asp:GridView ID="GridView3" runat="server" CssClass="Grid1" Visible=" true"></asp:GridView>
+            </div>
+            <asp:Button ID="ViewProjectGrade" runat="server" Text="Bachelor Project Grade" OnClick="ViewProjectGrade_Click" Style="padding: 1rem 3rem; font-size: 1rem; border: none; color: #818181; background: azure; cursor: pointer; border-radius: 50px;" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="projgrade" runat="server" Text=""></asp:Label>
+            <asp:Button ID="ViewBookedMeeting" runat="server" Text="Booked Meetings" OnClick="ViewBookedMeeting_Click" Style="padding: 1rem 3rem; font-size: 1rem; border: none; color: #818181; background: azure; cursor: pointer; border-radius: 50px;" />
+            <div>
+                <asp:GridView ID="GridView4" runat="server" CssClass="Grid1" Visible=" true"></asp:GridView>
+            </div>
+            <asp:Button ID="ViewMeetings" runat="server" Text="Meetings Available" OnClick="ViewMeetings_Click" Style="padding: 1rem 3rem; font-size: 1rem; border: none; color: #818181; background: azure; cursor: pointer; border-radius: 50px;" />
+            <div>
+                <asp:GridView ID="GridView5" runat="server" CssClass="Grid1" Visible=" true"></asp:GridView>
+            </div>
+            <asp:Button ID="MakePreference" runat="server" Text="MakePreference" OnClick="MakePreference_Click" Style="padding: 1rem 3rem; font-size: 1rem; border: none; color: #818181; background: azure; cursor: pointer; border-radius: 50px;" />
+            <asp:Label ID="Label4" runat="server" Text="Bachelor code"></asp:Label>
+            &nbsp;<asp:TextBox ID="Bachid" runat="server"></asp:TextBox>
+            &nbsp;<asp:Label ID="Label5" runat="server" Text="Preference Number"></asp:Label>
+            &nbsp;<asp:TextBox ID="Pref" runat="server"></asp:TextBox>
 
-                        <asp:Button ID="UpdateDefense" runat="server" Text="Update Defense" OnClick="UpdateDefense_Click" Style="padding: 1rem 3rem; font-size: 1rem; border: none; color: #818181; background: azure; cursor: pointer; border-radius: 50px;" />
-                        <div class="col-md-6 mb-4">
-                            <div class="form-outline">
-                                <asp:Label runat="server" ID="defense" class="form-label" for="form3Example1m1">Defense Content:</asp:Label>
-                                <asp:TextBox runat="server" type="text" ID="DefenseContent" Style="width: 45rem; height: 25rem; font-size: small; vertical-align: top !important;" class="form-control form-control-lg" />
-                            </div>
-
-                            <asp:Button ID="BookMeeting" runat="server" Text="Book Meeting" OnClick="BookMeeting_Click" Style="padding: 1rem 3rem; font-size: 1rem; border: none; color: #818181; background: azure; cursor: pointer; border-radius: 50px;" />
-                            <asp:Label ID="Book" runat="server" Text="Meeting ID"></asp:Label>
-                            &nbsp;<asp:TextBox ID="BookID" runat="server"></asp:TextBox>
-                            <asp:Button ID="ToDoList" runat="server" Text="Meeting to do list" OnClick="ToDoList_Click" Style="padding: 1rem 3rem; font-size: 1rem; border: none; color: #818181; background: azure; cursor: pointer; border-radius: 50px;" />
-                            <asp:Label runat="server" ID="Meetingid" class="form-label" for="form3Example1m1">Meeting Id:</asp:Label>
-                            <asp:TextBox runat="server" type="text" ID="Meetingid1" />
-                            <div class="col-md-6 mb-4">
-                                <div class="form-outline">
-                                    <asp:Label runat="server" ID="Label2" class="form-label" for="form3Example1m1">To Do List:</asp:Label>
-                                    <asp:TextBox runat="server" type="text" ID="DoList" Style="width: 45rem; height: 25rem; font-size: small; vertical-align: top !important;" class="form-control form-control-lg" />
-                                </div>
+            <asp:Button ID="SubmitThesis" runat="server" Text="Submit Thesis" OnClick="SubmitThesis_Click" Style="padding: 1rem 3rem; font-size: 1rem; border: none; color: #818181; background: azure; cursor: pointer; border-radius: 50px;" />
+            <asp:Label runat="server" ID="Thesistitle" class="form-label" for="form3Example1m1">Project Title:</asp:Label>
+            <asp:TextBox runat="server" type="text" ID="ProjTitle" />
+            <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                    <asp:Label runat="server" ID="PDF" class="form-label" for="form3Example1m1">PDF Document:</asp:Label>
+                    <asp:TextBox runat="server" type="text" ID="DescriptionTextBox" Style="width: 45rem; height: 25rem; font-size: small; vertical-align: top !important;" class="form-control form-control-lg" />
+                </div>
+            </div>
+            <asp:Button ID="UpdateDefense" runat="server" Text="Update Defense" OnClick="UpdateDefense_Click" Style="padding: 1rem 3rem; font-size: 1rem; border: none; color: #818181; background: azure; cursor: pointer; border-radius: 50px;" />
+            <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                    <asp:Label runat="server" ID="defense" class="form-label" for="form3Example1m1">Defense Content:</asp:Label>
+                    <asp:TextBox runat="server" type="text" ID="DefenseContent" Style="width: 45rem; height: 25rem; font-size: small; vertical-align: top !important;" class="form-control form-control-lg" />
+                </div>
+            </div>
+            <asp:Button ID="BookMeeting" runat="server" Text="Book Meeting" OnClick="BookMeeting_Click" Style="padding: 1rem 3rem; font-size: 1rem; border: none; color: #818181; background: azure; cursor: pointer; border-radius: 50px;" />
+            <asp:Label ID="Book" runat="server" Text="Meeting ID"></asp:Label>
+            &nbsp;<asp:TextBox ID="BookID" runat="server"></asp:TextBox>
+            <asp:Button ID="ToDoList" runat="server" Text="Meeting to do list" OnClick="ToDoList_Click" Style="padding: 1rem 3rem; font-size: 1rem; border: none; color: #818181; background: azure; cursor: pointer; border-radius: 50px;" />
+            <asp:Label runat="server" ID="Meetingid" class="form-label" for="form3Example1m1">Meeting Id:</asp:Label>
+            <asp:TextBox runat="server" type="text" ID="Meetingid1" />
+            <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                    <asp:Label runat="server" ID="Label2" class="form-label" for="form3Example1m1">To Do List:</asp:Label>
+                    <asp:TextBox runat="server" type="text" ID="DoList" Style="width: 45rem; height: 25rem; font-size: small; vertical-align: top !important;" class="form-control form-control-lg" />
+                </div>
+            </div>
         </section>
     </form>
 </body>

@@ -52,7 +52,7 @@ INSERT INTO
         GPA
     )
 VALUES
-(
+    (
         @user_id,
         @first_name,
         @last_name,
@@ -331,7 +331,6 @@ WHERE
 END
 END
 GO
-    ------------c
     CREATE PROCEDURE ViewBachelorProjects @ProjectType varchar(20),
     @User_id int AS -- body of the stored procedure
     BEGIN IF EXISTS(
@@ -390,7 +389,31 @@ VALUES
 (@sid, @Bachelor_code, @prefrences_number)
 GO
     ------------b
-    CREATE PROCEDURE ViewMyThesis @sid int AS IF EXISTS (
+    CREATE PROCEDURE ViewMyThesis @sid int AS DECLARE @EE_grade DECIMAL (3, 1) DECLARE @LecGradeThesis DECIMAL (3, 1) DECLARE @Company_grade DECIMAL (3, 1) DECLARE @Employee_grade DECIMAL (3, 1)
+SELECT
+    @EE_grade = EE_grade
+FROM
+    GradeAcademicThesis
+WHERE
+    GradeAcademicThesis.sid = @sid
+SELECT
+    @LecGradeThesis = Lecturer_grade
+FROM
+    GradeAcademicThesis
+WHERE
+    GradeAcademicThesis.sid = @sid
+SELECT
+    @Company_grade = Company_grade
+FROM
+    GradeIndustrialThesis
+WHERE
+    GradeIndustrialThesis.sid = @sid
+SELECT
+    @Employee_grade = Employee_grade
+FROM
+    GradeIndustrialThesis
+WHERE
+    GradeIndustrialThesis.sid = @sid IF EXISTS (
         SELECT
             *
         FROM
@@ -400,29 +423,13 @@ GO
             Student.sid = @sid
             AND lecturer_grade <> NULL
             AND EE_grade <> NULL
-    ) BEGIN DECLARE @AcademicGrade DECIMAL(3, 2) DECLARE @EE_grade DECIMAL (3, 1) DECLARE @LecGradedefense DECIMAL (3, 1)
-SELECT
-    GradeAcademicThesis.EE_grade
-FROM
-    GradeAcademicThesis
-WHERE
-    GradeAcademicThesis.sid = @sid
-SET
-    @EE_grade = GradeAcademicThesis.EE_grade
-SELECT
-    lecturer_grade
-FROM
-    GradeAcademicThesis
-WHERE
-    GradeAcademicThesis.sid = @sid
-SET
-    @LecGradedefense = Lecturer_grade EXEC GradesAvgCalc @result = @AcademicGrade,
-    @tmp1 = @EE_grade,
-    @tmp2 = @LecGradedefense
+    ) BEGIN DECLARE @AcademicGrade DECIMAL(3, 2) EXEC GradesAvgCalc @EE_grade,
+    @LecGradeThesis,
+    @AcademicGrade OUTPUT
 UPDATE
     Thesis
 SET
-    Thesis.Total_grade = @result
+    Thesis.Total_grade = @AcademicGrade
 END
 ELSE IF EXISTS (
     SELECT
@@ -434,29 +441,20 @@ ELSE IF EXISTS (
         Student.sid = @sid
         AND Employee_grade <> NULL
         AND Company_grade <> NULL
-) DECLARE @IndustrialGrade DECIMAL(3, 2) DECLARE @Company_grade DECIMAL (3, 1) DECLARE @Employee_grade DECIMAL (3, 1)
-SELECT
-    GradeIndustrialThesis.Company_grade
-FROM
-    GradeIndustrialThesis
-WHERE
-    GradeIndustrialThesis.sid = @sid
-SET
-    @Company_grade = Company_grade
-SELECT
-    Employee_grade
-FROM
-    GradeIndustrialThesis
-WHERE
-    GradeIndustrialThesis.sid = @sid
-SET
-    @Employee_grade = Employee_grade EXEC GradesAvgCalc @result = @IndustrialGrade,
-    @tmp1 = @Company_grade,
-    @tmp2 = @Employee_grade
+) BEGIN DECLARE @IndustrialGrade DECIMAL(3, 2) EXEC GradesAvgCalc @Company_grade,
+@Employee_grade,
+@IndustrialGrade OUTPUT
 UPDATE
     Thesis
 SET
-    Thesis.Total_grade = @result
+    Thesis.Total_grade = @IndustrialGrade
+END
+SELECT
+    *
+FROM
+    Thesis
+WHERE
+    sid = @sid
 GO
     ------------c
     CREATE PROCEDURE SubmitMyThesis @sid int,
@@ -485,7 +483,31 @@ FROM
     ProgressReport
 GO
     ------------e
-    CREATE PROCEDURE ViewMyDefense @sid int AS IF EXISTS (
+    CREATE PROCEDURE ViewMyDefense @sid int AS DECLARE @EE_grade DECIMAL (3, 1) DECLARE @LecGradedefense DECIMAL (3, 1) DECLARE @Company_grade DECIMAL (3, 1) DECLARE @Employee_grade DECIMAL (3, 1)
+SELECT
+    @EE_grade = EE_grade
+FROM
+    GradeAcademicDefense
+WHERE
+    GradeAcademicDefense.sid = @sid
+SELECT
+    @LecGradedefense = Lecturer_grade
+FROM
+    GradeAcademicDefense
+WHERE
+    GradeAcademicDefense.sid = @sid
+SELECT
+    @Company_grade = Company_grade
+FROM
+    GradeIndustrialDefense
+WHERE
+    GradeIndustrialDefense.sid = @sid
+SELECT
+    @Employee_grade = Employee_grade
+FROM
+    GradeIndustrialDefense
+WHERE
+    GradeIndustrialDefense.sid = @sid IF EXISTS (
         SELECT
             *
         FROM
@@ -495,29 +517,13 @@ GO
             Student.sid = @sid
             AND lecturer_grade <> NULL
             AND EE_grade <> NULL
-    ) BEGIN DECLARE @AcademicGrade DECIMAL(3, 2) DECLARE @EE_grade DECIMAL (3, 1) DECLARE @LecGradedefense DECIMAL (3, 1)
-SELECT
-    GradeAcademicDefense.EE_grade
-FROM
-    GradeAcademicThesis
-WHERE
-    GradeAcademicDefense.sid = @sid
-SET
-    @EE_grade = GradeAcademicDefense.EE_grade
-SELECT
-    Lecturer_grade
-FROM
-    GradeAcademicDefense
-WHERE
-    GradeAcademicDefense.sid = @sid
-SET
-    @LecGradedefense = Lecturer_grade EXEC GradesAvgCalc @result = @AcademicGrade,
-    @tmp1 = @EE_grade,
-    @tmp2 = @LecGradedefense
+    ) BEGIN DECLARE @AcademicGrade DECIMAL(3, 2) EXEC GradesAvgCalc @EE_grade,
+    @LecGradedefense,
+    @AcademicGrade OUTPUT
 UPDATE
-    Thesis
+    Defense
 SET
-    Thesis.Total_grade = @result
+    Defense.Total_grade = @AcademicGrade
 END
 ELSE IF EXISTS (
     SELECT
@@ -529,29 +535,20 @@ ELSE IF EXISTS (
         Student.sid = @sid
         AND Employee_grade <> NULL
         AND Company_grade <> NULL
-) DECLARE @IndustrialGrade DECIMAL(3, 2) DECLARE @Company_grade DECIMAL (3, 1) DECLARE @Employee_grade DECIMAL (3, 1)
-SELECT
-    Company_grade
-FROM
-    GradeIndustrialDefense
-WHERE
-    GradeIndustrialDefense.sid = @sid
-SET
-    @Company_grade = Company_grade
-SELECT
-    Employee_grade
-FROM
-    GradeIndustrialDefense
-WHERE
-    GradeIndustrialDefense.sid = @sid
-SET
-    @Employee_grade = Employee_grade EXEC GradesAvgCalc @result = @IndustrialGrade,
-    @tmp1 = @Company_grade,
-    @tmp2 = @Employee_grade
+) BEGIN DECLARE @IndustrialGrade DECIMAL(3, 2) EXEC GradesAvgCalc @Company_grade,
+@Employee_grade,
+@IndustrialGrade OUTPUT
 UPDATE
     Defense
 SET
-    Defense.Total_grade = @result
+    Defense.Total_grade = @IndustrialGrade
+END
+SELECT
+    *
+FROM
+    Defense
+WHERE
+    sid = @sid
 GO
     -----HELPER PROCS-----
     CREATE PROC GradesAvgCalc @tmp1 DECIMAL(3, 2),
@@ -628,7 +625,7 @@ GO
     CREATE PROCEDURE BookMeeting @sid INT,
     @meeting_id INT AS
 INSERT INTO
-    Meeting (Meeting_ID, Lecturer_id)
+    MeetingAttendents (Meeting_ID, Attendant_id)
 VALUES
     (@meeting_id, @sid)
 GO
@@ -655,12 +652,10 @@ GO
     ------------k
     CREATE PROCEDURE StudentAddToDo @meeting_id int,
     @to_do_list varchar(200) AS
-UPDATE
-    MeetingToDoList
-SET
-    ToDoList = ToDoList + @to_do_list
-WHERE
-    Meeting_ID = @meeting_id
+INSERT INTO
+    MeetingToDoList (Meeting_ID, ToDoList)
+VALUES
+    (@meeting_id, @to_do_list)
 GO
     -----(4)
     --(A)
@@ -721,7 +716,7 @@ GO
 INSERT INTO
     Bachelor_Project (Description, Name)
 VALUES
-(@description, @title)
+    (@description, @title)
 select
     @proj_code = B.Code
 from
@@ -808,11 +803,11 @@ GO
 INSERT INTO
     Bachelor_Project (Code, Name, description, Submitted_Materials)
 VALUES
-(@proj_code, @title, @description, NULL)
+    (@proj_code, @title, @description, NULL)
 INSERT INTO
     Academic (Academic_code, Lecturer_id, TA_id, EE_id)
 VALUES
-(@proj_code, @Lecturer_id, NULL, NULL)
+    (@proj_code, @Lecturer_id, NULL, NULL)
 GO
     --------------b
     CREATE PROCEDURE SpecifyThesisDeadline @deadline datetime AS
@@ -838,7 +833,7 @@ GO
 INSERT INTO
     MeetingToDoList
 values
-(@meeting_id, @to_do_list) --
+    (@meeting_id, @to_do_list) --
 GO
     --------------e
     CREATE PROCEDURE ViewMeetingLecturer @Lecturer_id int,
@@ -1007,7 +1002,7 @@ GO
 INSERT INTO
     ProgressReport (sid, date, UpdatingUserr_id, Content)
 VALUES
-(@sid, @date, @TA_id, @content)
+    (@sid, @date, @TA_id, @content)
 GO
     ------------b
     CREATE PROCEDURE TAAddToDo @meeting_id int,
@@ -1198,7 +1193,7 @@ go
 INSERT INTO
     ProgressReport (sid, Date, UpdatingUserr_id, Content)
 VALUES
-(@sid, @date, @Employee_id, @content)
+    (@sid, @date, @Employee_id, @content)
 GO
     --
     CREATE PROCEDURE UserType @email varchar(100),
@@ -1235,3 +1230,11 @@ set
 select
     @role
 Go
+
+
+
+CREATE PROCEDURE ViewBooked
+@sid int as 
+select m.* from Meeting m, MeetingAttendents a
+where @sid = a.Attendant_id and a.Meeting_ID = m.Meeting_ID
+go
