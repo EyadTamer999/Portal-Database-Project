@@ -179,7 +179,7 @@
                     </div>
                 </div>
 
-                <asp:GridView ID="GridView3" Style="margin-top: 40rem;"
+                <asp:GridView ID="GridView3" Style="margin-top: 28rem;"
                     runat="server" CssClass="Grid1" Visible=" true">
                 </asp:GridView>
             </div>
