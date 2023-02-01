@@ -150,19 +150,8 @@
                     <asp:Button runat="server" ID="RegisterButton" OnClick="Register" class="button" Style="min-width: 10rem; min-height: 2rem; background: linear-gradient(90deg, rgb(181 45 73) 0%, rgb(177 151 57) 100%); box-shadow: 12px 12px 24px rgb(174 166 44 / 64%);" Text="No Account? Register!" Height="50px" Width="342px" />
                 </div>
             </div>
-
             <br />
-
-
-
         </div>
     </form>
-    <div class="text-lg-start bottom">
-        <!-- Copyright -->
-        <footer class="text-center" style="height: 15rem;">
-            &copy All Rights Reserved.
-        </footer>
-        <!-- Copyright -->
-    </div>
 </body>
 </html>

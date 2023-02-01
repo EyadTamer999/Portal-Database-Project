@@ -151,7 +151,7 @@ namespace WebApplication3.webpages
             CompanyIdOut.Direction = ParameterDirection.Output;
             SqlParameter passwordOut = AddEmployee.Parameters.Add(new SqlParameter("@password", SqlDbType.VarChar, 10));
             passwordOut.Direction = ParameterDirection.Output;
-
+            //test
 
             AddEmployee.ExecuteNonQuery();
         }
@@ -290,8 +290,8 @@ namespace WebApplication3.webpages
         protected void clearTextBoxes()
         {
             Username.Text = string.Empty;
-            Password.Text = string.Empty;   
-            Usertype.SelectedIndex= 0;
+            Password.Text = string.Empty;
+            Usertype.SelectedIndex = 0;
             PhoneNumber.Text = string.Empty;
             Email.Text = string.Empty;
             RepName.Text = string.Empty;
@@ -300,11 +300,11 @@ namespace WebApplication3.webpages
             LastName.Text = string.Empty;
             MajorCode.Text = string.Empty;
             BirthDate.Text = string.Empty;
-            Address.Text = string.Empty;    
+            Address.Text = string.Empty;
             Semester.Text = string.Empty;
             GPA.Text = string.Empty;
             FacultyCode.Text = string.Empty;
-            
+
         }
     }
 }
