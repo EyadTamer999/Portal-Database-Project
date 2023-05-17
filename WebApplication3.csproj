@@ -2128,6 +2128,8 @@
     <Content Include="fontawesome\svgs\solid\yin-yang.svg" />
     <Content Include="fontawesome\svgs\solid\z.svg" />
     <Content Include="img\user-icon.png" />
+    <Content Include="Screenshots\Login_Page" />
+    <Content Include="Screenshots\Register_Page" />
     <Content Include="SQL\Procedures.sql" />
     <Content Include="SQL\Tables.SQL" />
     <Content Include="SQL\Testing.sql" />
@@ -2269,7 +2271,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
